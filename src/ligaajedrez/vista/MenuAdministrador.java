@@ -39,6 +39,11 @@ public class MenuAdministrador extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         resultadosPartidaButton.setText("Introducir resultados partida");
+        resultadosPartidaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resultadosPartidaButtonActionPerformed(evt);
+            }
+        });
 
         registrarTorneoButton.setText("Registrar torneo");
         registrarTorneoButton.setAutoscrolls(true);
@@ -64,8 +69,18 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
 
         gestionarClubsButton.setText("Gestionar clubs");
+        gestionarClubsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gestionarClubsButtonActionPerformed(evt);
+            }
+        });
 
         sedeEntrenamiento5.setText("Reservar sede entrenamiento");
+        sedeEntrenamiento5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sedeEntrenamiento5ActionPerformed(evt);
+            }
+        });
 
         gestionarGerentesButton.setText("Gestionar gerentes");
         gestionarGerentesButton.addActionListener(new java.awt.event.ActionListener() {
@@ -152,6 +167,25 @@ public class MenuAdministrador extends javax.swing.JFrame {
         new RegistrarPartida().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_registrarPartidaButtonActionPerformed
+
+    private void sedeEntrenamiento5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sedeEntrenamiento5ActionPerformed
+        ReservarSedeEntrenamiento reservar;
+        reservar = new ReservarSedeEntrenamiento();
+        reservar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_sedeEntrenamiento5ActionPerformed
+
+    private void resultadosPartidaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultadosPartidaButtonActionPerformed
+        IntroducirResultadosPartida introducir;
+        introducir = new IntroducirResultadosPartida();
+        introducir.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_resultadosPartidaButtonActionPerformed
+
+    private void gestionarClubsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionarClubsButtonActionPerformed
+        new GestionarClubs().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_gestionarClubsButtonActionPerformed
 
     /**
      * @param args the command line arguments

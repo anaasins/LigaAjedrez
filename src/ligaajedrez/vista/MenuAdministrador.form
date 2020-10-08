@@ -71,6 +71,9 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="entrenam"/>
       </AccessibilityProperties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resultadosPartidaButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="registrarTorneoButton">
       <Properties>
@@ -102,11 +105,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Gestionar clubs"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gestionarClubsButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="sedeEntrenamiento5">
       <Properties>
         <Property name="text" type="java.lang.String" value="Reservar sede entrenamiento"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sedeEntrenamiento5ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="gestionarGerentesButton">
       <Properties>
