@@ -126,6 +126,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Atr&#xe1;s"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AtrasResPartidaActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -62,6 +62,11 @@ public class ReservarSedeEntrenamiento extends javax.swing.JFrame {
         });
 
         AtrasResPartida.setText("Atrás");
+        AtrasResPartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AtrasResPartidaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,7 +116,19 @@ public class ReservarSedeEntrenamiento extends javax.swing.JFrame {
 
     private void ReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReservarActionPerformed
         // TODO add your handling code here:
+        MenuJugador menu;
+        menu = new MenuJugador();
+        menu.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_ReservarActionPerformed
+
+    private void AtrasResPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasResPartidaActionPerformed
+        // TODO add your handling code here:
+        MenuJugador menu;
+        menu = new MenuJugador();
+        menu.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_AtrasResPartidaActionPerformed
 
     /**
      * @param args the command line arguments

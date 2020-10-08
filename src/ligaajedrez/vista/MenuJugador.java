@@ -84,15 +84,27 @@ public class MenuJugador extends javax.swing.JFrame {
 
     private void ResSedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResSedeActionPerformed
         // TODO add your handling code here:
-        
+         ReservarSedeEntrenamiento reservar;
+         reservar = new ReservarSedeEntrenamiento();
+         reservar.setVisible(true);
+         this.setVisible(false);
+         
     }//GEN-LAST:event_ResSedeActionPerformed
 
     private void InResPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InResPartidaActionPerformed
         // TODO add your handling code here:
+        IntroducirResultadosPartida introducir;
+        introducir = new IntroducirResultadosPartida();
+        introducir.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_InResPartidaActionPerformed
 
     private void ModDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModDatosActionPerformed
         // TODO add your handling code here:
+        ModificarJugador modificar;
+        modificar = new ModificarJugador();
+        modificar.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_ModDatosActionPerformed
 
     /**

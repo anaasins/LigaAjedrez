@@ -88,8 +88,8 @@ public class IntroducirResultadosPartida extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(AtrasPartida, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(SiguientePartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(SiguientePartida, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(AtrasPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(19, 19, 19))
         );
 
@@ -98,10 +98,18 @@ public class IntroducirResultadosPartida extends javax.swing.JFrame {
 
     private void SiguientePartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguientePartidaActionPerformed
         // TODO add your handling code here:
+        ElegirGanador ganador;
+        ganador = new ElegirGanador();
+        ganador.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_SiguientePartidaActionPerformed
 
     private void AtrasPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasPartidaActionPerformed
         // TODO add your handling code here:
+        MenuJugador menu;
+        menu = new MenuJugador();
+        menu.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_AtrasPartidaActionPerformed
 
     /**
