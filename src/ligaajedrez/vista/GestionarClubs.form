@@ -60,16 +60,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar club"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarClubButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="nuevoClubButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nuevo club"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevoClubButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="modificarClubButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Modificar club"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificarClubButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="atrasButton">
       <Properties>
