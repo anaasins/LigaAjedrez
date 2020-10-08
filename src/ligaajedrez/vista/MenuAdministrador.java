@@ -58,8 +58,18 @@ public class MenuAdministrador extends javax.swing.JFrame {
         sedeEntrenamiento5.setText("Reservar sede entrenamiento");
 
         gestionarGerentesButton.setText("Gestionar gerentes");
+        gestionarGerentesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gestionarGerentesButtonActionPerformed(evt);
+            }
+        });
 
         gestionarEntrenadoresButton.setText("Gestionar entrenadores");
+        gestionarEntrenadoresButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gestionarEntrenadoresButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,6 +120,18 @@ public class MenuAdministrador extends javax.swing.JFrame {
         new GestionarJugadores().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_gestionarJugadoresButtonActionPerformed
+
+    private void gestionarEntrenadoresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionarEntrenadoresButtonActionPerformed
+        // TODO add your handling code here:
+        new GestionarEntrenadors().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_gestionarEntrenadoresButtonActionPerformed
+
+    private void gestionarGerentesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionarGerentesButtonActionPerformed
+        // TODO add your handling code here:
+        new GestionarGerentes().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_gestionarGerentesButtonActionPerformed
 
     /**
      * @param args the command line arguments

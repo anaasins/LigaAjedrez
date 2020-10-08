@@ -106,11 +106,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Gestionar gerentes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gestionarGerentesButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="gestionarEntrenadoresButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Gestionar entrenadores"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gestionarEntrenadoresButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

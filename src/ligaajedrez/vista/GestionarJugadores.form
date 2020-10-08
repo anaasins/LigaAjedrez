@@ -79,11 +79,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Registrar moroso"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registrarMorosoButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="consultarJugadoresButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Consultar jugadores"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultarJugadoresButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="modificarJugadorButton">
       <Properties>
