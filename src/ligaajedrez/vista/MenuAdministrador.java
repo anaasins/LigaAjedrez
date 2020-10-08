@@ -42,9 +42,19 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
         registrarTorneoButton.setText("Registrar torneo");
         registrarTorneoButton.setAutoscrolls(true);
+        registrarTorneoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarTorneoButtonActionPerformed(evt);
+            }
+        });
 
         registrarPartidaButton.setText("Registrar partida");
         registrarPartidaButton.setToolTipText("");
+        registrarPartidaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarPartidaButtonActionPerformed(evt);
+            }
+        });
 
         gestionarJugadoresButton.setText("Gestionar jugadores");
         gestionarJugadoresButton.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +142,16 @@ public class MenuAdministrador extends javax.swing.JFrame {
         new GestionarGerentes().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_gestionarGerentesButtonActionPerformed
+
+    private void registrarTorneoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarTorneoButtonActionPerformed
+        new RegistrarTorneo().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_registrarTorneoButtonActionPerformed
+
+    private void registrarPartidaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarPartidaButtonActionPerformed
+        new RegistrarPartida().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_registrarPartidaButtonActionPerformed
 
     /**
      * @param args the command line arguments
