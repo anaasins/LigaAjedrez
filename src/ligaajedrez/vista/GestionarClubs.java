@@ -35,12 +35,32 @@ public class GestionarClubs extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         eliminarClubButton.setText("Eliminar club");
+        eliminarClubButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarClubButtonActionPerformed(evt);
+            }
+        });
 
         nuevoClubButton.setText("Nuevo club");
+        nuevoClubButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoClubButtonActionPerformed(evt);
+            }
+        });
 
         modificarClubButton.setText("Modificar club");
+        modificarClubButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarClubButtonActionPerformed(evt);
+            }
+        });
 
         atrasButton.setText("Atrás");
+        atrasButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atrasButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,6 +94,30 @@ public class GestionarClubs extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void atrasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasButtonActionPerformed
+        // TODO add your handling code here:
+        new MenuAdministrador().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_atrasButtonActionPerformed
+
+    private void eliminarClubButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarClubButtonActionPerformed
+        // TODO add your handling code here:
+        new EliminarClub().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_eliminarClubButtonActionPerformed
+
+    private void nuevoClubButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoClubButtonActionPerformed
+        // TODO add your handling code here:
+        new NuevoClub().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_nuevoClubButtonActionPerformed
+
+    private void modificarClubButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarClubButtonActionPerformed
+        // TODO add your handling code here:
+        new NuevoClub().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_modificarClubButtonActionPerformed
 
     /**
      * @param args the command line arguments
