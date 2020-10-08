@@ -41,17 +41,17 @@ public class LoginFrame extends javax.swing.JFrame {
 
         passField.setToolTipText("");
 
-        loginBtn.setText("Accedir");
+        loginBtn.setText("Acceder");
         loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginBtnActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Contrasenya");
+        jLabel2.setText("Contraseña");
         jLabel2.setToolTipText("");
 
-        jLabel1.setText("Usuari:");
+        jLabel1.setText("Usuario:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,7 +60,7 @@ public class LoginFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1)
@@ -69,7 +69,7 @@ public class LoginFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(userField, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                             .addComponent(passField))))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,14 +91,14 @@ public class LoginFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        if (userField.getText().equalsIgnoreCase("usuari")) {
+        if (userField.getText().equalsIgnoreCase("usuario")) {
             MenuJugador menuJugador = new MenuJugador();
             this.setVisible(false);
             menuJugador.setVisible(true);
         } else if (userField.getText().equalsIgnoreCase("administrador")) {
             
         } else {
-            JOptionPane.showConfirmDialog(null, "No existeix ningun usuari registrat", "Error login", JOptionPane.OK_OPTION);
+            JOptionPane.showConfirmDialog(null, "No existe ningun usuario registrado", "Error login", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_loginBtnActionPerformed
 
