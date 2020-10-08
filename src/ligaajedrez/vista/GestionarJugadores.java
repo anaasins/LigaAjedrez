@@ -37,6 +37,11 @@ public class GestionarJugadores extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         eliminarJugadorButton.setText("Eliminar jugador");
+        eliminarJugadorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarJugadorButtonActionPerformed(evt);
+            }
+        });
 
         nuevoJugadorButton.setText("Nuevo jugador");
 
@@ -97,6 +102,12 @@ public class GestionarJugadores extends javax.swing.JFrame {
         new MenuAdministrador().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_atrasButtonActionPerformed
+
+    private void eliminarJugadorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarJugadorButtonActionPerformed
+        // TODO add your handling code here:
+        new EliminarJugador().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_eliminarJugadorButtonActionPerformed
 
     /**
      * @param args the command line arguments
