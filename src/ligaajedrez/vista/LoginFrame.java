@@ -96,7 +96,9 @@ public class LoginFrame extends javax.swing.JFrame {
             this.setVisible(false);
             menuJugador.setVisible(true);
         } else if (userField.getText().equalsIgnoreCase("administrador")) {
-            
+            MenuAdministrador menuAdministrador = new MenuAdministrador();
+            this.setVisible(false);
+            menuAdministrador.setVisible(true);
         } else {
             JOptionPane.showConfirmDialog(null, "No existe ningun usuario registrado", "Error login", JOptionPane.OK_OPTION);
         }
