@@ -32,6 +32,7 @@ public class GestionarJugadores extends javax.swing.JFrame {
         registrarMorosoButton = new javax.swing.JButton();
         consultarJugadoresButton = new javax.swing.JButton();
         modificarJugadorButton = new javax.swing.JButton();
+        atrasButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,6 +45,13 @@ public class GestionarJugadores extends javax.swing.JFrame {
         consultarJugadoresButton.setText("Consultar jugadores");
 
         modificarJugadorButton.setText("Modificar Jugador");
+
+        atrasButton.setText("Atrás");
+        atrasButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atrasButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,6 +66,10 @@ public class GestionarJugadores extends javax.swing.JFrame {
                     .addComponent(nuevoJugadorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(eliminarJugadorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(atrasButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,11 +84,19 @@ public class GestionarJugadores extends javax.swing.JFrame {
                 .addComponent(consultarJugadoresButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(modificarJugadorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(atrasButton, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void atrasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasButtonActionPerformed
+        // TODO add your handling code here:
+        new MenuAdministrador().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_atrasButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,6 +134,7 @@ public class GestionarJugadores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton atrasButton;
     private javax.swing.JButton consultarJugadoresButton;
     private javax.swing.JButton eliminarJugadorButton;
     private javax.swing.JButton modificarJugadorButton;

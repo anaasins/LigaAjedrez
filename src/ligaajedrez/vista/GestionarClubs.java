@@ -30,6 +30,7 @@ public class GestionarClubs extends javax.swing.JFrame {
         eliminarClubButton = new javax.swing.JButton();
         nuevoClubButton = new javax.swing.JButton();
         modificarClubButton = new javax.swing.JButton();
+        atrasButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,6 +39,8 @@ public class GestionarClubs extends javax.swing.JFrame {
         nuevoClubButton.setText("Nuevo club");
 
         modificarClubButton.setText("Modificar club");
+
+        atrasButton.setText("Atrás");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -50,6 +53,10 @@ public class GestionarClubs extends javax.swing.JFrame {
                     .addComponent(nuevoClubButton, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(eliminarClubButton, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(atrasButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -60,7 +67,9 @@ public class GestionarClubs extends javax.swing.JFrame {
                 .addComponent(eliminarClubButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(modificarClubButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addComponent(atrasButton)
+                .addContainerGap())
         );
 
         pack();
@@ -103,6 +112,7 @@ public class GestionarClubs extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton atrasButton;
     private javax.swing.JButton eliminarClubButton;
     private javax.swing.JButton modificarClubButton;
     private javax.swing.JButton nuevoClubButton;

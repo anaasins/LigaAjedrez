@@ -32,6 +32,11 @@
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="atrasButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -43,7 +48,9 @@
               <Component id="eliminarClubButton" min="-2" pref="54" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="modificarClubButton" min="-2" pref="54" max="-2" attributes="0"/>
-              <EmptySpace pref="100" max="32767" attributes="0"/>
+              <EmptySpace pref="62" max="32767" attributes="0"/>
+              <Component id="atrasButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -62,6 +69,11 @@
     <Component class="javax.swing.JButton" name="modificarClubButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Modificar club"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="atrasButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Atr&#xe1;s"/>
       </Properties>
     </Component>
   </SubComponents>
