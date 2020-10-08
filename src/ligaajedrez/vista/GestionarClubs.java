@@ -41,6 +41,11 @@ public class GestionarClubs extends javax.swing.JFrame {
         modificarClubButton.setText("Modificar club");
 
         atrasButton.setText("Atrás");
+        atrasButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atrasButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,6 +79,12 @@ public class GestionarClubs extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void atrasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasButtonActionPerformed
+        // TODO add your handling code here:
+        new MenuAdministrador().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_atrasButtonActionPerformed
 
     /**
      * @param args the command line arguments
