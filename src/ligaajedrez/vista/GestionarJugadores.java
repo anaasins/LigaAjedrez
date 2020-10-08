@@ -44,6 +44,11 @@ public class GestionarJugadores extends javax.swing.JFrame {
         });
 
         nuevoJugadorButton.setText("Nuevo jugador");
+        nuevoJugadorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoJugadorButtonActionPerformed(evt);
+            }
+        });
 
         registrarMorosoButton.setText("Registrar moroso");
         registrarMorosoButton.addActionListener(new java.awt.event.ActionListener() {
@@ -60,6 +65,11 @@ public class GestionarJugadores extends javax.swing.JFrame {
         });
 
         modificarJugadorButton.setText("Modificar Jugador");
+        modificarJugadorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarJugadorButtonActionPerformed(evt);
+            }
+        });
 
         atrasButton.setText("Atrás");
         atrasButton.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +140,18 @@ public class GestionarJugadores extends javax.swing.JFrame {
         new ConsultarJugadores().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_consultarJugadoresButtonActionPerformed
+
+    private void modificarJugadorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarJugadorButtonActionPerformed
+        // TODO add your handling code here:
+        new ModificarJugador().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_modificarJugadorButtonActionPerformed
+
+    private void nuevoJugadorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoJugadorButtonActionPerformed
+        // TODO add your handling code here:
+        new ModificarJugador().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_nuevoJugadorButtonActionPerformed
 
     /**
      * @param args the command line arguments
