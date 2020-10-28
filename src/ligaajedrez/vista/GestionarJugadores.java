@@ -5,17 +5,25 @@
  */
 package ligaajedrez.vista;
 
+import ligaajedrez.modelo.Administrador;
+
 /**
  *
  * @author asins
  */
 public class GestionarJugadores extends javax.swing.JFrame {
-
+    private Administrador administrador;
     /**
      * Creates new form GestionarJugadores
      */
+    public GestionarJugadores(Administrador administrador) {
+        initComponents();
+        this.administrador = administrador;
+    }
+    
     public GestionarJugadores() {
         initComponents();
+        this.administrador = null;
     }
 
     /**
@@ -149,7 +157,7 @@ public class GestionarJugadores extends javax.swing.JFrame {
 
     private void nuevoJugadorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoJugadorButtonActionPerformed
         // TODO add your handling code here:
-        new ModificarJugador().setVisible(true);
+        new ModificarJugador(administrador).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_nuevoJugadorButtonActionPerformed
 
