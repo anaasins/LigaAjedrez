@@ -10,7 +10,28 @@ package ligaajedrez.modelo.enums;
  * @author jbeltran
  */
 public enum CategoriaEnum {
-    Infantil,
-    Junior,
-    Senior;
+    Infantil(0),
+    Junior(1),
+    Senior(2);
+
+    private final int value;
+    
+    private CategoriaEnum(int value) {
+        this.value = value;
+    }
+    
+    public static String[] names() {
+        CategoriaEnum[] categories = values();
+        String[] names = new String[categories.length];
+
+        for (int i = 0; i < categories.length; i++) {
+            names[i] = categories[i].name();
+        }
+
+        return names;
+    }
+
+    public int getValue() {
+        return value;
+    }
 }
