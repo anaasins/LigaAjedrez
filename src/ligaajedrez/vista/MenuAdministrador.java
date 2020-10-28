@@ -5,17 +5,25 @@
  */
 package ligaajedrez.vista;
 
+import ligaajedrez.modelo.Administrador;
+
 /**
  *
  * @author asins
  */
 public class MenuAdministrador extends javax.swing.JFrame {
-
+    private Administrador administrador;
     /**
      * Creates new form MenuAdministrador
      */
+    public MenuAdministrador(Administrador administrador) {
+        initComponents();
+        this.administrador = administrador;
+    }
+    
     public MenuAdministrador() {
         initComponents();
+        this.administrador = null;
     }
 
     /**
@@ -142,7 +150,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
     private void gestionarJugadoresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionarJugadoresButtonActionPerformed
         // TODO add your handling code here:
-        new GestionarJugadores().setVisible(true);
+        new GestionarJugadores(administrador).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_gestionarJugadoresButtonActionPerformed
 
