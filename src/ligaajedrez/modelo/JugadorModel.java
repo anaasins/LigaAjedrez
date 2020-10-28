@@ -23,13 +23,13 @@ public class JugadorModel {
     public JugadorModel() {
     }
 
-    /*public JugadorModel(String name, int elo, int age, Club club, String responsableName, String reponsablePhoneNumber) {
+    public JugadorModel(String name, int elo, int age, /*Club club,*/ String responsableName, String reponsablePhoneNumber) {
         setName(name);
         setElo(elo);
-        setClub(club);
+        //setClub(club);
         setResponsableName(responsableName);
         setReponsablePhoneNumber(reponsablePhoneNumber);
-    }*/
+    }
 
     public String getName() {
         return name;
@@ -62,8 +62,16 @@ public class JugadorModel {
     }
 
     public void setAge(int age) {
-        if (age > 0 && age < 140)
+        if (age > 0 && age < 140) {
             this.age = age;
+            
+            if (age <= 15)
+                category = CategoriaEnum.Infantil;
+            else if (age <= 18)
+                category = CategoriaEnum.Junior;
+            else
+                category = CategoriaEnum.Senior;
+        }
     }
 
     public CategoriaEnum getCategory() {
