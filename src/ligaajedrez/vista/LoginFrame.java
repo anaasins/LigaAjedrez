@@ -6,6 +6,7 @@
 package ligaajedrez.vista;
 
 import javax.swing.JOptionPane;
+import ligaajedrez.modelo.Administrador;
 
 /**
  *
@@ -96,7 +97,8 @@ public class LoginFrame extends javax.swing.JFrame {
             this.setVisible(false);
             menuJugador.setVisible(true);
         } else if (userField.getText().equalsIgnoreCase("administrador")) {
-            MenuAdministrador menuAdministrador = new MenuAdministrador();
+            Administrador admin = new Administrador();
+            MenuAdministrador menuAdministrador = new MenuAdministrador(admin);
             this.setVisible(false);
             menuAdministrador.setVisible(true);
         } else {
