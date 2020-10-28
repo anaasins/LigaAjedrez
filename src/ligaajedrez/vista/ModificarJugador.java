@@ -5,15 +5,23 @@
  */
 package ligaajedrez.vista;
 
+import ligaajedrez.modelo.Administrador;
+
 /**
  *
  * @author Olaf
  */
 public class ModificarJugador extends javax.swing.JFrame {
-
+    private Administrador administrador;
+    
     /**
      * Creates new form ModificarJugador
      */
+    public ModificarJugador(Administrador administrador) {
+        initComponents();
+        this.administrador = administrador;
+    }
+
     public ModificarJugador() {
         initComponents();
     }
