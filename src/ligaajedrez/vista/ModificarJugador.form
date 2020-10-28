@@ -42,7 +42,7 @@
               <EmptySpace pref="37" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="modificarDatos" min="-2" pref="127" max="-2" attributes="0"/>
+                      <Component id="acceptBtn" min="-2" pref="127" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -101,7 +101,7 @@
               </Group>
               <EmptySpace pref="32" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="modificarDatos" pref="40" max="32767" attributes="0"/>
+                  <Component id="acceptBtn" pref="40" max="32767" attributes="0"/>
                   <Component id="AtrasModJ" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -128,8 +128,6 @@
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="nameLabel">
@@ -145,9 +143,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="eloField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eloFieldActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="clubLabel">
       <Properties>
@@ -163,21 +158,18 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="clubName">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clubNameActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="responsableNameField">
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="modificarDatos">
+    <Component class="javax.swing.JButton" name="acceptBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Modificar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificarDatosActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="acceptBtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="AtrasModJ">
@@ -198,7 +190,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="ageField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ageFieldActionPerformed"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="ageFieldFocusLost"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="responsablePhoneNumberLabel">

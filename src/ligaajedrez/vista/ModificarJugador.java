@@ -5,21 +5,44 @@
  */
 package ligaajedrez.vista;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.JugadorModel;
+import ligaajedrez.modelo.enums.CategoriaEnum;
 
 /**
  *
  * @author Olaf
  */
 public class ModificarJugador extends javax.swing.JFrame {
+
     private Administrador administrador;
-    
+    private JugadorModel player;
+    private JFrame previousView;
+
     /**
      * Creates new form ModificarJugador
      */
-    public ModificarJugador(Administrador administrador) {
+    public ModificarJugador(Administrador administrador, JFrame previousView) {
         initComponents();
         this.administrador = administrador;
+
+        DefaultComboBoxModel model = new DefaultComboBoxModel(CategoriaEnum.names());
+        categoryCombo.setModel(model);
+        acceptBtn.setText("Añadir");
+        this.previousView = previousView;
+    }
+    
+    public ModificarJugador(Administrador administrador, JugadorModel player, JFrame previousView) {
+        initComponents();
+        this.administrador = administrador;
+
+        DefaultComboBoxModel model = new DefaultComboBoxModel(CategoriaEnum.names());
+        categoryCombo.setModel(model);
+        this.player = player;
+        this.previousView = previousView;
     }
 
     public ModificarJugador() {
@@ -36,7 +59,7 @@ public class ModificarJugador extends javax.swing.JFrame {
     private void initComponents() {
 
         categoryLabel = new javax.swing.JLabel();
-        javax.swing.JComboBox<String> categoryCombo = new javax.swing.JComboBox<>();
+        categoryCombo = new javax.swing.JComboBox<>();
         nameLabel = new javax.swing.JLabel();
         nameField = new javax.swing.JTextField();
         eloLabel = new javax.swing.JLabel();
@@ -45,7 +68,7 @@ public class ModificarJugador extends javax.swing.JFrame {
         responsableNameLabel = new javax.swing.JLabel();
         clubName = new javax.swing.JTextField();
         responsableNameField = new javax.swing.JTextField();
-        modificarDatos = new javax.swing.JButton();
+        acceptBtn = new javax.swing.JButton();
         AtrasModJ = new javax.swing.JButton();
         ageLabel = new javax.swing.JLabel();
         ageField = new javax.swing.JTextField();
@@ -63,29 +86,17 @@ public class ModificarJugador extends javax.swing.JFrame {
 
         eloLabel.setText("ELO");
 
-        eloField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eloFieldActionPerformed(evt);
-            }
-        });
-
         clubLabel.setText("Club");
 
         responsableNameLabel.setLabelFor(responsableNameField);
         responsableNameLabel.setText("Nombre responsable");
 
-        clubName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clubNameActionPerformed(evt);
-            }
-        });
-
         responsableNameField.setEnabled(false);
 
-        modificarDatos.setText("Modificar");
-        modificarDatos.addActionListener(new java.awt.event.ActionListener() {
+        acceptBtn.setText("Modificar");
+        acceptBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarDatosActionPerformed(evt);
+                acceptBtnActionPerformed(evt);
             }
         });
 
@@ -99,9 +110,9 @@ public class ModificarJugador extends javax.swing.JFrame {
         ageLabel.setLabelFor(ageField);
         ageLabel.setText("Edad");
 
-        ageField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ageFieldActionPerformed(evt);
+        ageField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ageFieldFocusLost(evt);
             }
         });
 
@@ -130,7 +141,7 @@ public class ModificarJugador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(modificarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(acceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -176,7 +187,7 @@ public class ModificarJugador extends javax.swing.JFrame {
                     .addComponent(responsablePhoneNumberLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(modificarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(acceptBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                     .addComponent(AtrasModJ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -184,21 +195,33 @@ public class ModificarJugador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void acceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBtnActionPerformed
+        String name, responsableName, responsableNumber;
+        Integer elo, age;
 
-    private void clubNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clubNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clubNombreActionPerformed
+        name = nameField.getText();
+        responsableName = responsableNameField.getText();
+        responsableNumber = responsablePhoneNumberField.getText();
+        elo = null;
+        age = null;
+        try {
+            elo = Integer.parseInt(eloField.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showConfirmDialog(null, "El valor introducido para el elo no es correcto", "Fallo valor elo", JOptionPane.OK_OPTION);
+        }
+        try {
+            age = Integer.parseInt(ageField.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showConfirmDialog(null, "El valor introducido para la edad no es correcto", "Fallo valor edad", JOptionPane.OK_OPTION);
+        }
 
-    private void modificarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarDatosActionPerformed
-        // TODO add your handling code here:
-        MenuJugador menu;
-        menu = new MenuJugador();
-        menu.setVisible(true);
+        if (elo != null && age != null) {
+            administrador.crearJugador(name, elo, age, responsableName, responsableNumber);
+        }
+
+        previousView.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_modificarDatosActionPerformed
+    }//GEN-LAST:event_acceptBtnActionPerformed
 
     private void AtrasModJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasModJActionPerformed
         // TODO add your handling code here:
@@ -207,6 +230,23 @@ public class ModificarJugador extends javax.swing.JFrame {
         menu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_AtrasModJActionPerformed
+
+    private void ageFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ageFieldFocusLost
+        int age = Integer.parseInt(ageField.getText());
+        if (age <= 15) {
+            categoryCombo.setSelectedIndex(CategoriaEnum.Infantil.getValue());
+            responsableNameField.setEnabled(true);
+            responsablePhoneNumberField.setEnabled(true);
+        } else if (age <= 18) {
+            categoryCombo.setSelectedIndex(CategoriaEnum.Junior.getValue());
+            responsableNameField.setEnabled(false);
+            responsablePhoneNumberField.setEnabled(false);
+        } else {
+            categoryCombo.setSelectedIndex(CategoriaEnum.Senior.getValue());
+            responsableNameField.setEnabled(false);
+            responsablePhoneNumberField.setEnabled(false);
+        }
+    }//GEN-LAST:event_ageFieldFocusLost
 
     /**
      * @param args the command line arguments
@@ -245,14 +285,15 @@ public class ModificarJugador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AtrasModJ;
+    private javax.swing.JButton acceptBtn;
     private javax.swing.JTextField ageField;
     private javax.swing.JLabel ageLabel;
+    private javax.swing.JComboBox<String> categoryCombo;
     private javax.swing.JLabel categoryLabel;
     private javax.swing.JLabel clubLabel;
     private javax.swing.JTextField clubName;
     private javax.swing.JTextField eloField;
     private javax.swing.JLabel eloLabel;
-    private javax.swing.JButton modificarDatos;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField responsableNameField;
