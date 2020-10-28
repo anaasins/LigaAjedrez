@@ -35,44 +35,52 @@ public class ModificarJugador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        Categoria = new javax.swing.JComboBox<>();
-        NombreJugador = new javax.swing.JLabel();
-        edadJugador = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        club = new javax.swing.JLabel();
-        responsable = new javax.swing.JLabel();
-        clubNombre = new javax.swing.JTextField();
-        responsableJugador = new javax.swing.JTextField();
+        categoryLabel = new javax.swing.JLabel();
+        javax.swing.JComboBox<String> categoryCombo = new javax.swing.JComboBox<>();
+        nameLabel = new javax.swing.JLabel();
+        nameField = new javax.swing.JTextField();
+        eloLabel = new javax.swing.JLabel();
+        eloField = new javax.swing.JTextField();
+        clubLabel = new javax.swing.JLabel();
+        responsableNameLabel = new javax.swing.JLabel();
+        clubName = new javax.swing.JTextField();
+        responsableNameField = new javax.swing.JTextField();
         modificarDatos = new javax.swing.JButton();
         AtrasModJ = new javax.swing.JButton();
+        ageLabel = new javax.swing.JLabel();
+        ageField = new javax.swing.JTextField();
+        responsablePhoneNumberLabel = new javax.swing.JLabel();
+        responsablePhoneNumberField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Categoria");
+        categoryLabel.setText("Categoria");
 
-        Categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Infantil", "Junior", "Senior" }));
+        categoryCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Infantil", "Junior", "Senior" }));
+        categoryCombo.setEnabled(false);
 
-        NombreJugador.setText("Nombre");
+        nameLabel.setText("Nombre");
 
-        jLabel2.setText("ELO");
+        eloLabel.setText("ELO");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        eloField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                eloFieldActionPerformed(evt);
             }
         });
 
-        club.setText("Club");
+        clubLabel.setText("Club");
 
-        responsable.setText("Responsable");
+        responsableNameLabel.setLabelFor(responsableNameField);
+        responsableNameLabel.setText("Nombre responsable");
 
-        clubNombre.addActionListener(new java.awt.event.ActionListener() {
+        clubName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clubNombreActionPerformed(evt);
+                clubNameActionPerformed(evt);
             }
         });
+
+        responsableNameField.setEnabled(false);
 
         modificarDatos.setText("Modificar");
         modificarDatos.addActionListener(new java.awt.event.ActionListener() {
@@ -88,64 +96,90 @@ public class ModificarJugador extends javax.swing.JFrame {
             }
         });
 
+        ageLabel.setLabelFor(ageField);
+        ageLabel.setText("Edad");
+
+        ageField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ageFieldActionPerformed(evt);
+            }
+        });
+
+        responsablePhoneNumberLabel.setLabelFor(responsablePhoneNumberField);
+        responsablePhoneNumberLabel.setText("Telefono responsable");
+
+        responsablePhoneNumberField.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(NombreJugador)
-                    .addComponent(jLabel2)
-                    .addComponent(club)
-                    .addComponent(responsable))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(clubNombre)
-                    .addComponent(Categoria, javax.swing.GroupLayout.Alignment.LEADING, 0, 160, Short.MAX_VALUE)
-                    .addComponent(edadJugador, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(responsableJugador))
-                .addGap(43, 43, 43))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(AtrasModJ, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                .addComponent(modificarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(AtrasModJ, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(responsableNameLabel)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(eloLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addComponent(categoryLabel)
+                        .addComponent(clubLabel)
+                        .addComponent(responsablePhoneNumberLabel)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(modificarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(responsableNameField)
+                            .addComponent(clubName)
+                            .addComponent(categoryCombo, 0, 160, Short.MAX_VALUE)
+                            .addComponent(ageField)
+                            .addComponent(eloField)
+                            .addComponent(nameField)
+                            .addComponent(responsablePhoneNumberField))
+                        .addGap(43, 43, 43))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(Categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(nameLabel)
+                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NombreJugador)
-                    .addComponent(edadJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(eloField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(eloLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(clubNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(club))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(responsable)
-                    .addComponent(responsableJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                    .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ageLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(categoryLabel)
+                    .addComponent(categoryCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(clubName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clubLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(responsableNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(responsableNameLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(responsablePhoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(responsablePhoneNumberLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(modificarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                     .addComponent(AtrasModJ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-
-        jLabel2.getAccessibleContext().setAccessibleName("ELO");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -211,16 +245,19 @@ public class ModificarJugador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AtrasModJ;
-    private javax.swing.JComboBox<String> Categoria;
-    private javax.swing.JLabel NombreJugador;
-    private javax.swing.JLabel club;
-    private javax.swing.JTextField clubNombre;
-    private javax.swing.JTextField edadJugador;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField ageField;
+    private javax.swing.JLabel ageLabel;
+    private javax.swing.JLabel categoryLabel;
+    private javax.swing.JLabel clubLabel;
+    private javax.swing.JTextField clubName;
+    private javax.swing.JTextField eloField;
+    private javax.swing.JLabel eloLabel;
     private javax.swing.JButton modificarDatos;
-    private javax.swing.JLabel responsable;
-    private javax.swing.JTextField responsableJugador;
+    private javax.swing.JTextField nameField;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JTextField responsableNameField;
+    private javax.swing.JLabel responsableNameLabel;
+    private javax.swing.JTextField responsablePhoneNumberField;
+    private javax.swing.JLabel responsablePhoneNumberLabel;
     // End of variables declaration//GEN-END:variables
 }
