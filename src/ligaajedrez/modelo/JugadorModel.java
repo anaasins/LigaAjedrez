@@ -92,7 +92,7 @@ public class JugadorModel {
     }
 
     public void setReponsablePhoneNumber(String reponsablePhoneNumber) {
-        if (reponsablePhoneNumber.matches("(+[0-9]{2})?[0-9]{9}"))
+        if (reponsablePhoneNumber.matches("('+'[0-9]{2})?[0-9]{9}"))
             this.reponsablePhoneNumber = reponsablePhoneNumber;
     }
 }
