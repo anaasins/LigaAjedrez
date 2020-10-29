@@ -30,6 +30,7 @@ public class MenuJugador extends javax.swing.JFrame {
         ResSede = new javax.swing.JButton();
         InResPartida = new javax.swing.JButton();
         ModDatos = new javax.swing.JButton();
+        apuntarTorneo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,6 +55,14 @@ public class MenuJugador extends javax.swing.JFrame {
             }
         });
 
+        apuntarTorneo.setText("Apuntarme a torneo");
+        apuntarTorneo.setActionCommand("apuntarTorneo");
+        apuntarTorneo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                apuntarTorneoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -61,22 +70,25 @@ public class MenuJugador extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(107, 107, 107)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ModDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                    .addComponent(apuntarTorneo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(ModDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(InResPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ResSede, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)))
+                        .addComponent(ResSede, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap(112, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(37, 37, 37)
                 .addComponent(ResSede, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(InResPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ModDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(apuntarTorneo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
@@ -106,6 +118,12 @@ public class MenuJugador extends javax.swing.JFrame {
         modificar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_ModDatosActionPerformed
+
+    private void apuntarTorneoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apuntarTorneoActionPerformed
+        // TODO add your handling code here:
+        new ApuntarmeTorneo().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_apuntarTorneoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,5 +164,6 @@ public class MenuJugador extends javax.swing.JFrame {
     private javax.swing.JButton InResPartida;
     private javax.swing.JButton ModDatos;
     private javax.swing.JButton ResSede;
+    private javax.swing.JButton apuntarTorneo;
     // End of variables declaration//GEN-END:variables
 }

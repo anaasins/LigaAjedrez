@@ -5,11 +5,17 @@
  */
 package ligaajedrez.vista;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Club;
 
 /**
  *
@@ -31,7 +37,7 @@ public class RegistrarTorneo extends javax.swing.JFrame {
         ArrayList federaciones= this.administrador.consultarFederaciones();
         federacionCombo.removeAllItems();
         for (Object fede : federaciones) {
-            federacionCombo.addItem(fede);
+            federacionCombo.addItem((String) fede);
         }
         
         jList1.setModel(modeloLista);
@@ -136,7 +142,12 @@ public class RegistrarTorneo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
-        administrador.crearTorneo(federacionCombo.getSelectedItem(),dateLabel.getText(),jList1.getSelectedValue());
+
+     try {
+            administrador.crearTorneo(federacionCombo.getSelectedIndex(),new SimpleDateFormat("dd/MM/yyyy").parse(dateField.getText()),jList1.getSelectedIndices());
+        } catch (ParseException ex) {
+            Logger.getLogger(RegistrarTorneo.class.getName()).log(Level.SEVERE, null, ex);
+        }
         JOptionPane.showMessageDialog(this,"Torneo registrado");
         this.setVisible(false);
         this.dispose();

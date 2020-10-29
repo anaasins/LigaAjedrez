@@ -5,20 +5,22 @@
  */
 package ligaajedrez.modelo;
 
+import java.util.ArrayList;
 import ligaajedrez.modelo.enums.CategoriaEnum;
 
 /**
  *
  * @author jbeltran
  */
-public class JugadorModel {
+public class JugadorModel extends Usuario{
     public String name;
     public int elo;
-    //public Club club;
+    public Club club;
     public int age;
     public CategoriaEnum category;
     public String responsableName;
     public String reponsablePhoneNumber;
+    public Liga liga;
 
     public JugadorModel() {
     }
@@ -100,5 +102,9 @@ public class JugadorModel {
     public String toString()
     {
         return name;
+    }
+
+    public ArrayList getTorneosDisponibles() {
+        return liga.torneosDisponibles(club.getFederation());
     }
 }

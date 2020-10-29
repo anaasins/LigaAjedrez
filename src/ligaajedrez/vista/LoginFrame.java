@@ -7,18 +7,20 @@ package ligaajedrez.vista;
 
 import javax.swing.JOptionPane;
 import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Liga;
 
 /**
  *
  * @author jbeltran
  */
 public class LoginFrame extends javax.swing.JFrame {
-
+    Liga liga;
     /**
      * Creates new form LoginFrame
      */
     public LoginFrame() {
         initComponents();
+        liga = new Liga();
     }
 
     /**
@@ -97,7 +99,7 @@ public class LoginFrame extends javax.swing.JFrame {
             this.setVisible(false);
             menuJugador.setVisible(true);
         } else if (userField.getText().equalsIgnoreCase("administrador")) {
-            Administrador admin = new Administrador();
+            Administrador admin = new Administrador(liga);
             MenuAdministrador menuAdministrador = new MenuAdministrador(admin);
             this.setVisible(false);
             menuAdministrador.setVisible(true);
