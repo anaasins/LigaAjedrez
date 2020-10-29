@@ -167,12 +167,12 @@ public class MenuAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_gestionarGerentesButtonActionPerformed
 
     private void registrarTorneoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarTorneoButtonActionPerformed
-        new RegistrarTorneo().setVisible(true);
+        new RegistrarTorneo(administrador, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_registrarTorneoButtonActionPerformed
 
     private void registrarPartidaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarPartidaButtonActionPerformed
-        new RegistrarPartida().setVisible(true);
+        new RegistrarPartida(administrador, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_registrarPartidaButtonActionPerformed
 
@@ -191,7 +191,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_resultadosPartidaButtonActionPerformed
 
     private void gestionarClubsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionarClubsButtonActionPerformed
-        new GestionarClubs().setVisible(true);
+        new GestionarClubs(administrador, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_gestionarClubsButtonActionPerformed
 
