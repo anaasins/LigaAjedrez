@@ -12,6 +12,7 @@ package ligaajedrez.modelo;
 public class Club {
     private String name;
     private FederacionModel federation;
+    private Sede sede;
     /*private Entrenador trainer;
     private Gerente manager;*/
 
