@@ -8,19 +8,18 @@ package ligaajedrez.modelo;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  *
  * @author asins
  */
 public class Liga {
-    List<JugadorModel> jugadores;
-    ArrayList<Club> clubs;
-    ArrayList<Torneo> torneos;
-    ArrayList<String> sedes;
-    ArrayList<FederacionModel> federaciones;
-    ArrayList<Partida> partidas;
+    private ArrayList<JugadorModel> jugadores;
+    private ArrayList<Club> clubs;
+    private ArrayList<Torneo> torneos;
+    private ArrayList<String> sedes;
+    private ArrayList<FederacionModel> federaciones;
+    private ArrayList<Partida> partidas;
     
     public Liga()
     {

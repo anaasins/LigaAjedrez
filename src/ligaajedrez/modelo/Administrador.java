@@ -15,82 +15,42 @@ import java.util.Date;
  * @author jbeltran
  */
 public class Administrador extends Usuario {
-    List<JugadorModel> jugadores;
-    ArrayList<Club> clubs;
-    ArrayList<Torneo> torneos;
-    ArrayList<String> sedes;
-    ArrayList<FederacionModel> federaciones;
-    ArrayList<Partida> partidas;
-
-    public Administrador() {
-        jugadores = new ArrayList();
-        clubs = new ArrayList();
-        torneos = new ArrayList();
-        sedes = new ArrayList();
-        federaciones = new ArrayList();
-        partidas = new ArrayList();
+    private Liga liga;
+    
+    public Administrador(Liga liga) {
+        this.liga = liga;
     }
 
     public void crearJugador(String name, int elo, int age, String responsableName, String responsablePhoneNumber) {
-        JugadorModel player = new JugadorModel(name, elo, age, responsableName, responsablePhoneNumber);
-        jugadores.add(player);
+        liga.crearJugador(name, elo, age, responsableName, responsablePhoneNumber);
     }
 
     public ArrayList consultarClubs() {
-        ArrayList<String> listaClubs = new ArrayList<String>();
-
-        for (Club club : clubs) {
-            listaClubs.add(club.toString());
-        }
-        return listaClubs;
+        return liga.consultarClubs();
     }
 
     public void crearTorneo(String federacion, Date fecha, ArrayList<Club> clubs) {
-        Torneo tor;
-        tor = new Torneo(federacion, fecha, clubs);
-        torneos.add(tor);
+        liga.crearTorneo(federacion, fecha, clubs);
     }
 
     public void crearPartida(JugadorModel j1, JugadorModel j2, String sede, Date fecha, Time h, Torneo t) {
-        Partida p;
-        p = new Partida(j1, j2, sede, fecha, h, t);
-        partidas.add(p);
+        liga.crearPartida(j1, j2, sede, fecha, h, t);
     }
 
     public ArrayList consultarTorneos() {
-        ArrayList<Torneo> t = new ArrayList<Torneo>();
-
-        for (Torneo torneo : torneos) {
-            t.add(torneo);
-        }
-        return t;
+        return liga.consultarTorneos();
     }
 
     public ArrayList consultarJugadores() {
-        ArrayList<JugadorModel> j = new ArrayList<JugadorModel>();
-
-        for (JugadorModel jugador : jugadores) {
-            j.add(jugador);
-        }
-        return j;
+        return liga.consultarJugadores();
     }
 
     public ArrayList consultarSedes() {
-        ArrayList<String> s = new ArrayList<String>();
-
-        for (String sede : sedes) {
-            s.add(sede);
-        }
-        return s;
+        return liga.consultarSedes();
     }
 
     public ArrayList consultarFederaciones() {
-        ArrayList<String> f = new ArrayList<String>();
-
-        for (FederacionModel fede : federaciones) {
-            f.add(fede.toString());
-        }
-        return f;
+        return liga.consultarFederaciones();
     }
 
 }
