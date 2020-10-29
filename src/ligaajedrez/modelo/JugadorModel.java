@@ -95,4 +95,10 @@ public class JugadorModel {
         if (reponsablePhoneNumber.matches("('+'[0-9]{2})?[0-9]{9}"))
             this.reponsablePhoneNumber = reponsablePhoneNumber;
     }
+    
+    @Override
+    public String toString()
+    {
+        return name;
+    }
 }
