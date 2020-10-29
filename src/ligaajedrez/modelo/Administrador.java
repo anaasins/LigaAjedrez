@@ -15,8 +15,9 @@ import java.util.Date;
  * @author jbeltran
  */
 public class Administrador extends Usuario {
+
     private Liga liga;
-    
+
     public Administrador(Liga liga) {
         this.liga = liga;
     }
