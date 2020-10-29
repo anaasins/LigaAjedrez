@@ -6,6 +6,7 @@
 package ligaajedrez.modelo;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import ligaajedrez.modelo.enums.CategoriaEnum;
 
 /**
@@ -21,6 +22,7 @@ public class JugadorModel extends Usuario{
     public String responsableName;
     public String reponsablePhoneNumber;
     public Liga liga;
+    public boolean moroso;
 
     public JugadorModel() {
     }
@@ -49,6 +51,16 @@ public class JugadorModel extends Usuario{
     public void setElo(int elo) {
         if (elo >= 0 && elo <= 3000)
             this.elo = elo;
+    }
+    
+    public boolean getMoroso()
+    {
+        return moroso;
+    }
+    
+    public void setMoroso(boolean m)
+    {
+        this.moroso=m;
     }
 
     /*public Club getClub() {
