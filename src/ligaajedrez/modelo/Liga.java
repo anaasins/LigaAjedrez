@@ -90,7 +90,7 @@ public class Liga {
         ArrayList<Object> f = new ArrayList<Object>();
 
         for (FederacionModel fede : federaciones) {
-            f.add(fede.toString());
+            f.add(fede);
         }
         return f;
     }
@@ -106,11 +106,6 @@ public class Liga {
        }
        
        return disponibles;
-    }
-
-    void crearClub(String name, FederacionModel fed) {
-        Club club = new Club(name, fed);
-        clubs.add(club);
     }
 
     void crearClub(String name, FederacionModel fed) {
