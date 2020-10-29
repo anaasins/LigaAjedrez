@@ -46,7 +46,7 @@ public class Liga {
         return listaClubs;
     }
 
-    public void crearTorneo(String federacion, Date fecha, ArrayList<Club> clubs) {
+    public void crearTorneo(FederacionModel federacion, Date fecha, ArrayList<Club> clubs) {
         Torneo tor;
         tor = new Torneo(federacion, fecha, clubs);
         torneos.add(tor);
@@ -92,5 +92,18 @@ public class Liga {
             f.add(fede.toString());
         }
         return f;
+    }
+
+    ArrayList torneosDisponibles(FederacionModel miFederacion) {
+       ArrayList<Torneo> disponibles;
+       disponibles = new ArrayList<Torneo>();
+       
+       for(Torneo t:torneos)
+       {
+           if(t.getFederacion()==miFederacion)
+               disponibles.add(t);
+       }
+       
+       return disponibles;
     }
 }

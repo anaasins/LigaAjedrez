@@ -45,7 +45,7 @@ public class Administrador extends Usuario {
         return listaClubs;
     }
 
-    public void crearTorneo(String federacion, Date fecha, ArrayList<Club> clubs) {
+    public void crearTorneo(FederacionModel federacion, Date fecha, ArrayList<Club> clubs) {
         Torneo tor;
         tor = new Torneo(federacion, fecha, clubs);
         torneos.add(tor);
