@@ -47,15 +47,18 @@ public class Liga {
         return listaClubs;
     }
 
-    public void crearTorneo(FederacionModel federacion, Date fecha, ArrayList<Club> clubs) {
+    public void crearTorneo(int federacion, Date fecha, int[] clubs) {
         Torneo tor;
-        tor = new Torneo(federacion, fecha, clubs);
+        ArrayList<Club> c = new ArrayList<>();
+        for (int club : clubs)
+            c.add(this.clubs.get(club));
+        tor = new Torneo(this.federaciones.get(federacion), fecha, c);
         torneos.add(tor);
     }
 
-    public void crearPartida(JugadorModel j1, JugadorModel j2, String sede, Date fecha, Time h, Torneo t) {
+    public void crearPartida(int j1, int j2, String sede, Date fecha, Time h, Torneo t) {
         Partida p;
-        p = new Partida(j1, j2, sede, fecha, h, t);
+        p = new Partida(jugadores.get(j1), jugadores.get(j2), sede, fecha, h, t);
         partidas.add(p);
     }
 
