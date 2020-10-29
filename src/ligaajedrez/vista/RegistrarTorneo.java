@@ -5,17 +5,46 @@
  */
 package ligaajedrez.vista;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import ligaajedrez.modelo.Administrador;
+
 /**
  *
  * @author jbeltran
  */
 public class RegistrarTorneo extends javax.swing.JFrame {
-
+    DefaultListModel modeloLista;
+    private Administrador administrador;
+    private JFrame vAnterior;
+    
     /**
      * Creates new form RegistrarTorneo
      */
-    public RegistrarTorneo() {
+    public RegistrarTorneo(Administrador _administrador,JFrame Vanterior) {
         initComponents();
+        administrador = _administrador;
+        this.vAnterior = Vanterior;
+        
+        ArrayList federaciones= this.administrador.consultarFederaciones();
+        federacionCombo.removeAllItems();
+        for (Object fede : federaciones) {
+            federacionCombo.addItem(fede);
+        }
+        
+        jList1.setModel(modeloLista);
+        ArrayList clubs= this.administrador.consultarClubs();
+        if (!clubs.isEmpty()){
+            for (Object item : clubs) {
+            modeloLista.addElement(item);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "No existen clubs");
+        }
     }
 
     /**
@@ -107,7 +136,10 @@ public class RegistrarTorneo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
-        // TODO add your handling code here:
+        administrador.crearTorneo(federacionCombo.getSelectedItem(),dateLabel.getText(),jList1.getSelectedValue());
+        JOptionPane.showMessageDialog(this,"Torneo registrado");
+        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_confirmBtnActionPerformed
 
     /**

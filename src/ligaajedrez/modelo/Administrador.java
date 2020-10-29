@@ -5,8 +5,10 @@
  */
 package ligaajedrez.modelo;
 
+import java.sql.Time;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -14,6 +16,11 @@ import java.util.ArrayList;
  */
 public class Administrador extends Usuario {
     List<JugadorModel> jugadores;
+    ArrayList<Club> clubs;
+    ArrayList<Torneo> torneos;
+    ArrayList<String> sedes;
+    ArrayList<String> federaciones;
+    ArrayList<Partida> partidas;
     
     public Administrador() {
         jugadores = new ArrayList();
@@ -23,5 +30,69 @@ public class Administrador extends Usuario {
         JugadorModel player = new JugadorModel(name, elo, age, responsableName, responsablePhoneNumber);
         jugadores.add(player);
     }
+    public ArrayList consultarClubs()
+    {
+        ArrayList<Club> listaClubs = new ArrayList<Club> ();
+           
+           for(Club club : clubs)
+           { 
+               listaClubs.add(club);               
+           }
+           return listaClubs;
+    }
+    public void crearTorneo(String federacion, Date fecha, ArrayList<Club> clubs)
+    {
+        Torneo tor;
+        tor = new Torneo(federacion,fecha,clubs);
+        torneos.add(tor);
+    }
+    
+    public void crearPartida(JugadorModel j1,JugadorModel j2, String sede, Date fecha,Time h, Torneo t)
+    {
+        Partida p;
+        p = new Partida(j1,j2,sede,fecha,h,t);
+        partidas.add(p);
+    }
+     
+    public ArrayList consultarTorneos(){
+         ArrayList<Torneo> t = new ArrayList<Torneo>
+           
+           for(Torneo torneo : torneos)
+           { 
+               t.add(torneo);               
+           }
+           return t;
+    }
+
+    public ArrayList consultarJugadores() {
+         ArrayList<JugadorModel> j = new ArrayList<JugadorModel>
+           
+           for(JugadorModel jugador : jugadores)
+           { 
+               j.add(jugador);               
+           }
+           return j;
+    }
+    public ArrayList consultarSedes() {
+         ArrayList<String> s = new ArrayList<String>
+           
+           for(String sede : sedes)
+           { 
+               s.add(sede);               
+           }
+           return s;
+    }
+    
+    public ArrayList consultarFederaciones() {
+         ArrayList<String> f = new ArrayList<String>
+           
+           for(String fede : federaciones)
+           { 
+               f.add(fede);               
+           }
+           return f;
+    }
+    
+    
     
 }

@@ -5,17 +5,48 @@
  */
 package ligaajedrez.vista;
 
+import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import ligaajedrez.modelo.Administrador;
+
 /**
  *
  * @author asins
  */
 public class RegistrarPartida extends javax.swing.JFrame {
-
+    private JFrame vAnterior;
+    private Administrador administrador;
     /**
      * Creates new form RegistrarPartida
      */
-    public RegistrarPartida() {
+    public RegistrarPartida(Administrador _administrador,JFrame Vanterior) {
         initComponents();
+        administrador = _administrador;
+        this.vAnterior = Vanterior;
+        
+        ArrayList jugadores = this.administrador.consultarJugadores();
+        jugador1Combo.removeAllItems();
+        for (Object jugador : jugadores) {
+            jugador1Combo.addItem(jugador);
+        }
+        
+        jugador2Combo.removeAllItems();
+        for (Object jugador : jugadores) {
+            jugador1Combo.addItem(jugador);
+        }
+        
+        ArrayList sedes = administrador.consultarSedes();
+        sedeCombo.removeAllItems();
+        for (Object sede : sedes) {
+            sedeCombo.addItem(sede);
+        }
+        
+        ArrayList torneos = administrador.consultarTorneos();
+        torneoCombo.removeAllItems();
+        for (Object torneo : torneos) {
+            torneoCombo.addItem(torneo);
+        }
     }
 
     /**
@@ -157,8 +188,11 @@ public class RegistrarPartida extends javax.swing.JFrame {
 
     private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarButtonActionPerformed
         // TODO add your handling code here:
-         new MenuAdministrador().setVisible(true);
+        administrador.crearPartida(jugador1Combo.getSelectedItem(),jugador2Combo.getSelectedItem(), sedeCombo.getSelectedItem(), FechaField.getText(),HoraField.getText(),torneoCombo.getSelectedItem());
+        JOptionPane.showMessageDialog(this, "Partida registrada");
+        new MenuAdministrador().setVisible(true);
         this.setVisible(false);
+        
     }//GEN-LAST:event_confirmarButtonActionPerformed
 
     /**
