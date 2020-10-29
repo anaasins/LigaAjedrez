@@ -15,8 +15,9 @@ import java.util.Date;
  * @author jbeltran
  */
 public class Administrador extends Usuario {
+
     private Liga liga;
-    
+
     public Administrador(Liga liga) {
         this.liga = liga;
     }
@@ -29,8 +30,6 @@ public class Administrador extends Usuario {
         return liga.consultarClubs();
     }
 
-
-   
     public void crearTorneo(FederacionModel federacion, Date fecha, ArrayList<Club> clubs) {
         liga.crearTorneo(federacion, fecha, clubs);
     }
@@ -53,6 +52,11 @@ public class Administrador extends Usuario {
 
     public ArrayList consultarFederaciones() {
         return liga.consultarFederaciones();
+    }
+
+    public void crearClub(String name, Object federation) {
+        FederacionModel fed = (FederacionModel) federation;
+        liga.crearClub(name, fed);
     }
 
 }

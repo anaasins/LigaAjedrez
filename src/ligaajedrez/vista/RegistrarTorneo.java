@@ -28,7 +28,7 @@ public class RegistrarTorneo extends javax.swing.JFrame {
         administrador = _administrador;
         this.vAnterior = Vanterior;
         
-        ArrayList federaciones= this.administrador.consultarFederaciones();
+        /*ArrayList federaciones= this.administrador.consultarFederaciones();
         federacionCombo.removeAllItems();
         for (Object fede : federaciones) {
             federacionCombo.addItem(fede);
@@ -44,7 +44,7 @@ public class RegistrarTorneo extends javax.swing.JFrame {
         else
         {
             JOptionPane.showMessageDialog(this, "No existen clubs");
-        }
+        }*/
     }
 
     /**
@@ -136,7 +136,7 @@ public class RegistrarTorneo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
-        administrador.crearTorneo(federacionCombo.getSelectedItem(),dateLabel.getText(),jList1.getSelectedValue());
+        //administrador.crearTorneo(federacionCombo.getSelectedItem(),dateLabel.getText(),jList1.getSelectedValue());
         JOptionPane.showMessageDialog(this,"Torneo registrado");
         this.setVisible(false);
         this.dispose();
@@ -172,7 +172,7 @@ public class RegistrarTorneo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistrarTorneo().setVisible(true);
+                //new RegistrarTorneo().setVisible(true);
             }
         });
     }

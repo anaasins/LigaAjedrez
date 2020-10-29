@@ -28,6 +28,8 @@ public class Liga {
         torneos = new ArrayList();
         sedes = new ArrayList();
         federaciones = new ArrayList();
+        federaciones.add(new FederacionModel("Valencia"));
+        federaciones.add(new FederacionModel("Madrid"));
         partidas = new ArrayList();
     }
     
@@ -85,10 +87,10 @@ public class Liga {
     }
 
     public ArrayList consultarFederaciones() {
-        ArrayList<String> f = new ArrayList<String>();
+        ArrayList<Object> f = new ArrayList<Object>();
 
         for (FederacionModel fede : federaciones) {
-            f.add(fede.toString());
+            f.add(fede);
         }
         return f;
     }
@@ -104,5 +106,10 @@ public class Liga {
        }
        
        return disponibles;
+    }
+
+    void crearClub(String name, FederacionModel fed) {
+        Club club = new Club(name, fed);
+        clubs.add(club);
     }
 }

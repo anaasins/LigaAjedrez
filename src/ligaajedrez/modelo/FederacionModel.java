@@ -15,7 +15,7 @@ public class FederacionModel {
     public FederacionModel() {
     }
 
-    public FederacionModel(String country, String city) {
+    public FederacionModel(String city) {
         this.city = city;
     }
 
