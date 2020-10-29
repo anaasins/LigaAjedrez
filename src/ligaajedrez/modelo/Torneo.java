@@ -13,11 +13,11 @@ import java.util.Date;
  * @author Olaf
  */
 public class Torneo {
-    private String federacion;
+    private FederacionModel federacion;
     private Date fecha;
     private ArrayList<Club> clubs = new ArrayList<Club>();  
     
-    public Torneo(String fed, Date fT,ArrayList<Club> c) 
+    public Torneo(FederacionModel fed, Date fT,ArrayList<Club> c) 
         {
             this.setFederacion(fed);
             this.SetFecha(fT);
@@ -29,11 +29,11 @@ public class Torneo {
     public Date getFecha() {
        return fecha;
     }
-    public void setFederacion(String fed)
+    public void setFederacion(FederacionModel fed)
     {
         federacion=fed;
     }
-    public String getFederacion()
+    public FederacionModel getFederacion()
     {
         return federacion;
     }
