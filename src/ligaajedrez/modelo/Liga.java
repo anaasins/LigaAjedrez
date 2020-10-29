@@ -112,4 +112,9 @@ public class Liga {
         Club club = new Club(name, fed);
         clubs.add(club);
     }
+
+    void crearClub(String name, FederacionModel fed) {
+        Club club = new Club(name, fed);
+        clubs.add(club);
+    }
 }
