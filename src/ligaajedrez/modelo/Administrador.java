@@ -55,4 +55,9 @@ public class Administrador extends Usuario {
         return liga.consultarFederaciones();
     }
 
+    public void crearClub(String name, Object federation) {
+        FederacionModel fed = (FederacionModel) federation;
+        liga.crearClub(name, fed);
+    }
+
 }
