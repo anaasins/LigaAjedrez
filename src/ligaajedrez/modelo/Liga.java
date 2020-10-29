@@ -28,6 +28,8 @@ public class Liga {
         torneos = new ArrayList();
         sedes = new ArrayList();
         federaciones = new ArrayList();
+        federaciones.add(new FederacionModel("Valencia"));
+        federaciones.add(new FederacionModel("Madrid"));
         partidas = new ArrayList();
     }
     
@@ -45,26 +47,15 @@ public class Liga {
         return listaClubs;
     }
 
-    public void crearTorneo(int federacion, Date fecha, int[] clubs) {
+    public void crearTorneo(FederacionModel federacion, Date fecha, ArrayList<Club> clubs) {
         Torneo tor;
-        ArrayList<Club> c = new ArrayList<Club>();
-        FederacionModel f ;
-        for (int club:clubs)
-        {
-            c.add(this.clubs.get(club));          
-            
-        }       
-            f = this.federaciones.get(federacion);                
-        tor = new Torneo(f, fecha, c);
+        tor = new Torneo(federacion, fecha, clubs);
         torneos.add(tor);
     }
 
-    public void crearPartida(int j1, int j2, String sede, Date fecha, Time h, Torneo t) {
+    public void crearPartida(JugadorModel j1, JugadorModel j2, String sede, Date fecha, Time h, Torneo t) {
         Partida p;
-        JugadorModel jg1,jg2;
-        jg1= this.jugadores.get(j1);
-        jg2= this.jugadores.get(j2);
-        p = new Partida(jg1, jg2, sede, fecha, h, t);
+        p = new Partida(j1, j2, sede, fecha, h, t);
         partidas.add(p);
     }
 
@@ -96,10 +87,10 @@ public class Liga {
     }
 
     public ArrayList consultarFederaciones() {
-        ArrayList<String> f = new ArrayList<String>();
+        ArrayList<Object> f = new ArrayList<Object>();
 
         for (FederacionModel fede : federaciones) {
-            f.add(fede.toString());
+            f.add(fede);
         }
         return f;
     }
@@ -115,5 +106,10 @@ public class Liga {
        }
        
        return disponibles;
+    }
+
+    void crearClub(String name, FederacionModel fed) {
+        Club club = new Club(name, fed);
+        clubs.add(club);
     }
 }

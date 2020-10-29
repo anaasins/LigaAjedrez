@@ -116,13 +116,13 @@ public class GestionarClubs extends javax.swing.JFrame {
 
     private void nuevoClubButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoClubButtonActionPerformed
         // TODO add your handling code here:
-        new NuevoClub(administrador, this).setVisible(true);
+        new NuevoClub(administrador, this, true).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_nuevoClubButtonActionPerformed
 
     private void modificarClubButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarClubButtonActionPerformed
         // TODO add your handling code here:
-        new NuevoClub(administrador, this).setVisible(true);
+        new NuevoClub(administrador, this, false).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_modificarClubButtonActionPerformed
 

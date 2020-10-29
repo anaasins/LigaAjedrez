@@ -5,12 +5,15 @@
  */
 package ligaajedrez.vista;
 
+import javax.swing.JOptionPane;
+import ligaajedrez.modelo.JugadorModel;
+
 /**
  *
  * @author Olaf
  */
 public class MenuJugador extends javax.swing.JFrame {
-
+    JugadorModel jugador;
     /**
      * Creates new form MenuJugador
      */
@@ -31,6 +34,7 @@ public class MenuJugador extends javax.swing.JFrame {
         InResPartida = new javax.swing.JButton();
         ModDatos = new javax.swing.JButton();
         apuntarTorneo = new javax.swing.JButton();
+        tarjetaButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +67,13 @@ public class MenuJugador extends javax.swing.JFrame {
             }
         });
 
+        tarjetaButton.setText("Solicitar tarjeta jugador");
+        tarjetaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tarjetaButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -70,8 +81,9 @@ public class MenuJugador extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(107, 107, 107)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(apuntarTorneo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tarjetaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(apuntarTorneo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ModDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(InResPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ResSede, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
@@ -80,15 +92,17 @@ public class MenuJugador extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(32, 32, 32)
                 .addComponent(ResSede, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(InResPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ModDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(apuntarTorneo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tarjetaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -124,6 +138,18 @@ public class MenuJugador extends javax.swing.JFrame {
         new ApuntarmeTorneo().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_apuntarTorneoActionPerformed
+
+    private void tarjetaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarjetaButtonActionPerformed
+        // TODO add your handling code here:
+        if(!jugador.getMoroso())
+        {
+            JOptionPane.showMessageDialog(this, "Nombre: "+jugador.getName()+"\nEdad: "+jugador.getAge()+"\nCategoría: "+jugador.getCategory().name()+"\nELO: "+jugador.getElo(), "Tarjeta de jugador.", JOptionPane.OK_OPTION);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Tarjeta no disponible por moroso.");
+        }
+    }//GEN-LAST:event_tarjetaButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,5 +191,6 @@ public class MenuJugador extends javax.swing.JFrame {
     private javax.swing.JButton ModDatos;
     private javax.swing.JButton ResSede;
     private javax.swing.JButton apuntarTorneo;
+    private javax.swing.JButton tarjetaButton;
     // End of variables declaration//GEN-END:variables
 }

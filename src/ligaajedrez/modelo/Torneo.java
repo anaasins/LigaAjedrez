@@ -17,7 +17,7 @@ public class Torneo {
     private Date fecha;
     private ArrayList<Club> clubs = new ArrayList<Club>();  
     
-    public Torneo(FederacionModel fed, Date fT, ArrayList<Club> c) 
+    public Torneo(FederacionModel fed, Date fT,ArrayList<Club> c) 
         {
             this.setFederacion(fed);
             this.SetFecha(fT);

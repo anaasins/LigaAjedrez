@@ -25,7 +25,7 @@ public class RegistrarPartida extends javax.swing.JFrame {
         administrador = _administrador;
         this.vAnterior = Vanterior;
         
-        ArrayList jugadores = this.administrador.consultarJugadores();
+        /*ArrayList jugadores = this.administrador.consultarJugadores();
         jugador1Combo.removeAllItems();
         for (Object jugador : jugadores) {
             jugador1Combo.addItem((String) jugador);
@@ -45,8 +45,8 @@ public class RegistrarPartida extends javax.swing.JFrame {
         ArrayList torneos = administrador.consultarTorneos();
         torneoCombo.removeAllItems();
         for (Object torneo : torneos) {
-            torneoCombo.addItem((String) torneo);
-        }
+            torneoCombo.addItem(torneo);
+        }*/
     }
 
     /**
@@ -188,7 +188,7 @@ public class RegistrarPartida extends javax.swing.JFrame {
 
     private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarButtonActionPerformed
         // TODO add your handling code here:
-        administrador.crearPartida(jugador1Combo.getSelectedIndex(),jugador2Combo.getSelectedIndex(), sedeCombo.getSelectedItem(), FechaField.getText(),HoraField.getText(),torneoCombo.getSelectedItem());
+        //administrador.crearPartida(jugador1Combo.getSelectedItem(),jugador2Combo.getSelectedItem(), sedeCombo.getSelectedItem(), FechaField.getText(),HoraField.getText(),torneoCombo.getSelectedItem());
         JOptionPane.showMessageDialog(this, "Partida registrada");
         new MenuAdministrador().setVisible(true);
         this.setVisible(false);
@@ -225,7 +225,7 @@ public class RegistrarPartida extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistrarPartida().setVisible(true);
+                //new RegistrarPartida().setVisible(true);
             }
         });
     }
