@@ -6,7 +6,6 @@
 package ligaajedrez.modelo;
 
 import java.sql.Time;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -15,15 +14,12 @@ import java.util.Date;
  * @author jbeltran
  */
 public class Administrador extends Usuario {
-
-    private Liga liga;
-
     public Administrador(Liga liga) {
         this.liga = liga;
     }
 
-    public void crearJugador(String name, int elo, int age, String responsableName, String responsablePhoneNumber) {
-        liga.crearJugador(name, elo, age, responsableName, responsablePhoneNumber);
+    public void crearJugador(String name, int elo, int age, Object club, String responsableName, String responsablePhoneNumber) {
+        liga.crearJugador(name, elo, age, club, responsableName, responsablePhoneNumber);
     }
 
     public ArrayList consultarClubs() {

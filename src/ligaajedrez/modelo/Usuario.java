@@ -12,13 +12,16 @@ package ligaajedrez.modelo;
 public class Usuario {
     private String userName;
     private String userPass;
+    private JugadorModel player;
+    protected Liga liga;
 
     public Usuario() {
     }
 
-    public Usuario(String userName, String userPass) {
+    public Usuario(String userName, String userPass, JugadorModel player) {
         this.userName = userName;
         this.userPass = userPass;
+        this.player = player;
     }
 
     public String getUserName() {
@@ -35,5 +38,13 @@ public class Usuario {
 
     public void setUserPass(String userPass) {
         this.userPass = userPass;
+    }
+
+    public JugadorModel getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(JugadorModel player) {
+        this.player = player;
     }
 }
