@@ -13,7 +13,7 @@ import ligaajedrez.modelo.enums.CategoriaEnum;
  *
  * @author jbeltran
  */
-public class JugadorModel extends Usuario{
+public class JugadorModel{
     public String name;
     public int elo;
     public Club club;
@@ -21,16 +21,15 @@ public class JugadorModel extends Usuario{
     public CategoriaEnum category;
     public String responsableName;
     public String reponsablePhoneNumber;
-    public Liga liga;
     public boolean moroso;
 
     public JugadorModel() {
     }
 
-    public JugadorModel(String name, int elo, int age, /*Club club,*/ String responsableName, String reponsablePhoneNumber) {
+    public JugadorModel(String name, int elo, int age, Club club, String responsableName, String reponsablePhoneNumber) {
         setName(name);
         setElo(elo);
-        //setClub(club);
+        setClub(club);
         setResponsableName(responsableName);
         setReponsablePhoneNumber(reponsablePhoneNumber);
     }
@@ -63,13 +62,13 @@ public class JugadorModel extends Usuario{
         this.moroso=m;
     }
 
-    /*public Club getClub() {
+    public Club getClub() {
         return club;
     }
     
     public void setClub(Club club) {
         this.club = club;
-    }*/
+    }
     
     public int getAge() {
         return age;
@@ -114,9 +113,5 @@ public class JugadorModel extends Usuario{
     public String toString()
     {
         return name;
-    }
-
-    public ArrayList getTorneosDisponibles() {
-        return liga.torneosDisponibles(club.getFederation());
     }
 }
