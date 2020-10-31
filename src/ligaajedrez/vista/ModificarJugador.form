@@ -25,39 +25,39 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="AtrasModJ" min="-2" pref="127" max="-2" attributes="0"/>
-                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                      <Component id="responsableNameLabel" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                          <Component id="ageLabel" min="-2" pref="79" max="-2" attributes="0"/>
-                          <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="eloLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="categoryLabel" min="-2" max="-2" attributes="0"/>
-                      <Component id="clubLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="responsablePhoneNumberLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace pref="37" max="32767" attributes="0"/>
+              <Component id="AtrasModJ" min="-2" pref="127" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="acceptBtn" min="-2" pref="127" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="acceptBtn" min="-2" pref="127" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="responsableNameLabel" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Component id="ageLabel" min="-2" pref="79" max="-2" attributes="0"/>
+                      <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="eloLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="responsableNameField" max="32767" attributes="0"/>
-                          <Component id="clubName" max="32767" attributes="0"/>
-                          <Component id="categoryCombo" pref="160" max="32767" attributes="0"/>
-                          <Component id="ageField" max="32767" attributes="0"/>
-                          <Component id="eloField" alignment="1" max="32767" attributes="0"/>
-                          <Component id="nameField" alignment="1" max="32767" attributes="0"/>
-                          <Component id="responsablePhoneNumberField" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="categoryLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="clubLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="responsablePhoneNumberLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="assignationLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="historyLabel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace pref="57" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="responsableNameField" max="32767" attributes="0"/>
+                  <Component id="clubName" max="32767" attributes="0"/>
+                  <Component id="categoryCombo" max="32767" attributes="0"/>
+                  <Component id="ageField" max="32767" attributes="0"/>
+                  <Component id="eloField" alignment="1" max="32767" attributes="0"/>
+                  <Component id="nameField" alignment="1" max="32767" attributes="0"/>
+                  <Component id="responsablePhoneNumberField" max="32767" attributes="0"/>
+                  <Component id="assignationBtn" alignment="1" max="32767" attributes="0"/>
+                  <Component id="historyBtn" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -99,12 +99,22 @@
                   <Component id="responsablePhoneNumberField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="responsablePhoneNumberLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="32" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="acceptBtn" pref="40" max="32767" attributes="0"/>
-                  <Component id="AtrasModJ" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="assignationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="assignationBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="historyLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="historyBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="AtrasModJ" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="acceptBtn" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -158,18 +168,21 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="clubName">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="responsableNameField">
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="acceptBtn">
+    <Component class="javax.swing.JButton" name="assignationBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Modificar"/>
+        <Property name="text" type="java.lang.String" value="Asignar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="acceptBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="assignationBtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="AtrasModJ">
@@ -205,6 +218,38 @@
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="assignationLabel">
+      <Properties>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="responsableNameField"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Asignar club"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="historyLabel">
+      <Properties>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="responsablePhoneNumberField"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Historico de clubs"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="acceptBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modificar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="acceptBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="historyBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modificar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="historyBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

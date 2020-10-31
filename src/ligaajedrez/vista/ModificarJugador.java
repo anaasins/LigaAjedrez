@@ -31,7 +31,7 @@ public class ModificarJugador extends javax.swing.JFrame {
 
         DefaultComboBoxModel model = new DefaultComboBoxModel(CategoriaEnum.names());
         categoryCombo.setModel(model);
-        acceptBtn.setText("Añadir");
+        assignationBtn.setText("Añadir");
         this.previousView = previousView;
     }
     
@@ -68,12 +68,16 @@ public class ModificarJugador extends javax.swing.JFrame {
         responsableNameLabel = new javax.swing.JLabel();
         clubName = new javax.swing.JTextField();
         responsableNameField = new javax.swing.JTextField();
-        acceptBtn = new javax.swing.JButton();
+        assignationBtn = new javax.swing.JButton();
         AtrasModJ = new javax.swing.JButton();
         ageLabel = new javax.swing.JLabel();
         ageField = new javax.swing.JTextField();
         responsablePhoneNumberLabel = new javax.swing.JLabel();
         responsablePhoneNumberField = new javax.swing.JTextField();
+        assignationLabel = new javax.swing.JLabel();
+        historyLabel = new javax.swing.JLabel();
+        acceptBtn = new javax.swing.JButton();
+        historyBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,12 +95,14 @@ public class ModificarJugador extends javax.swing.JFrame {
         responsableNameLabel.setLabelFor(responsableNameField);
         responsableNameLabel.setText("Nombre responsable");
 
+        clubName.setEnabled(false);
+
         responsableNameField.setEnabled(false);
 
-        acceptBtn.setText("Modificar");
-        acceptBtn.addActionListener(new java.awt.event.ActionListener() {
+        assignationBtn.setText("Asignar");
+        assignationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                acceptBtnActionPerformed(evt);
+                assignationBtnActionPerformed(evt);
             }
         });
 
@@ -121,38 +127,61 @@ public class ModificarJugador extends javax.swing.JFrame {
 
         responsablePhoneNumberField.setEnabled(false);
 
+        assignationLabel.setLabelFor(responsableNameField);
+        assignationLabel.setText("Asignar club");
+
+        historyLabel.setLabelFor(responsablePhoneNumberField);
+        historyLabel.setText("Historico de clubs");
+
+        acceptBtn.setText("Modificar");
+        acceptBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptBtnActionPerformed(evt);
+            }
+        });
+
+        historyBtn.setText("Modificar");
+        historyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historyBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(AtrasModJ, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(responsableNameLabel)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(eloLabel, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addComponent(categoryLabel)
-                        .addComponent(clubLabel)
-                        .addComponent(responsablePhoneNumberLabel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(AtrasModJ, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(acceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(acceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(responsableNameField)
-                            .addComponent(clubName)
-                            .addComponent(categoryCombo, 0, 160, Short.MAX_VALUE)
-                            .addComponent(ageField)
-                            .addComponent(eloField)
-                            .addComponent(nameField)
-                            .addComponent(responsablePhoneNumberField))
-                        .addGap(43, 43, 43))))
+                    .addComponent(responsableNameLabel)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(ageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(eloLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(categoryLabel)
+                    .addComponent(clubLabel)
+                    .addComponent(responsablePhoneNumberLabel)
+                    .addComponent(assignationLabel)
+                    .addComponent(historyLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(responsableNameField)
+                    .addComponent(clubName)
+                    .addComponent(categoryCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ageField)
+                    .addComponent(eloField)
+                    .addComponent(nameField)
+                    .addComponent(responsablePhoneNumberField)
+                    .addComponent(assignationBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(historyBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(74, 74, 74))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,15 +214,48 @@ public class ModificarJugador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(responsablePhoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(responsablePhoneNumberLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(acceptBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(AtrasModJ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(assignationLabel)
+                    .addComponent(assignationBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(historyLabel)
+                    .addComponent(historyBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AtrasModJ, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(acceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AtrasModJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasModJActionPerformed
+        // TODO add your handling code here:
+        MenuJugador menu;
+        menu = new MenuJugador();
+        menu.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_AtrasModJActionPerformed
+
+    private void ageFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ageFieldFocusLost
+        int age = Integer.parseInt(ageField.getText());
+        if (age <= 15) {
+            categoryCombo.setSelectedIndex(CategoriaEnum.Infantil.getValue());
+            responsableNameField.setEnabled(true);
+            responsablePhoneNumberField.setEnabled(true);
+        } else if (age <= 18) {
+            categoryCombo.setSelectedIndex(CategoriaEnum.Junior.getValue());
+            responsableNameField.setEnabled(false);
+            responsablePhoneNumberField.setEnabled(false);
+        } else {
+            categoryCombo.setSelectedIndex(CategoriaEnum.Senior.getValue());
+            responsableNameField.setEnabled(false);
+            responsablePhoneNumberField.setEnabled(false);
+        }
+    }//GEN-LAST:event_ageFieldFocusLost
 
     private void acceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBtnActionPerformed
         String name, responsableName, responsableNumber;
@@ -223,30 +285,15 @@ public class ModificarJugador extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_acceptBtnActionPerformed
 
-    private void AtrasModJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasModJActionPerformed
+    private void historyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyBtnActionPerformed
         // TODO add your handling code here:
-        MenuJugador menu;
-        menu = new MenuJugador();
-        menu.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_AtrasModJActionPerformed
+    }//GEN-LAST:event_historyBtnActionPerformed
 
-    private void ageFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ageFieldFocusLost
-        int age = Integer.parseInt(ageField.getText());
-        if (age <= 15) {
-            categoryCombo.setSelectedIndex(CategoriaEnum.Infantil.getValue());
-            responsableNameField.setEnabled(true);
-            responsablePhoneNumberField.setEnabled(true);
-        } else if (age <= 18) {
-            categoryCombo.setSelectedIndex(CategoriaEnum.Junior.getValue());
-            responsableNameField.setEnabled(false);
-            responsablePhoneNumberField.setEnabled(false);
-        } else {
-            categoryCombo.setSelectedIndex(CategoriaEnum.Senior.getValue());
-            responsableNameField.setEnabled(false);
-            responsablePhoneNumberField.setEnabled(false);
-        }
-    }//GEN-LAST:event_ageFieldFocusLost
+    private void assignationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignationBtnActionPerformed
+        AsignarClub asignarClub = new AsignarClub(administrador, previousView);
+        asignarClub.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_assignationBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,12 +335,16 @@ public class ModificarJugador extends javax.swing.JFrame {
     private javax.swing.JButton acceptBtn;
     private javax.swing.JTextField ageField;
     private javax.swing.JLabel ageLabel;
+    private javax.swing.JButton assignationBtn;
+    private javax.swing.JLabel assignationLabel;
     private javax.swing.JComboBox<String> categoryCombo;
     private javax.swing.JLabel categoryLabel;
     private javax.swing.JLabel clubLabel;
     private javax.swing.JTextField clubName;
     private javax.swing.JTextField eloField;
     private javax.swing.JLabel eloLabel;
+    private javax.swing.JButton historyBtn;
+    private javax.swing.JLabel historyLabel;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField responsableNameField;
