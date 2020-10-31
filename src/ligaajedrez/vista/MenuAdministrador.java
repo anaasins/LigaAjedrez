@@ -150,19 +150,19 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
     private void gestionarJugadoresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionarJugadoresButtonActionPerformed
         // TODO add your handling code here:
-        new GestionarJugadores(administrador).setVisible(true);
+        new GestionarJugadores(administrador, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_gestionarJugadoresButtonActionPerformed
 
     private void gestionarEntrenadoresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionarEntrenadoresButtonActionPerformed
         // TODO add your handling code here:
-        new GestionarEntrenadors().setVisible(true);
+        new GestionarEntrenadors(administrador, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_gestionarEntrenadoresButtonActionPerformed
 
     private void gestionarGerentesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionarGerentesButtonActionPerformed
         // TODO add your handling code here:
-        new GestionarGerentes().setVisible(true);
+        new GestionarGerentes(administrador, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_gestionarGerentesButtonActionPerformed
 
@@ -178,14 +178,14 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
     private void sedeEntrenamiento5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sedeEntrenamiento5ActionPerformed
         ReservarSedeEntrenamiento reservar;
-        reservar = new ReservarSedeEntrenamiento();
+        reservar = new ReservarSedeEntrenamiento(administrador, this);
         reservar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_sedeEntrenamiento5ActionPerformed
 
     private void resultadosPartidaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultadosPartidaButtonActionPerformed
         IntroducirResultadosPartida introducir;
-        introducir = new IntroducirResultadosPartida();
+        introducir = new IntroducirResultadosPartida(administrador, this);
         introducir.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_resultadosPartidaButtonActionPerformed
@@ -194,41 +194,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         new GestionarClubs(administrador, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_gestionarClubsButtonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuAdministrador().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton gestionarClubsButton;
