@@ -33,8 +33,8 @@ public class Liga {
         partidas = new ArrayList();
     }
     
-     public void crearJugador(String name, int elo, int age, String responsableName, String responsablePhoneNumber) {
-        JugadorModel player = new JugadorModel(name, elo, age, responsableName, responsablePhoneNumber);
+     public void crearJugador(String name, int elo, int age, Object club, String responsableName, String responsablePhoneNumber) {
+        JugadorModel player = new JugadorModel(name, elo, age, (Club) club, responsableName, responsablePhoneNumber);
         jugadores.add(player);
     }
 
