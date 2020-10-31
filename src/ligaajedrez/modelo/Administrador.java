@@ -6,7 +6,6 @@
 package ligaajedrez.modelo;
 
 import java.sql.Time;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -14,47 +13,25 @@ import java.util.Date;
  * @author jbeltran
  */
 public class Administrador extends Usuario {
-    public Administrador(Liga liga) {
-        this.liga = liga;
+    public Administrador(String userName, String userPass, JugadorModel player, Liga liga) {
+        super(userName, userPass, player, liga);
     }
 
     public void crearJugador(String name, int elo, int age, Object club, String responsableName, String responsablePhoneNumber) {
-        liga.crearJugador(name, elo, age, club, responsableName, responsablePhoneNumber);
+        getLiga().crearJugador(name, elo, age, club, responsableName, responsablePhoneNumber);
     }
-
-    public ArrayList consultarClubs() {
-        return liga.consultarClubs();
-    }
-
-
    
     public void crearTorneo( int federacion, Date fecha, int[] clubs) {
-        liga.crearTorneo(federacion, fecha, clubs);
+        getLiga().crearTorneo(federacion, fecha, clubs);
     }
 
     public void crearPartida(int j1, int j2, String sede, Date fecha, Time h, Torneo t) {
-        liga.crearPartida(j1, j2, sede, fecha, h, t);
-    }
-
-    public ArrayList consultarTorneos() {
-        return liga.consultarTorneos();
-    }
-
-    public ArrayList consultarJugadores() {
-        return liga.consultarJugadores();
-    }
-
-    public ArrayList consultarSedes() {
-        return liga.consultarSedes();
-    }
-
-    public ArrayList consultarFederaciones() {
-        return liga.consultarFederaciones();
+        getLiga().crearPartida(j1, j2, sede, fecha, h, t);
     }
 
     public void crearClub(String name, Object federation) {
         FederacionModel fed = (FederacionModel) federation;
-        liga.crearClub(name, fed);
+        getLiga().crearClub(name, fed);
     }
 
 }

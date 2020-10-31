@@ -5,6 +5,8 @@
  */
 package ligaajedrez.modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author jbeltran
@@ -13,15 +15,13 @@ public class Usuario {
     private String userName;
     private String userPass;
     private JugadorModel player;
-    protected Liga liga;
+    private Liga liga;
 
-    public Usuario() {
-    }
-
-    public Usuario(String userName, String userPass, JugadorModel player) {
+    public Usuario(String userName, String userPass, JugadorModel player, Liga liga) {
         this.userName = userName;
         this.userPass = userPass;
         this.player = player;
+        this.liga = liga;
     }
 
     public String getUserName() {
@@ -46,5 +46,37 @@ public class Usuario {
 
     public void setPlayer(JugadorModel player) {
         this.player = player;
+    }
+
+    public Liga getLiga() {
+        return liga;
+    }
+
+    public void setLiga(Liga liga) {
+        this.liga = liga;
+    }
+    
+    public ArrayList consultarClubs() {
+        return liga.consultarClubs();
+    }
+    
+    public ArrayList consultarTorneos() {
+        return liga.consultarTorneos();
+    }
+
+    public ArrayList consultarJugadores() {
+        return liga.consultarJugadores();
+    }
+
+    public ArrayList consultarSedes() {
+        return liga.consultarSedes();
+    }
+
+    public ArrayList consultarFederaciones() {
+        return liga.consultarFederaciones();
+    }
+    
+    public ArrayList getTorneosDisponibles() {
+        return liga.torneosDisponibles(player.getClub().getFederation());
     }
 }

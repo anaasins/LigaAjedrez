@@ -12,11 +12,7 @@ import java.util.ArrayList;
  * @author jbeltran
  */
 public class Jugador extends Usuario {
-    public Jugador(Liga liga) {
-        this.liga = liga;
-    }
-    
-    public ArrayList getTorneosDisponibles() {
-        return super.liga.torneosDisponibles(super.getPlayer().getClub().getFederation());
+    public Jugador(String userName, String userPass, JugadorModel player, Liga liga) {
+        super(userName, userPass, player, liga);
     }
 }
