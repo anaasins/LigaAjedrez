@@ -7,21 +7,22 @@ package ligaajedrez.vista;
 
 import javax.swing.JFrame;
 import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Usuario;
 
 /**
  *
  * @author Olaf
  */
 public class IntroducirResultadosPartida extends javax.swing.JFrame {
-    private Administrador administrador;
+    private Usuario usuario;
     private JFrame previousView;
     
     /**
      * Creates new form IntroducirResultadosPartida
      */
-    public IntroducirResultadosPartida(Administrador administrador, JFrame previousView) {
+    public IntroducirResultadosPartida(Usuario usuario, JFrame previousView) {
         initComponents();
-        this.administrador = administrador;
+        this.usuario = usuario;
         this.previousView = previousView;
     }
 
@@ -106,7 +107,7 @@ public class IntroducirResultadosPartida extends javax.swing.JFrame {
     private void SiguientePartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguientePartidaActionPerformed
         // TODO add your handling code here:
         ElegirGanador ganador;
-        ganador = new ElegirGanador();
+        ganador = new ElegirGanador(usuario, this);
         ganador.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_SiguientePartidaActionPerformed

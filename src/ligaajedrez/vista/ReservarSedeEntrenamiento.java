@@ -6,22 +6,22 @@
 package ligaajedrez.vista;
 
 import javax.swing.JFrame;
-import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Usuario;
 
 /**
  *
  * @author Olaf
  */
 public class ReservarSedeEntrenamiento extends javax.swing.JFrame {
-    private Administrador administrador;
+    private Usuario usuario;
     private JFrame previousView;
     
     /**
      * Creates new form ReservarSedeEntrenamiento
      */
-    public ReservarSedeEntrenamiento(Administrador administrador, JFrame previousView) {
+    public ReservarSedeEntrenamiento(Usuario usuario, JFrame previousView) {
         initComponents();
-        this.administrador = administrador;
+        this.usuario = usuario;
         this.previousView = previousView;
     }
 
@@ -116,9 +116,7 @@ public class ReservarSedeEntrenamiento extends javax.swing.JFrame {
 
     private void ReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReservarActionPerformed
         // TODO add your handling code here:
-        MenuJugador menu;
-        menu = new MenuJugador();
-        menu.setVisible(true);
+        previousView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_ReservarActionPerformed
 

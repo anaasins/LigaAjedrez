@@ -27,12 +27,10 @@
               <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="tarjetaButton" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="apuntarTorneo" max="32767" attributes="0"/>
-                      <Component id="ModDatos" max="32767" attributes="0"/>
-                      <Component id="InResPartida" max="32767" attributes="0"/>
-                      <Component id="ResSede" pref="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="apuntarTorneo" max="32767" attributes="0"/>
+                  <Component id="ModDatos" max="32767" attributes="0"/>
+                  <Component id="InResPartida" max="32767" attributes="0"/>
+                  <Component id="ResSede" pref="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="112" max="32767" attributes="0"/>
           </Group>

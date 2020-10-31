@@ -7,18 +7,21 @@ package ligaajedrez.vista;
 
 import javax.swing.JOptionPane;
 import ligaajedrez.modelo.JugadorModel;
+import ligaajedrez.modelo.Usuario;
 
 /**
  *
  * @author Olaf
  */
 public class MenuJugador extends javax.swing.JFrame {
-    JugadorModel jugador;
+    private Usuario usuario;
+    
     /**
      * Creates new form MenuJugador
      */
-    public MenuJugador() {
+    public MenuJugador(Usuario usuario) {
         initComponents();
+        this.usuario = usuario;
     }
 
     /**
@@ -111,7 +114,7 @@ public class MenuJugador extends javax.swing.JFrame {
     private void ResSedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResSedeActionPerformed
         // TODO add your handling code here:
          ReservarSedeEntrenamiento reservar;
-         reservar = new ReservarSedeEntrenamiento();
+         reservar = new ReservarSedeEntrenamiento(usuario, this);
          reservar.setVisible(true);
          this.setVisible(false);
          
@@ -120,7 +123,7 @@ public class MenuJugador extends javax.swing.JFrame {
     private void InResPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InResPartidaActionPerformed
         // TODO add your handling code here:
         IntroducirResultadosPartida introducir;
-        introducir = new IntroducirResultadosPartida();
+        introducir = new IntroducirResultadosPartida(usuario, this);
         introducir.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_InResPartidaActionPerformed
@@ -128,63 +131,28 @@ public class MenuJugador extends javax.swing.JFrame {
     private void ModDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModDatosActionPerformed
         // TODO add your handling code here:
         ModificarJugador modificar;
-        modificar = new ModificarJugador();
+        modificar = new ModificarJugador(usuario, null, this);
         modificar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_ModDatosActionPerformed
 
     private void apuntarTorneoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apuntarTorneoActionPerformed
         // TODO add your handling code here:
-        new ApuntarmeTorneo().setVisible(true);
+        new ApuntarmeTorneo(usuario, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_apuntarTorneoActionPerformed
 
     private void tarjetaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarjetaButtonActionPerformed
         // TODO add your handling code here:
-        if(!jugador.getMoroso())
+        if(!usuario.getPlayer().getMoroso())
         {
-            JOptionPane.showMessageDialog(this, "Nombre: "+jugador.getName()+"\nEdad: "+jugador.getAge()+"\nCategoría: "+jugador.getCategory().name()+"\nELO: "+jugador.getElo(), "Tarjeta de jugador.", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(this, "Nombre: "+usuario.getPlayer().getName()+"\nEdad: "+usuario.getPlayer().getAge()+"\nCategoría: "+usuario.getPlayer().getCategory().name()+"\nELO: "+usuario.getPlayer().getElo(), "Tarjeta de jugador.", JOptionPane.OK_OPTION);
         }
         else
         {
             JOptionPane.showMessageDialog(this, "Tarjeta no disponible por moroso.");
         }
     }//GEN-LAST:event_tarjetaButtonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuJugador().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton InResPartida;

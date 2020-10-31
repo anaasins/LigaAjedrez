@@ -9,24 +9,25 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Usuario;
 
 /**
  *
  * @author asins
  */
 public class NuevoClub extends javax.swing.JFrame {
-    private Administrador administrador;
+    private Usuario usuario;
     private JFrame previousView;
     
     /**
      * Creates new form NuevoClub
      */
-    public NuevoClub(Administrador administrador, JFrame previousView, boolean create) {
+    public NuevoClub(Usuario usuario, JFrame previousView, boolean create) {
         initComponents();
-        this.administrador = administrador;
+        this.usuario = usuario;
         this.previousView = previousView;
         
-        ArrayList federations = administrador.consultarFederaciones();
+        ArrayList federations = usuario.consultarFederaciones();
         DefaultComboBoxModel model = new DefaultComboBoxModel(federations.toArray());
         federacionCombo.setModel(model);
         // TODO Implements when add the modify club
@@ -152,7 +153,7 @@ public class NuevoClub extends javax.swing.JFrame {
 
     private void atrasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasButtonActionPerformed
         // TODO add your handling code here:
-        new GestionarClubs(administrador, this).setVisible(true);
+        previousView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_atrasButtonActionPerformed
 
@@ -163,7 +164,7 @@ public class NuevoClub extends javax.swing.JFrame {
         name = nameField.getText();
         federation = federacionCombo.getSelectedItem();
         
-        administrador.crearClub(name, federation);
+        ((Administrador) usuario).crearClub(name, federation);
         
         previousView.setVisible(true);
         this.setVisible(false);

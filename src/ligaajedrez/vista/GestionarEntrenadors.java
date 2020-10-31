@@ -7,21 +7,22 @@ package ligaajedrez.vista;
 
 import javax.swing.JFrame;
 import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Usuario;
 
 /**
  *
  * @author jbeltran
  */
 public class GestionarEntrenadors extends javax.swing.JFrame {
-    private Administrador administrador;
+    private Usuario usuario;
     private JFrame previousView;
     
     /**
      * Creates new form GestionarEntrenadors
      */
-    public GestionarEntrenadors(Administrador administrador, JFrame previousView) {
+    public GestionarEntrenadors(Usuario usuario, JFrame previousView) {
         initComponents();
-        this.administrador = administrador;
+        this.usuario = usuario;
         this.previousView = previousView;
     }
 
@@ -104,15 +105,15 @@ public class GestionarEntrenadors extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        new CrearModificarEntrenadors().setVisible(true);
+        new CrearModificarEntrenadors(usuario, this).setVisible(true);
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        new BorrarEntrenador().setVisible(true);
+        new BorrarEntrenador(usuario, this).setVisible(true);
     }//GEN-LAST:event_deleteActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        new CrearModificarEntrenadors().setVisible(true);
+        new CrearModificarEntrenadors(usuario, this).setVisible(true);
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void backHistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backHistoryBtnActionPerformed

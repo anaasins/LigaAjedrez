@@ -5,25 +5,20 @@
  */
 package ligaajedrez.vista;
 
-import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Usuario;
 
 /**
  *
  * @author asins
  */
 public class MenuAdministrador extends javax.swing.JFrame {
-    private Administrador administrador;
+    private Usuario usuario;
     /**
      * Creates new form MenuAdministrador
      */
-    public MenuAdministrador(Administrador administrador) {
+    public MenuAdministrador(Usuario usuario) {
         initComponents();
-        this.administrador = administrador;
-    }
-    
-    public MenuAdministrador() {
-        initComponents();
-        this.administrador = null;
+        this.usuario = usuario;
     }
 
     /**
@@ -150,48 +145,48 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
     private void gestionarJugadoresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionarJugadoresButtonActionPerformed
         // TODO add your handling code here:
-        new GestionarJugadores(administrador, this).setVisible(true);
+        new GestionarJugadores(usuario, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_gestionarJugadoresButtonActionPerformed
 
     private void gestionarEntrenadoresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionarEntrenadoresButtonActionPerformed
         // TODO add your handling code here:
-        new GestionarEntrenadors(administrador, this).setVisible(true);
+        new GestionarEntrenadors(usuario, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_gestionarEntrenadoresButtonActionPerformed
 
     private void gestionarGerentesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionarGerentesButtonActionPerformed
         // TODO add your handling code here:
-        new GestionarGerentes(administrador, this).setVisible(true);
+        new GestionarGerentes(usuario, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_gestionarGerentesButtonActionPerformed
 
     private void registrarTorneoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarTorneoButtonActionPerformed
-        new RegistrarTorneo(administrador, this).setVisible(true);
+        new RegistrarTorneo(usuario, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_registrarTorneoButtonActionPerformed
 
     private void registrarPartidaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarPartidaButtonActionPerformed
-        new RegistrarPartida(administrador, this).setVisible(true);
+        new RegistrarPartida(usuario, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_registrarPartidaButtonActionPerformed
 
     private void sedeEntrenamiento5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sedeEntrenamiento5ActionPerformed
         ReservarSedeEntrenamiento reservar;
-        reservar = new ReservarSedeEntrenamiento(administrador, this);
+        reservar = new ReservarSedeEntrenamiento(usuario, this);
         reservar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_sedeEntrenamiento5ActionPerformed
 
     private void resultadosPartidaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultadosPartidaButtonActionPerformed
         IntroducirResultadosPartida introducir;
-        introducir = new IntroducirResultadosPartida(administrador, this);
+        introducir = new IntroducirResultadosPartida(usuario, this);
         introducir.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_resultadosPartidaButtonActionPerformed
 
     private void gestionarClubsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionarClubsButtonActionPerformed
-        new GestionarClubs(administrador, this).setVisible(true);
+        new GestionarClubs(usuario, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_gestionarClubsButtonActionPerformed
 

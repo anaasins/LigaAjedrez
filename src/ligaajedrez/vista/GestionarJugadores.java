@@ -7,20 +7,21 @@ package ligaajedrez.vista;
 
 import javax.swing.JFrame;
 import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Usuario;
 
 /**
  *
  * @author asins
  */
 public class GestionarJugadores extends javax.swing.JFrame {
-    private Administrador administrador;
+    private Usuario usuario;
     private JFrame previousView;
     /**
      * Creates new form GestionarJugadores
      */
-    public GestionarJugadores(Administrador administrador, JFrame previousView) {
+    public GestionarJugadores(Usuario usuario, JFrame previousView) {
         initComponents();
-        this.administrador = administrador;
+        this.usuario = usuario;
         this.previousView = previousView;
     }
 
@@ -131,31 +132,31 @@ public class GestionarJugadores extends javax.swing.JFrame {
 
     private void eliminarJugadorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarJugadorButtonActionPerformed
         // TODO add your handling code here:
-        new EliminarJugador().setVisible(true);
+        new EliminarJugador(usuario, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_eliminarJugadorButtonActionPerformed
 
     private void registrarMorosoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarMorosoButtonActionPerformed
         // TODO add your handling code here:
-        new RegistrarMoroso().setVisible(true);
+        new RegistrarMoroso(usuario, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_registrarMorosoButtonActionPerformed
 
     private void consultarJugadoresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarJugadoresButtonActionPerformed
         // TODO add your handling code here:
-        new ConsultarJugadores().setVisible(true);
+        new ConsultarJugadores(usuario, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_consultarJugadoresButtonActionPerformed
 
     private void modificarJugadorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarJugadorButtonActionPerformed
         // TODO add your handling code here:
-        new ModificarJugador().setVisible(true);
+        new ModificarJugador(usuario, null, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_modificarJugadorButtonActionPerformed
 
     private void nuevoJugadorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoJugadorButtonActionPerformed
         // TODO add your handling code here:
-        new ModificarJugador(administrador, this).setVisible(true);
+        new ModificarJugador(usuario, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_nuevoJugadorButtonActionPerformed
 

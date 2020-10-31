@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import ligaajedrez.modelo.Administrador;
 import ligaajedrez.modelo.JugadorModel;
+import ligaajedrez.modelo.Usuario;
 import ligaajedrez.modelo.enums.CategoriaEnum;
 
 /**
@@ -18,16 +19,16 @@ import ligaajedrez.modelo.enums.CategoriaEnum;
  */
 public class ModificarJugador extends javax.swing.JFrame {
 
-    private Administrador administrador;
+    private Usuario usuario;
     private JugadorModel player;
     private JFrame previousView;
 
     /**
      * Creates new form ModificarJugador
      */
-    public ModificarJugador(Administrador administrador, JFrame previousView) {
+    public ModificarJugador(Usuario usuario, JFrame previousView) {
         initComponents();
-        this.administrador = administrador;
+        this.usuario = usuario;
 
         DefaultComboBoxModel model = new DefaultComboBoxModel(CategoriaEnum.names());
         categoryCombo.setModel(model);
@@ -35,9 +36,9 @@ public class ModificarJugador extends javax.swing.JFrame {
         this.previousView = previousView;
     }
     
-    public ModificarJugador(Administrador administrador, JugadorModel player, JFrame previousView) {
+    public ModificarJugador(Usuario usuario, JugadorModel player, JFrame previousView) {
         initComponents();
-        this.administrador = administrador;
+        this.usuario = usuario;
 
         DefaultComboBoxModel model = new DefaultComboBoxModel(CategoriaEnum.names());
         categoryCombo.setModel(model);
@@ -233,10 +234,7 @@ public class ModificarJugador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AtrasModJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasModJActionPerformed
-        // TODO add your handling code here:
-        MenuJugador menu;
-        menu = new MenuJugador();
-        menu.setVisible(true);
+        previousView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_AtrasModJActionPerformed
 
@@ -278,7 +276,7 @@ public class ModificarJugador extends javax.swing.JFrame {
         }
 
         if (elo != null && age != null) {
-            administrador.crearJugador(name, elo, age, responsableName, responsableNumber);
+            ((Administrador)usuario).crearJugador(name, elo, age, null, responsableName, responsableNumber);
         }
 
         previousView.setVisible(true);
@@ -290,45 +288,10 @@ public class ModificarJugador extends javax.swing.JFrame {
     }//GEN-LAST:event_historyBtnActionPerformed
 
     private void assignationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignationBtnActionPerformed
-        AsignarClub asignarClub = new AsignarClub(administrador, previousView);
+        AsignarClub asignarClub = new AsignarClub(usuario, previousView);
         asignarClub.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_assignationBtnActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModificarJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModificarJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModificarJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModificarJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ModificarJugador().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AtrasModJ;

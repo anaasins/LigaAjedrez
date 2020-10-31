@@ -5,17 +5,24 @@
  */
 package ligaajedrez.vista;
 
+import javax.swing.JFrame;
+import ligaajedrez.modelo.Usuario;
+
 /**
  *
  * @author Olaf
  */
 public class ElegirGanador extends javax.swing.JFrame {
-
+    private Usuario usuario;
+    private JFrame previousView;
+    
     /**
      * Creates new form ElegirGanador
      */
-    public ElegirGanador() {
+    public ElegirGanador(Usuario usuario, JFrame previousView) {
         initComponents();
+        this.usuario = usuario;
+        this.previousView = previousView;
     }
 
     /**
@@ -97,9 +104,7 @@ public class ElegirGanador extends javax.swing.JFrame {
 
     private void confirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarActionPerformed
         // TODO add your handling code here:
-        MenuJugador menu;
-        menu = new MenuJugador();
-        menu.setVisible(true);
+        previousView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_confirmarActionPerformed
 
@@ -109,46 +114,9 @@ public class ElegirGanador extends javax.swing.JFrame {
 
     private void AtrasEleGanadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasEleGanadorActionPerformed
         // TODO add your handling code here:
-        IntroducirResultadosPartida intResultados;
-        intResultados = new IntroducirResultadosPartida();
-        intResultados.setVisible(true);
+        previousView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_AtrasEleGanadorActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ElegirGanador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ElegirGanador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ElegirGanador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ElegirGanador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ElegirGanador().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AtrasEleGanador;

@@ -7,21 +7,22 @@ package ligaajedrez.vista;
 
 import javax.swing.JFrame;
 import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Usuario;
 
 /**
  *
  * @author asins
  */
 public class GestionarClubs extends javax.swing.JFrame {
-    private Administrador administrador;
+    private Usuario usuario;
     private JFrame previousView;
     
     /**
      * Creates new form GestionarJugadores
      */
-    public GestionarClubs(Administrador administrador, JFrame previousView) {
+    public GestionarClubs(Usuario usuario, JFrame previousView) {
         initComponents();
-        this.administrador = administrador;
+        this.usuario = usuario;
         this.previousView = previousView;
     }
 
@@ -104,25 +105,25 @@ public class GestionarClubs extends javax.swing.JFrame {
 
     private void atrasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasButtonActionPerformed
         // TODO add your handling code here:
-        new MenuAdministrador().setVisible(true);
+        previousView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_atrasButtonActionPerformed
 
     private void eliminarClubButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarClubButtonActionPerformed
         // TODO add your handling code here:
-        new EliminarClub().setVisible(true);
+        new EliminarClub(usuario, this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_eliminarClubButtonActionPerformed
 
     private void nuevoClubButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoClubButtonActionPerformed
         // TODO add your handling code here:
-        new NuevoClub(administrador, this, true).setVisible(true);
+        new NuevoClub(usuario, this, true).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_nuevoClubButtonActionPerformed
 
     private void modificarClubButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarClubButtonActionPerformed
         // TODO add your handling code here:
-        new NuevoClub(administrador, this, false).setVisible(true);
+        new NuevoClub(usuario, this, false).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_modificarClubButtonActionPerformed
 

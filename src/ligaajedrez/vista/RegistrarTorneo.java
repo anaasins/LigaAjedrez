@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import ligaajedrez.modelo.Administrador;
 import ligaajedrez.modelo.Club;
+import ligaajedrez.modelo.Usuario;
 
 /**
  *
@@ -23,15 +24,15 @@ import ligaajedrez.modelo.Club;
  */
 public class RegistrarTorneo extends javax.swing.JFrame {
     DefaultListModel modeloLista;
-    private Administrador administrador;
+    private Usuario usuario;
     private JFrame vAnterior;
     
     /**
      * Creates new form RegistrarTorneo
      */
-    public RegistrarTorneo(Administrador _administrador,JFrame Vanterior) {
+    public RegistrarTorneo(Usuario _usuario, JFrame Vanterior) {
         initComponents();
-        administrador = _administrador;
+        usuario = _usuario;
         this.vAnterior = Vanterior;
         
         /*ArrayList federaciones= this.administrador.consultarFederaciones();
@@ -144,7 +145,7 @@ public class RegistrarTorneo extends javax.swing.JFrame {
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
 
      try {
-            administrador.crearTorneo(federacionCombo.getSelectedIndex(),new SimpleDateFormat("dd/MM/yyyy").parse(dateField.getText()),jList1.getSelectedIndices());
+            ((Administrador)usuario).crearTorneo(federacionCombo.getSelectedIndex(),new SimpleDateFormat("dd/MM/yyyy").parse(dateField.getText()),jList1.getSelectedIndices());
         } catch (ParseException ex) {
             Logger.getLogger(RegistrarTorneo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -152,41 +153,6 @@ public class RegistrarTorneo extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_confirmBtnActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistrarTorneo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistrarTorneo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistrarTorneo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistrarTorneo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                //new RegistrarTorneo().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel clubLabel;

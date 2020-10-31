@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Usuario;
 
 /**
  *
@@ -16,13 +17,13 @@ import ligaajedrez.modelo.Administrador;
  */
 public class RegistrarPartida extends javax.swing.JFrame {
     private JFrame vAnterior;
-    private Administrador administrador;
+    private Usuario usuario;
     /**
      * Creates new form RegistrarPartida
      */
-    public RegistrarPartida(Administrador _administrador,JFrame Vanterior) {
+    public RegistrarPartida(Usuario _usuario, JFrame Vanterior) {
         initComponents();
-        administrador = _administrador;
+        usuario = _usuario;
         this.vAnterior = Vanterior;
         
         /*ArrayList jugadores = this.administrador.consultarJugadores();
@@ -182,7 +183,7 @@ public class RegistrarPartida extends javax.swing.JFrame {
 
     private void atrasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasButtonActionPerformed
         // TODO add your handling code here:
-        new MenuAdministrador().setVisible(true);
+        vAnterior.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_atrasButtonActionPerformed
 
@@ -190,45 +191,10 @@ public class RegistrarPartida extends javax.swing.JFrame {
         // TODO add your handling code here:
         //administrador.crearPartida(jugador1Combo.getSelectedItem(),jugador2Combo.getSelectedItem(), sedeCombo.getSelectedItem(), FechaField.getText(),HoraField.getText(),torneoCombo.getSelectedItem());
         JOptionPane.showMessageDialog(this, "Partida registrada");
-        new MenuAdministrador().setVisible(true);
+        vAnterior.setVisible(true);
         this.setVisible(false);
         
     }//GEN-LAST:event_confirmarButtonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistrarPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistrarPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistrarPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistrarPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                //new RegistrarPartida().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField FechaField;

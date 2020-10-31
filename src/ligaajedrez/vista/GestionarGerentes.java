@@ -6,22 +6,22 @@
 package ligaajedrez.vista;
 
 import javax.swing.JFrame;
-import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Usuario;
 
 /**
  *
  * @author jbeltran
  */
 public class GestionarGerentes extends javax.swing.JFrame {
-    private Administrador administrador;
+    private Usuario usuario;
     private JFrame previousView;
     
     /**
      * Creates new form GestionarEntrenadors
      */
-    public GestionarGerentes(Administrador administrador, JFrame previousView) {
+    public GestionarGerentes(Usuario usuario, JFrame previousView) {
         initComponents();
-        this.administrador = administrador;
+        this.usuario = usuario;
         this.previousView = previousView;
     }
 
@@ -104,15 +104,15 @@ public class GestionarGerentes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        new CrearModificarGerentes().setVisible(true);
+        new CrearModificarGerentes(usuario, this).setVisible(true);
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        new BorrarGerente().setVisible(true);
+        new BorrarGerente(usuario, this).setVisible(true);
     }//GEN-LAST:event_deleteActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        new CrearModificarGerentes().setVisible(true);
+        new CrearModificarGerentes(usuario, this).setVisible(true);
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void backHistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backHistoryBtnActionPerformed

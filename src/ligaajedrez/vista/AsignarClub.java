@@ -7,25 +7,26 @@ package ligaajedrez.vista;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
-import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Usuario;
 
 /**
  *
  * @author jbeltran
  */
 public class AsignarClub extends javax.swing.JFrame {
-    private Administrador administrador;
+    private Usuario usuario;
     private JFrame previousView;
+    
     /**
      * Creates new form AsignarClub
      */
-    public AsignarClub(Administrador administrador, JFrame previousView) {
+    public AsignarClub(Usuario usuario, JFrame previousView) {
         initComponents();
-        this.administrador = administrador;
+        this.usuario = usuario;
         this.previousView = previousView;
         
         DefaultListModel model = new DefaultListModel();
-        for (Object club : administrador.consultarClubs())
+        for (Object club : usuario.consultarClubs())
             model.addElement(club);
         clubList.setModel(model);
     }
@@ -94,13 +95,13 @@ public class AsignarClub extends javax.swing.JFrame {
 
     private void atrasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasButtonActionPerformed
         // TODO add your handling code here:
-        new GestionarJugadores().setVisible(true);
+        previousView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_atrasButtonActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
-        new GestionarJugadores().setVisible(true);
+        previousView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_addBtnActionPerformed
 

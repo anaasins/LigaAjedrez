@@ -7,6 +7,7 @@ package ligaajedrez.vista;
 
 import javax.swing.JOptionPane;
 import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Jugador;
 import ligaajedrez.modelo.Liga;
 
 /**
@@ -95,11 +96,12 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         if (userField.getText().equalsIgnoreCase("usuario")) {
-            MenuJugador menuJugador = new MenuJugador();
+            Jugador jugador = new Jugador("Jugador", "", null, liga);
+            MenuJugador menuJugador = new MenuJugador(jugador);
             this.setVisible(false);
             menuJugador.setVisible(true);
         } else if (userField.getText().equalsIgnoreCase("administrador")) {
-            Administrador admin = new Administrador(liga);
+            Administrador admin = new Administrador("Administrador", "", null, liga);
             MenuAdministrador menuAdministrador = new MenuAdministrador(admin);
             this.setVisible(false);
             menuAdministrador.setVisible(true);
