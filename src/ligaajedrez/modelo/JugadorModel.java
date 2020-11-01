@@ -5,8 +5,6 @@
  */
 package ligaajedrez.modelo;
 
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import ligaajedrez.modelo.enums.CategoriaEnum;
 
 /**
@@ -14,14 +12,14 @@ import ligaajedrez.modelo.enums.CategoriaEnum;
  * @author jbeltran
  */
 public class JugadorModel{
-    public String name;
-    public int elo;
-    public Club club;
-    public int age;
-    public CategoriaEnum category;
-    public String responsableName;
-    public String reponsablePhoneNumber;
-    public boolean moroso;
+    private String name;
+    private int elo;
+    private Club club;
+    private int age;
+    private CategoriaEnum category;
+    private String responsableName;
+    private String reponsablePhoneNumber;
+    private boolean moroso;
 
     public JugadorModel() {
     }

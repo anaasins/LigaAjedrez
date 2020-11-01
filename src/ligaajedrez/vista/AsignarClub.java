@@ -7,6 +7,7 @@ package ligaajedrez.vista;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import ligaajedrez.modelo.Administrador;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -100,7 +101,8 @@ public class AsignarClub extends javax.swing.JFrame {
     }//GEN-LAST:event_atrasButtonActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO add your handling code here:
+        ((Administrador)usuario).setClubAct(clubList.getSelectedValue());
+        ((ModificarJugador)previousView).paintClub();
         previousView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_addBtnActionPerformed

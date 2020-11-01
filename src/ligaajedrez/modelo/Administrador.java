@@ -13,8 +13,18 @@ import java.util.Date;
  * @author jbeltran
  */
 public class Administrador extends Usuario {
+    private Club clubAct;
+    
     public Administrador(String userName, String userPass, JugadorModel player, Liga liga) {
         super(userName, userPass, player, liga);
+    }
+    
+    public void setClubAct(Object clubAct) {
+        this.clubAct = (Club) clubAct;
+    }
+    
+    public Object getClubAct() {
+        return clubAct;
     }
 
     public void crearJugador(String name, int elo, int age, Object club, String responsableName, String responsablePhoneNumber) {
@@ -33,5 +43,4 @@ public class Administrador extends Usuario {
         FederacionModel fed = (FederacionModel) federation;
         getLiga().crearClub(name, fed);
     }
-
 }

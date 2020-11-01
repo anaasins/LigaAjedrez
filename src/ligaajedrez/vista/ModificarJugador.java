@@ -34,6 +34,8 @@ public class ModificarJugador extends javax.swing.JFrame {
         categoryCombo.setModel(model);
         assignationBtn.setText("Añadir");
         this.previousView = previousView;
+        
+        ((Administrador)usuario).setClubAct(null);
     }
     
     public ModificarJugador(Usuario usuario, JugadorModel player, JFrame previousView) {
@@ -44,10 +46,20 @@ public class ModificarJugador extends javax.swing.JFrame {
         categoryCombo.setModel(model);
         this.player = player;
         this.previousView = previousView;
+        
+        ((Administrador)usuario).setClubAct(player.getClub());
+        paintClub();
     }
 
     public ModificarJugador() {
         initComponents();
+    }
+    
+    public void paintClub() {
+        if (((Administrador)usuario).getClubAct() != null)
+            clubName.setText(((Administrador)usuario).getClubAct().toString());
+        else
+            clubName.setText("");
     }
 
     /**
@@ -276,7 +288,7 @@ public class ModificarJugador extends javax.swing.JFrame {
         }
 
         if (elo != null && age != null) {
-            ((Administrador)usuario).crearJugador(name, elo, age, null, responsableName, responsableNumber);
+            ((Administrador)usuario).crearJugador(name, elo, age, ((Administrador)usuario).getClubAct(), responsableName, responsableNumber);
         }
 
         previousView.setVisible(true);
@@ -288,7 +300,7 @@ public class ModificarJugador extends javax.swing.JFrame {
     }//GEN-LAST:event_historyBtnActionPerformed
 
     private void assignationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignationBtnActionPerformed
-        AsignarClub asignarClub = new AsignarClub(usuario, previousView);
+        AsignarClub asignarClub = new AsignarClub(usuario, this);
         asignarClub.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_assignationBtnActionPerformed

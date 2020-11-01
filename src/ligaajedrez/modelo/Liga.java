@@ -39,10 +39,10 @@ public class Liga {
     }
 
     public ArrayList consultarClubs() {
-        ArrayList<String> listaClubs = new ArrayList<String>();
+        ArrayList listaClubs = new ArrayList();
 
         for (Club club : clubs) {
-            listaClubs.add(club.toString());
+            listaClubs.add(club);
         }
         return listaClubs;
     }
