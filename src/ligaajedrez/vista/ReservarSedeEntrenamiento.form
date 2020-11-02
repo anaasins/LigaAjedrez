@@ -25,21 +25,21 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-              <Component id="AtrasResPartida" min="-2" pref="127" max="-2" attributes="0"/>
+              <Component id="atrasResPartida" min="-2" pref="127" max="-2" attributes="0"/>
               <EmptySpace pref="96" max="32767" attributes="0"/>
-              <Component id="Reservar" min="-2" pref="127" max="-2" attributes="0"/>
+              <Component id="reservarButton" min="-2" pref="127" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="Dia" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="Hora" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="diaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="horaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="HabitacionInicio" max="32767" attributes="0"/>
-                  <Component id="jSpinner1" max="32767" attributes="0"/>
+                  <Component id="dia" max="32767" attributes="0"/>
+                  <Component id="hora" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
           </Group>
@@ -50,18 +50,18 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="Dia" min="-2" max="-2" attributes="0"/>
-                  <Component id="HabitacionInicio" min="-2" max="-2" attributes="0"/>
+                  <Component id="diaLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="dia" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="Hora" min="-2" max="-2" attributes="0"/>
-                  <Component id="jSpinner1" min="-2" max="-2" attributes="0"/>
+                  <Component id="horaLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="hora" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="122" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="Reservar" pref="37" max="32767" attributes="0"/>
-                  <Component id="AtrasResPartida" max="32767" attributes="0"/>
+                  <Component id="reservarButton" pref="37" max="32767" attributes="0"/>
+                  <Component id="atrasResPartida" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
@@ -69,35 +69,35 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="Dia">
+    <Component class="javax.swing.JLabel" name="diaLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="D&#xed;a"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="Hora">
+    <Component class="javax.swing.JLabel" name="horaLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Hora"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="Reservar">
+    <Component class="javax.swing.JButton" name="reservarButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Reservar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ReservarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reservarButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="AtrasResPartida">
+    <Component class="javax.swing.JButton" name="atrasResPartida">
       <Properties>
         <Property name="text" type="java.lang.String" value="Atr&#xe1;s"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AtrasResPartidaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="atrasResPartidaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="HabitacionInicio">
+    <Component class="com.toedter.calendar.JDateChooser" name="dia">
     </Component>
-    <Component class="javax.swing.JSpinner" name="jSpinner1">
+    <Component class="javax.swing.JSpinner" name="hora">
     </Component>
   </SubComponents>
 </Form>

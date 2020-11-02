@@ -6,6 +6,7 @@
 package ligaajedrez.modelo;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -16,6 +17,7 @@ public class Usuario {
     private String userPass;
     private JugadorModel player;
     private Liga liga;
+    private Club club;
 
     public Usuario(String userName, String userPass, JugadorModel player, Liga liga) {
         this.userName = userName;
@@ -78,5 +80,9 @@ public class Usuario {
     
     public ArrayList getTorneosDisponibles() {
         return liga.torneosDisponibles(player.getClub().getFederation());
+    }
+
+    public boolean reservarSede(Date date, int hora, Usuario user) {
+        return liga.reservarSede(date, hora, this.club.getSede(), user);
     }
 }

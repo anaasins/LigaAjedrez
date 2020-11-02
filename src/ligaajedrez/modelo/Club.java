@@ -24,12 +24,20 @@ public class Club {
         this.federation = federation;
     }
 
+
+    public Sede getSede() {
+        return sede;
+    }
+
     /*public Club(String name, FederacionModel federation, Entrenador trainer, Gerente manager) {
-        this.name = name;
-        this.federation = federation;
-        this.trainer = trainer;
-        this.manager = manager;
+    this.name = name;
+    this.federation = federation;
+    this.trainer = trainer;
+    this.manager = manager;
     }*/
+    public void setSede(Sede sede) {
+        this.sede = sede;
+    }
 
     public String getName() {
         return name;

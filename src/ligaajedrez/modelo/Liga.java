@@ -115,4 +115,10 @@ public class Liga {
         Club club = new Club(name, fed);
         clubs.add(club);
     }
+
+    boolean reservarSede(Date date, int hora, Sede s, Usuario user) {
+        Reserva res = s.buscarReserva(date, hora);
+       return s.reservarSede(res, date, hora, user);
+    }
+
 }
