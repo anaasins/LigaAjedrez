@@ -56,9 +56,9 @@ public class Liga {
         torneos.add(tor);
     }
 
-    public void crearPartida(int j1, int j2, String sede, Date fecha, Time h, Torneo t) {
+    public void crearPartida(int j1, int j2, int sede, Date fecha, Date h, int t) {
         Partida p;
-        p = new Partida(jugadores.get(j1), jugadores.get(j2), sede, fecha, h, t);
+        p = new Partida(jugadores.get(j1), jugadores.get(j2), sedes.get(sede), fecha, h, torneos.get(t));
         partidas.add(p);
     }
 

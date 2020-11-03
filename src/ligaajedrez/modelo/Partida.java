@@ -17,10 +17,10 @@ public class Partida {
     private JugadorModel jugador2;
     private String sede;
     private Date fechaPartida;
-    private Time hora;
+    private Date hora;
     private Torneo torneo;
     
-    public Partida (JugadorModel j1,JugadorModel j2, String s,Date fp,Time h,Torneo t)
+    public Partida (JugadorModel j1,JugadorModel j2, String s,Date fp,Date h,Torneo t)
     {
         this.setJugador1(j1);
         this.setJugador2(j2);
@@ -35,7 +35,7 @@ public class Partida {
         fechaPartida=fp;
     }
 
-    public void setHora(Time h) {
+    public void setHora(Date h) {
         hora=h;
     }
 
@@ -56,7 +56,7 @@ public class Partida {
     {
         return fechaPartida;
     }
-    public Time getHora()
+    public Date getHora()
     {
         return hora;
     }

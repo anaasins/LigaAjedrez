@@ -35,7 +35,7 @@ public class Administrador extends Usuario {
         getLiga().crearTorneo(federacion, fecha, clubs);
     }
 
-    public void crearPartida(int j1, int j2, String sede, Date fecha, Time h, Torneo t) {
+    public void crearPartida(int j1, int j2, int sede, Date fecha, Date h, int t) {
         getLiga().crearPartida(j1, j2, sede, fecha, h, t);
     }
 

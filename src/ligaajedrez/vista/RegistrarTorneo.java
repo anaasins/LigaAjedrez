@@ -26,6 +26,7 @@ public class RegistrarTorneo extends javax.swing.JFrame {
     DefaultListModel modeloLista;
     private Usuario usuario;
     private JFrame vAnterior;
+    private Administrador administrador;
     
     /**
      * Creates new form RegistrarTorneo
@@ -35,7 +36,7 @@ public class RegistrarTorneo extends javax.swing.JFrame {
         usuario = _usuario;
         this.vAnterior = Vanterior;
         
-        /*ArrayList federaciones= this.administrador.consultarFederaciones();
+        ArrayList federaciones= this.administrador.consultarFederaciones();
         federacionCombo.removeAllItems();
         for (Object fede : federaciones) {
             federacionCombo.addItem((String) fede);
@@ -51,7 +52,7 @@ public class RegistrarTorneo extends javax.swing.JFrame {
         else
         {
             JOptionPane.showMessageDialog(this, "No existen clubs");
-        }*/
+        }
     }
 
     /**

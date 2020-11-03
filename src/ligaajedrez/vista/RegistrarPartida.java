@@ -5,7 +5,11 @@
  */
 package ligaajedrez.vista;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import ligaajedrez.modelo.Administrador;
@@ -18,6 +22,7 @@ import ligaajedrez.modelo.Usuario;
 public class RegistrarPartida extends javax.swing.JFrame {
     private JFrame vAnterior;
     private Usuario usuario;
+    private Administrador administrador;
     /**
      * Creates new form RegistrarPartida
      */
@@ -26,7 +31,7 @@ public class RegistrarPartida extends javax.swing.JFrame {
         usuario = _usuario;
         this.vAnterior = Vanterior;
         
-        /*ArrayList jugadores = this.administrador.consultarJugadores();
+        ArrayList jugadores = this.administrador.consultarJugadores();
         jugador1Combo.removeAllItems();
         for (Object jugador : jugadores) {
             jugador1Combo.addItem((String) jugador);
@@ -46,8 +51,8 @@ public class RegistrarPartida extends javax.swing.JFrame {
         ArrayList torneos = administrador.consultarTorneos();
         torneoCombo.removeAllItems();
         for (Object torneo : torneos) {
-            torneoCombo.addItem(torneo);
-        }*/
+            torneoCombo.addItem((String) torneo);
+        }
     }
 
     /**
@@ -188,8 +193,12 @@ public class RegistrarPartida extends javax.swing.JFrame {
     }//GEN-LAST:event_atrasButtonActionPerformed
 
     private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarButtonActionPerformed
-        // TODO add your handling code here:
-        //administrador.crearPartida(jugador1Combo.getSelectedItem(),jugador2Combo.getSelectedItem(), sedeCombo.getSelectedItem(), FechaField.getText(),HoraField.getText(),torneoCombo.getSelectedItem());
+        try {
+            // TODO add your handling code here:
+            administrador.crearPartida(jugador1Combo.getSelectedIndex(),jugador2Combo.getSelectedIndex(),sedeCombo.getSelectedIndex(),new SimpleDateFormat("dd/MM/yyyy").parse(FechaField .getText()),new SimpleDateFormat("HH").parse(HoraField.getText()),torneoCombo.getSelectedIndex());
+        } catch (ParseException ex) {
+            Logger.getLogger(RegistrarPartida.class.getName()).log(Level.SEVERE, null, ex);
+        }
         JOptionPane.showMessageDialog(this, "Partida registrada");
         vAnterior.setVisible(true);
         this.setVisible(false);
