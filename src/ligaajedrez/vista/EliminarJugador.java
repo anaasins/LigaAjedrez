@@ -5,7 +5,11 @@
  */
 package ligaajedrez.vista;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import ligaajedrez.modelo.Administrador;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -23,6 +27,7 @@ public class EliminarJugador extends javax.swing.JFrame {
         initComponents();
         this.usuario = usuario;
         this.previousView = previousView;
+        mostrarJugadores();
     }
 
     /**
@@ -42,11 +47,6 @@ public class EliminarJugador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jugadoresList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Jugador 1", "Jugador 2", "Jugador 3" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jugadoresList);
 
         jugadorLabel.setText("Elegir el jugador a eliminar:");
@@ -98,6 +98,25 @@ public class EliminarJugador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void mostrarJugadores()
+    {
+       ArrayList jugadoresAux;
+       jugadoresAux = ((Administrador)usuario).getJugadores(); 
+       DefaultListModel modeloLista = new DefaultListModel();
+       jugadoresList.setModel(modeloLista); 
+       
+       if (!jugadoresAux.isEmpty()){
+            for(Object j:jugadoresAux)
+            {
+                modeloLista.addElement(j);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "No hay jugadores para mostrar en estos momentos.");
+        }
+    }
+    
     private void atrasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasButtonActionPerformed
         // TODO add your handling code here:
         previousView.setVisible(true);
@@ -106,6 +125,7 @@ public class EliminarJugador extends javax.swing.JFrame {
 
     private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
         // TODO add your handling code here:
+        //puc fer que me torne el index del element seleccionat i anar a liga i eliminar del arraylist el index que me ha tornat?
         previousView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_eliminarButtonActionPerformed

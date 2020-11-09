@@ -41,6 +41,7 @@ public class ModificarJugador extends javax.swing.JFrame {
     public ModificarJugador(Usuario usuario, JugadorModel player, JFrame previousView) {
         initComponents();
         this.usuario = usuario;
+        
 
         DefaultComboBoxModel model = new DefaultComboBoxModel(CategoriaEnum.names());
         categoryCombo.setModel(model);
@@ -98,6 +99,11 @@ public class ModificarJugador extends javax.swing.JFrame {
 
         categoryCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Infantil", "Junior", "Senior" }));
         categoryCombo.setEnabled(false);
+        categoryCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoryComboActionPerformed(evt);
+            }
+        });
 
         nameLabel.setText("Nombre");
 
@@ -304,6 +310,10 @@ public class ModificarJugador extends javax.swing.JFrame {
         asignarClub.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_assignationBtnActionPerformed
+
+    private void categoryComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_categoryComboActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AtrasModJ;

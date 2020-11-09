@@ -74,11 +74,7 @@
         <Component class="javax.swing.JList" name="jugadoresList">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="Jugador 1 ....................S&#xed;"/>
-                <StringItem index="1" value="Jugador 2.....................No"/>
-                <StringItem index="2" value="Jugador 3.....................No"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>

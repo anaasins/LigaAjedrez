@@ -6,6 +6,7 @@
 package ligaajedrez.modelo;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -42,5 +43,9 @@ public class Administrador extends Usuario {
     public void crearClub(String name, Object federation) {
         FederacionModel fed = (FederacionModel) federation;
         getLiga().crearClub(name, fed);
+    }
+
+    public ArrayList getJugadores() {
+       return getLiga().consultarJugadores();
     }
 }
