@@ -17,7 +17,7 @@ public class Liga {
     private ArrayList<JugadorModel> jugadores;
     private ArrayList<Club> clubs;
     private ArrayList<Torneo> torneos;
-    private ArrayList<String> sedes;
+    private ArrayList<Sede> sedes;
     private ArrayList<FederacionModel> federaciones;
     private ArrayList<Partida> partidas;
     
@@ -81,9 +81,9 @@ public class Liga {
     }
 
     public ArrayList consultarSedes() {
-        ArrayList<String> s = new ArrayList<String>();
+        ArrayList<Sede> s = new ArrayList<Sede>();
 
-        for (String sede : sedes) {
+        for (Sede sede : sedes) {
             s.add(sede);
         }
         return s;
@@ -112,7 +112,7 @@ public class Liga {
     }
 
     void crearClub(String name, FederacionModel fed) {
-        Club club = new Club(name, fed);
+        Club club = new Club(name, fed, null);
         clubs.add(club);
     }
 

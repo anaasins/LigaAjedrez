@@ -7,20 +7,42 @@ package ligaajedrez.modelo;
 
 import java.sql.Time;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
  * @author Olaf
  */
+@Entity
 public class Partida {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "partidaSeq")
+    @SequenceGenerator(name="partidaSeq",sequenceName="partidaSeq", allocationSize=1, initialValue = 1)
+    private int id;
+    @ManyToOne
+    @JoinColumn(name = "jugador1Id", referencedColumnName = "id")
     private JugadorModel jugador1;
+    @ManyToOne
+    @JoinColumn(name = "jugador2Id", referencedColumnName = "id")
     private JugadorModel jugador2;
-    private String sede;
+    @OneToOne
+    private Sede sede;
     private Date fechaPartida;
     private Date hora;
+    @ManyToOne
+    @JoinColumn(name = "torneoId", referencedColumnName = "id")
     private Torneo torneo;
     
-    public Partida (JugadorModel j1,JugadorModel j2, String s,Date fp,Date h,Torneo t)
+    public Partida() {}
+    
+    public Partida (JugadorModel j1,JugadorModel j2, Sede s,Date fp,Date h,Torneo t)
     {
         this.setJugador1(j1);
         this.setJugador2(j2);
@@ -29,6 +51,14 @@ public class Partida {
         this.setHora(h);
         this.setTorneo(t);   
  
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setFechaPartida(Date fp) {
@@ -43,7 +73,7 @@ public class Partida {
         torneo=t;
     }
 
-    public void setSede(String s) {
+    public void setSede(Sede s) {
        sede=s;
     }
     public void setJugador1(JugadorModel j1) {

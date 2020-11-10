@@ -5,31 +5,63 @@
  */
 package ligaajedrez.modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import ligaajedrez.modelo.enums.CategoriaEnum;
+import org.hibernate.annotations.Type;
 
 /**
  *
  * @author jbeltran
  */
+@Entity
 public class JugadorModel{
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jugadorSeq")
+    @SequenceGenerator(name="jugadorSeq",sequenceName="jugadorSeq", allocationSize=1, initialValue = 1)
+    private int id;
     private String name;
     private int elo;
+    @ManyToOne
+    @JoinColumn(name = "clubId", referencedColumnName = "id")
     private Club club;
     private int age;
     private CategoriaEnum category;
     private String responsableName;
     private String reponsablePhoneNumber;
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean moroso;
 
     public JugadorModel() {
     }
 
+    public JugadorModel(String name, int elo, int age, Club club) {
+        setName(name);
+        setElo(elo);
+        setAge(age);
+        setClub(club);
+    }
+    
     public JugadorModel(String name, int elo, int age, Club club, String responsableName, String reponsablePhoneNumber) {
         setName(name);
         setElo(elo);
+        setAge(age);
         setClub(club);
         setResponsableName(responsableName);
         setReponsablePhoneNumber(reponsablePhoneNumber);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

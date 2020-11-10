@@ -5,25 +5,57 @@
  */
 package ligaajedrez.modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
 
 /**
  *
  * @author jbeltran
  */
+@Entity
 public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="usuarioSeq")
+    @SequenceGenerator(name="usuarioSeq",sequenceName="usuarioSeq", allocationSize=1, initialValue = 1)
+    private int id;
     private String userName;
     private String userPass;
+    @ManyToOne
+    @JoinColumn(name = "playerId", referencedColumnName = "id")
     private JugadorModel player;
+    @Transient
     private Liga liga;
-    private Club club;
 
+    public Usuario() {}
+    
+    public Usuario(String userName, String userPass, JugadorModel player) {
+        this.userName = userName;
+        this.userPass = userPass;
+        this.player = player;
+    }
+    
     public Usuario(String userName, String userPass, JugadorModel player, Liga liga) {
         this.userName = userName;
         this.userPass = userPass;
         this.player = player;
         this.liga = liga;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUserName() {
@@ -83,6 +115,6 @@ public class Usuario {
     }
 
     public boolean reservarSede(Date date, int hora, Usuario user) {
-        return liga.reservarSede(date, hora, this.club.getSede(), user);
+        return liga.reservarSede(date, hora, this.player.getClub().getSede(), user);
     }
 }
