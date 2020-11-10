@@ -8,6 +8,7 @@ package ligaajedrez.modelo;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
+import ligaajedrez.db.DB;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Liga {
     private ArrayList<Sede> sedes;
     private ArrayList<FederacionModel> federaciones;
     private ArrayList<Partida> partidas;
+    private DB db;
     
     public Liga()
     {
@@ -31,6 +33,10 @@ public class Liga {
         federaciones.add(new FederacionModel("Valencia"));
         federaciones.add(new FederacionModel("Madrid"));
         partidas = new ArrayList();
+        
+        db = DB.getDB();
+        //db.createInitialData();
+        //ArrayList<JugadorModel> a = (ArrayList<JugadorModel>) db.getAll(JugadorModel.class);
     }
     
      public void crearJugador(String name, int elo, int age, Object club, String responsableName, String responsablePhoneNumber) {
