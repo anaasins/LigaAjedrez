@@ -8,7 +8,10 @@ package ligaajedrez.modelo;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import ligaajedrez.db.DB;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -26,19 +29,23 @@ public class Liga {
     
     public Liga()
     {
-        jugadores = new ArrayList();
-        jugadoresMorosos = new ArrayList();
-        clubs = new ArrayList();
-        torneos = new ArrayList();
-        sedes = new ArrayList();
-        federaciones = new ArrayList();
-        federaciones.add(new FederacionModel("Valencia"));
-        federaciones.add(new FederacionModel("Madrid"));
-        partidas = new ArrayList();
-        
+        // Get db connection
         db = DB.getDB();
+        
+        // Get data from db
+        List<Criterion> criterions = new ArrayList<Criterion>();
+        criterions.add(Restrictions.eq("moroso", false));
+        jugadores = (ArrayList<JugadorModel>) db.getFiltered(JugadorModel.class, criterions);
+        criterions = new ArrayList<Criterion>();
+        criterions.add(Restrictions.eq("moroso", true));
+        jugadoresMorosos = (ArrayList<JugadorModel>) db.getFiltered(JugadorModel.class, criterions);
+        clubs = (ArrayList<Club>) db.getAll(Club.class);
+        torneos = (ArrayList<Torneo>) db.getAll(Torneo.class);
+        sedes = (ArrayList<Sede>) db.getAll(Sede.class);
+        federaciones = (ArrayList<FederacionModel>) db.getAll(FederacionModel.class);
+        partidas = (ArrayList<Partida>) db.getAll(Partida.class);
+        
        // db.createInitialData();
-        jugadores = (ArrayList<JugadorModel>) db.getAll(JugadorModel.class);
     }
     
      public void crearJugador(String name, int elo, int age, Object club, String responsableName, String responsablePhoneNumber) {
