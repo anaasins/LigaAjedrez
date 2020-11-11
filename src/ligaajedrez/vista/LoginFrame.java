@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import ligaajedrez.modelo.Administrador;
 import ligaajedrez.modelo.Jugador;
 import ligaajedrez.modelo.Liga;
+import ligaajedrez.modelo.Usuario;
 
 /**
  *
@@ -95,18 +96,19 @@ public class LoginFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        if (userField.getText().equalsIgnoreCase("usuario")) {
-            Jugador jugador = new Jugador("Jugador", "", null, liga);
-            MenuJugador menuJugador = new MenuJugador(jugador);
+        Usuario usuario = liga.login(userField.getText().toLowerCase(),new String(passField.getPassword()));
+        if (usuario != null && !usuario.isAdmin()) {
+            usuario.setLiga(liga);
+            MenuJugador menuJugador = new MenuJugador(usuario);
             this.setVisible(false);
             menuJugador.setVisible(true);
-        } else if (userField.getText().equalsIgnoreCase("administrador")) {
-            Administrador admin = new Administrador("Administrador", "", null, liga);
-            MenuAdministrador menuAdministrador = new MenuAdministrador(admin);
+        } else if (usuario != null && usuario.isAdmin()) {
+            usuario.setLiga(liga);
+            MenuAdministrador menuAdministrador = new MenuAdministrador(usuario);
             this.setVisible(false);
             menuAdministrador.setVisible(true);
         } else {
-            JOptionPane.showConfirmDialog(null, "No existe ningun usuario registrado", "Error login", JOptionPane.OK_OPTION);
+            JOptionPane.showConfirmDialog(null, "No existe ningun usuario registrado", "Error login", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_loginBtnActionPerformed
 

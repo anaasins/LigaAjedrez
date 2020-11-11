@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
+import org.hibernate.annotations.Type;
 
 /**
  *
@@ -34,8 +35,18 @@ public class Usuario {
     private JugadorModel player;
     @Transient
     private Liga liga;
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    private boolean isAdmin;
 
     public Usuario() {}
+    
+    public Usuario(Usuario usuario) {
+        id = usuario.getId();
+        userName = usuario.getUserName();
+        userPass = usuario.getUserName();
+        player = usuario.getPlayer();
+        isAdmin = usuario.isAdmin();
+    }
     
     public Usuario(String userName, String userPass, JugadorModel player) {
         this.userName = userName;
@@ -120,5 +131,13 @@ public class Usuario {
     
     public void saveData() {
         liga.saveData();
+    }
+    
+    public boolean isMoroso() {
+        return player.getMoroso();
+    }
+    
+    public boolean isAdmin() {
+        return isAdmin;
     }
 }

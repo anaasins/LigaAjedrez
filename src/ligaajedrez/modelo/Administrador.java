@@ -16,6 +16,10 @@ import java.util.Date;
 public class Administrador extends Usuario {
     private Club clubAct;
     
+    public Administrador(Usuario usuario) {
+        super(usuario);
+    }
+    
     public Administrador(String userName, String userPass, JugadorModel player, Liga liga) {
         super(userName, userPass, player, liga);
     }

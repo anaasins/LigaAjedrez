@@ -206,6 +206,11 @@ public class Liga {
         criterions.add(Restrictions.eq("userPass", pass));
         usuario = db.getFiltered(Usuario.class, criterions).get(0);
         
+        if (usuario != null && usuario.isAdmin())
+            usuario = new Administrador(usuario);
+        else
+            usuario = new Jugador(usuario);
+        
         return usuario;
     }
 }

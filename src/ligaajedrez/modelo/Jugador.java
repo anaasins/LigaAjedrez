@@ -12,6 +12,11 @@ import java.util.ArrayList;
  * @author jbeltran
  */
 public class Jugador extends Usuario {
+    
+    public Jugador(Usuario usuario) {
+        super(usuario);
+    }
+    
     public Jugador(String userName, String userPass, JugadorModel player, Liga liga) {
         super(userName, userPass, player, liga);
     }
