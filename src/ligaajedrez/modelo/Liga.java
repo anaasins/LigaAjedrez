@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import ligaajedrez.db.DB;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
@@ -166,5 +168,32 @@ public class Liga {
         j.setMulta(0);
         jugadoresMorosos.remove(j);
         jugadores.add(j);
+    }
+    
+    public void saveData() {
+        Session session = db.getSession();
+        Transaction t = session.beginTransaction();
+        jugadores.forEach((jugador) -> {
+            session.saveOrUpdate(jugador);
+        });
+        jugadoresMorosos.forEach((jugador) -> {
+            session.saveOrUpdate(jugador);
+        });
+        clubs.forEach((club) -> {
+            session.saveOrUpdate(club);
+        });
+        torneos.forEach((torneo) -> {
+            session.saveOrUpdate(torneo);
+        });
+        sedes.forEach((sede) -> {
+            session.saveOrUpdate(sede);
+        });
+        federaciones.forEach((federacion) -> {
+            session.saveOrUpdate(federacion);
+        });
+        partidas.forEach((partida) -> {
+            session.saveOrUpdate(partida);
+        });
+        t.commit();
     }
 }
