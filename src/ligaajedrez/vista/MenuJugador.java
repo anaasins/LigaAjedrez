@@ -6,6 +6,7 @@
 package ligaajedrez.vista;
 
 import javax.swing.JOptionPane;
+import ligaajedrez.modelo.Jugador;
 import ligaajedrez.modelo.JugadorModel;
 import ligaajedrez.modelo.Usuario;
 
@@ -22,6 +23,9 @@ public class MenuJugador extends javax.swing.JFrame {
     public MenuJugador(Usuario usuario) {
         initComponents();
         this.usuario = usuario;
+        
+        modifyMenuForMoroso();
+        
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -29,6 +33,24 @@ public class MenuJugador extends javax.swing.JFrame {
                 e.getWindow().dispose();
             }
         });
+    }
+    
+    public void modifyMenuForMoroso() {
+        if (usuario.isMoroso()) {
+            payBtn.setEnabled(true);
+            ResSede.setEnabled(false);
+            InResPartida.setEnabled(false);
+            ModDatos.setEnabled(false);
+            apuntarTorneo.setEnabled(false);
+            tarjetaButton.setEnabled(false);
+        } else {
+            payBtn.setEnabled(false);
+            ResSede.setEnabled(true);
+            InResPartida.setEnabled(true);
+            ModDatos.setEnabled(true);
+            apuntarTorneo.setEnabled(true);
+            tarjetaButton.setEnabled(true);
+        }
     }
 
     /**
@@ -45,6 +67,7 @@ public class MenuJugador extends javax.swing.JFrame {
         ModDatos = new javax.swing.JButton();
         apuntarTorneo = new javax.swing.JButton();
         tarjetaButton = new javax.swing.JButton();
+        payBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,6 +107,14 @@ public class MenuJugador extends javax.swing.JFrame {
             }
         });
 
+        payBtn.setText("Pagar multa");
+        payBtn.setEnabled(false);
+        payBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,27 +123,29 @@ public class MenuJugador extends javax.swing.JFrame {
                 .addGap(107, 107, 107)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tarjetaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(apuntarTorneo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ModDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(InResPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ResSede, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addComponent(apuntarTorneo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ModDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(InResPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ResSede, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(payBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(112, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(20, 20, 20)
                 .addComponent(ResSede, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(InResPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ModDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(apuntarTorneo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tarjetaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(payBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -161,11 +194,20 @@ public class MenuJugador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tarjetaButtonActionPerformed
 
+    private void payBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payBtnActionPerformed
+        int result = JOptionPane.showConfirmDialog(this, "Desea pagar la multa pendiente de " + ((Jugador)usuario).getMulta() + " €", "Pago multa pendiente",JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.OK_OPTION) {
+            ((Jugador) usuario).pagarMulta();
+            modifyMenuForMoroso();
+        }
+    }//GEN-LAST:event_payBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton InResPartida;
     private javax.swing.JButton ModDatos;
     private javax.swing.JButton ResSede;
     private javax.swing.JButton apuntarTorneo;
+    private javax.swing.JButton payBtn;
     private javax.swing.JButton tarjetaButton;
     // End of variables declaration//GEN-END:variables
 }
