@@ -16,10 +16,12 @@ import ligaajedrez.modelo.Reserva;
 import ligaajedrez.modelo.Sede;
 import ligaajedrez.modelo.Torneo;
 import ligaajedrez.modelo.Usuario;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Criterion;
 
 /**
  *
@@ -118,5 +120,14 @@ public class DB {
     
     public <T> List<T> getAll(Class<T> type) {
         return (List<T>) session.createCriteria(type).list();
+    }
+    
+    public <T> List<T> getFiltered(Class<T> type, List<Criterion> criterions) {
+        Criteria criteria = session.createCriteria(type);
+        
+        for (Criterion criterion : criterions)
+            criteria.add(criterion);
+        
+        return (List<T>) criteria.list();
     }
 }
