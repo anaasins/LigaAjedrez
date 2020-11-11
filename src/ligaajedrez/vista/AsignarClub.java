@@ -30,6 +30,14 @@ public class AsignarClub extends javax.swing.JFrame {
         for (Object club : usuario.consultarClubs())
             model.addElement(club);
         clubList.setModel(model);
+        
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                usuario.saveData();
+                e.getWindow().dispose();
+            }
+        });
     }
 
     /**

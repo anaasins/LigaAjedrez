@@ -28,6 +28,13 @@ public class EliminarJugador extends javax.swing.JFrame {
         this.usuario = usuario;
         this.previousView = previousView;
         mostrarJugadores();
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                usuario.saveData();
+                e.getWindow().dispose();
+            }
+        });
     }
 
     /**

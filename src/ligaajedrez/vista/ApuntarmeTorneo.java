@@ -16,10 +16,11 @@ import ligaajedrez.modelo.Usuario;
  * @author asins
  */
 public class ApuntarmeTorneo extends javax.swing.JFrame {
+
     private DefaultListModel modeloLista;
     private Usuario usuario;
     private JFrame previousView;
-    
+
     /**
      * Creates new form ApuntarmeTorneo
      */
@@ -28,6 +29,13 @@ public class ApuntarmeTorneo extends javax.swing.JFrame {
         this.rellenarLista();
         this.usuario = usuario;
         this.previousView = previousView;
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                usuario.saveData();
+                e.getWindow().dispose();
+            }
+        });
     }
 
     /**
@@ -107,21 +115,17 @@ public class ApuntarmeTorneo extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_buttonAtrasActionPerformed
 
-    private void rellenarLista()
-    {
-        modeloLista=new DefaultListModel();
+    private void rellenarLista() {
+        modeloLista = new DefaultListModel();
         torneosLista.setModel(modeloLista);
         ArrayList torneosDisponibles = usuario.getTorneosDisponibles();
-        
-        if(!torneosDisponibles.isEmpty())
-        {
-            for(Object item:torneosDisponibles)
-            {
+
+        if (!torneosDisponibles.isEmpty()) {
+            for (Object item : torneosDisponibles) {
                 modeloLista.addElement(item);
             }
-        }else
-        {
-             JOptionPane.showMessageDialog(this, "No tenemos ningún torneo disponible en tu federación.");
+        } else {
+            JOptionPane.showMessageDialog(this, "No tenemos ningún torneo disponible en tu federación.");
         }
     }
 

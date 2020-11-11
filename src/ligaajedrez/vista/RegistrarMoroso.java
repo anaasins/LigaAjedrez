@@ -39,6 +39,14 @@ public class RegistrarMoroso extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(this, "No existen jugadores");
         }
+        
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                usuario.saveData();
+                e.getWindow().dispose();
+            }
+        });
     }
 
     /**

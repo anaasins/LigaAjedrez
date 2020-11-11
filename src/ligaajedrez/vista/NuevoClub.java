@@ -37,6 +37,14 @@ public class NuevoClub extends javax.swing.JFrame {
         gerenteCombo.setEnabled(!create);
         if (create)
             confirmarButton.setText("Añadir");
+        
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                usuario.saveData();
+                e.getWindow().dispose();
+            }
+        });
     }
 
     /**

@@ -53,6 +53,14 @@ public class RegistrarPartida extends javax.swing.JFrame {
         for (Object torneo : torneos) {
             torneoCombo.addItem((String) torneo);
         }
+        
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                usuario.saveData();
+                e.getWindow().dispose();
+            }
+        });
     }
 
     /**
