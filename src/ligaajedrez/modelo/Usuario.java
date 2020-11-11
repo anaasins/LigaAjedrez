@@ -117,4 +117,8 @@ public class Usuario {
     public boolean reservarSede(Date date, int hora, Usuario user) {
         return liga.reservarSede(date, hora, this.player.getClub().getSede(), user);
     }
+    
+    public void saveData() {
+        liga.saveData();
+    }
 }
