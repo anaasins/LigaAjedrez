@@ -16,6 +16,7 @@ import ligaajedrez.db.DB;
  */
 public class Liga {
     private ArrayList<JugadorModel> jugadores;
+    private ArrayList<JugadorModel> jugadoresMorosos;
     private ArrayList<Club> clubs;
     private ArrayList<Torneo> torneos;
     private ArrayList<Sede> sedes;
@@ -26,6 +27,7 @@ public class Liga {
     public Liga()
     {
         jugadores = new ArrayList();
+        jugadoresMorosos = new ArrayList();
         clubs = new ArrayList();
         torneos = new ArrayList();
         sedes = new ArrayList();
@@ -35,8 +37,8 @@ public class Liga {
         partidas = new ArrayList();
         
         db = DB.getDB();
-        //db.createInitialData();
-        //ArrayList<JugadorModel> a = (ArrayList<JugadorModel>) db.getAll(JugadorModel.class);
+       // db.createInitialData();
+        jugadores = (ArrayList<JugadorModel>) db.getAll(JugadorModel.class);
     }
     
      public void crearJugador(String name, int elo, int age, Object club, String responsableName, String responsablePhoneNumber) {
@@ -61,7 +63,15 @@ public class Liga {
         tor = new Torneo(this.federaciones.get(federacion), fecha, c);
         torneos.add(tor);
     }
-
+    public void registrarMoroso(int jugador, String multa)
+    {
+        JugadorModel  jM;
+        jM = this.jugadores.get(jugador);
+        jM.setMoroso(true);
+        jM.setMulta(Integer.parseInt(multa));
+        jugadoresMorosos.add(jM);
+        jugadores.remove(this.jugadores.get(jugador));        
+    }
     public void crearPartida(int j1, int j2, int sede, Date fecha, Date h, int t) {
         Partida p;
         p = new Partida(jugadores.get(j1), jugadores.get(j2), sedes.get(sede), fecha, h, torneos.get(t));
@@ -82,6 +92,18 @@ public class Liga {
 
         for (JugadorModel jugador : jugadores) {
             j.add(jugador);
+        }
+        return j;
+    }
+    
+    public ArrayList consultarTodosJugadores() {
+        ArrayList<String> j = new ArrayList<String>();
+
+        for (JugadorModel jugador : jugadores) {
+            j.add(jugador.getName()+"\t\t-"+jugador.getMoroso());
+        }
+        for (JugadorModel jugador : jugadoresMorosos) {
+            j.add(jugador.getName()+"\t"+"\t"+"-"+jugador.getMoroso());
         }
         return j;
     }
@@ -127,4 +149,15 @@ public class Liga {
        return s.reservarSede(res, date, hora, user);
     }
 
+    
+    void removeJugadorMoroso(JugadorModel aThis) {
+        jugadoresMorosos.remove(aThis);
+    }  
+    void pagarMulta(JugadorModel j)
+    {
+        j.setMoroso(false);
+        j.setMulta(0);
+        jugadoresMorosos.remove(j);
+        jugadores.add(j);
+    }
 }

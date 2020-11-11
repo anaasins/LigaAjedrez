@@ -101,7 +101,7 @@ public class ConsultarJugadores extends javax.swing.JFrame {
     private void mostrarJugadores()
     {
        ArrayList jugadoresAux;
-       jugadoresAux = ((Administrador)usuario).getJugadores(); 
+       jugadoresAux = ((Administrador)usuario).getTodosJugadores(); 
        DefaultListModel modeloLista = new DefaultListModel();
        jugadoresList.setModel(modeloLista); 
        

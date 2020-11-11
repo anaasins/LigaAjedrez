@@ -48,4 +48,13 @@ public class Administrador extends Usuario {
     public ArrayList getJugadores() {
        return getLiga().consultarJugadores();
     }
+
+    public void registrarMoroso(int jugador, String multa) 
+    {
+        getLiga().registrarMoroso(jugador,multa);
+    }
+
+    public ArrayList getTodosJugadores() {
+        return getLiga().consultarTodosJugadores();
+    }
 }

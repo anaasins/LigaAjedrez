@@ -36,6 +36,7 @@ public class JugadorModel{
     private String reponsablePhoneNumber;
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean moroso;
+    private int multa;
 
     public JugadorModel() {
     }
@@ -137,6 +138,14 @@ public class JugadorModel{
     public void setReponsablePhoneNumber(String reponsablePhoneNumber) {
         if (reponsablePhoneNumber.matches("('+'[0-9]{2})?[0-9]{9}"))
             this.reponsablePhoneNumber = reponsablePhoneNumber;
+    }
+
+    public int getMulta() {
+        return multa;
+    }
+
+    public void setMulta(int multa) {
+        this.multa = multa;
     }
     
     @Override

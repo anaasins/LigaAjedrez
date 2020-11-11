@@ -5,7 +5,11 @@
  */
 package ligaajedrez.vista;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import ligaajedrez.modelo.Administrador;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -15,6 +19,7 @@ import ligaajedrez.modelo.Usuario;
 public class RegistrarMoroso extends javax.swing.JFrame {
     private Usuario usuario;
     private JFrame previousView;
+    DefaultListModel modeloLista;
     /**
      * Creates new form RegistrarMoroso
      */
@@ -22,6 +27,18 @@ public class RegistrarMoroso extends javax.swing.JFrame {
         initComponents();
         this.usuario = usuario;
         this.previousView = previousView;
+        modeloLista= new DefaultListModel();
+        jugadorList.setModel(modeloLista);
+        ArrayList jugadores= usuario.consultarJugadores();
+        if (!jugadores.isEmpty()){
+            for (Object item : jugadores) {
+            modeloLista.addElement(item);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "No existen jugadores");
+        }
     }
 
     /**
@@ -124,6 +141,9 @@ public class RegistrarMoroso extends javax.swing.JFrame {
         // TODO add your handling code here:
         previousView.setVisible(true);
         this.setVisible(false);
+        ((Administrador)usuario).registrarMoroso(jugadorList.getSelectedIndex(),cantidadTextField.getText());
+       
+        JOptionPane.showMessageDialog(this,"Jugador registrado como que debe"+cantidadTextField.getText());
     }//GEN-LAST:event_confirmarButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

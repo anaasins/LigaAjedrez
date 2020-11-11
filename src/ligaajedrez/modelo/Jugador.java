@@ -15,4 +15,9 @@ public class Jugador extends Usuario {
     public Jugador(String userName, String userPass, JugadorModel player, Liga liga) {
         super(userName, userPass, player, liga);
     }
+    
+    public void pagarMulta(JugadorModel jugador)
+    {
+        getLiga().pagarMulta(jugador);
+    }
 }
