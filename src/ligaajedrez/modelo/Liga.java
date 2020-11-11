@@ -34,6 +34,9 @@ public class Liga {
         // Get db connection
         db = DB.getDB();
         
+        // Create initial test data
+        //db.createInitialData();
+        
         // Get data from db
         List<Criterion> criterions = new ArrayList<Criterion>();
         criterions.add(Restrictions.eq("moroso", false));
@@ -46,8 +49,6 @@ public class Liga {
         sedes = (ArrayList<Sede>) db.getAll(Sede.class);
         federaciones = (ArrayList<FederacionModel>) db.getAll(FederacionModel.class);
         partidas = (ArrayList<Partida>) db.getAll(Partida.class);
-        
-       // db.createInitialData();
     }
     
      public void crearJugador(String name, int elo, int age, Object club, String responsableName, String responsablePhoneNumber) {
@@ -195,5 +196,16 @@ public class Liga {
             session.saveOrUpdate(partida);
         });
         t.commit();
+    }
+
+    public Usuario login(String user, String pass) {
+        Usuario usuario = null;
+        List<Criterion> criterions = new ArrayList<Criterion>();
+        
+        criterions.add(Restrictions.eq("userName", user));
+        criterions.add(Restrictions.eq("userPass", pass));
+        usuario = db.getFiltered(Usuario.class, criterions).get(0);
+        
+        return usuario;
     }
 }
