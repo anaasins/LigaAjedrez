@@ -23,14 +23,8 @@ public class Sede {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sedeSeq")
     @SequenceGenerator(name="sedeSeq",sequenceName="sedeSeq", allocationSize=1, initialValue = 1)
     private int id;
-    @OneToMany(mappedBy="sede", orphanRemoval = true)
-    List<Reserva> reservas;
 
     public Sede() {
-    }
-
-    public Sede(ArrayList<Reserva> reservas) {
-        this.reservas = reservas;
     }
 
     public int getId() {
@@ -40,43 +34,4 @@ public class Sede {
     public void setId(int id) {
         this.id = id;
     }
-
-    public ArrayList<Reserva> getRes() {
-        return (ArrayList) reservas;
-    }
-
-    public void setRes(ArrayList<Reserva> reservas) {
-        this.reservas = reservas;
-    }
-
-    Reserva buscarReserva(Date date, int hora) {
-        Reserva definitiva=null;
-       for(Reserva r:reservas)
-       {
-           if(r.getInicio()==date && r.getHora()==hora)
-               definitiva=r;
-       }
-       return definitiva;
-    }
-
-    boolean reservarSede(Reserva reserva, Date date, int hora, Usuario user) {
-        Reserva r;
-        boolean ok= true;
-        if(reserva != null && reserva.getContador()<2)
-        {
-            reserva.setContador(reserva.getContador()+1);
-        }
-        else if(reserva == null)
-        {
-            r= new Reserva(user, date, hora, this);
-            reservas.add(r);
-        }
-        else if(reserva != null && reserva.getContador()>=2)
-        {
-            ok=false;
-        }
-        return ok;
-    }
-
-   
 }

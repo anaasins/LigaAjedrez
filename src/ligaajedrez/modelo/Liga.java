@@ -25,6 +25,7 @@ public class Liga {
     private ArrayList<Club> clubs;
     private ArrayList<Torneo> torneos;
     private ArrayList<Sede> sedes;
+    private ArrayList<Reserva> reservas;
     private ArrayList<FederacionModel> federaciones;
     private ArrayList<Partida> partidas;
     private DB db;
@@ -47,6 +48,7 @@ public class Liga {
         clubs = (ArrayList<Club>) db.getAll(Club.class);
         torneos = (ArrayList<Torneo>) db.getAll(Torneo.class);
         sedes = (ArrayList<Sede>) db.getAll(Sede.class);
+        reservas = (ArrayList<Reserva>) db.getAll(Reserva.class);
         federaciones = (ArrayList<FederacionModel>) db.getAll(FederacionModel.class);
         partidas = (ArrayList<Partida>) db.getAll(Partida.class);
     }
@@ -155,10 +157,38 @@ public class Liga {
     }
 
     boolean reservarSede(Date date, int hora, Sede s, Usuario user) {
-        Reserva res = s.buscarReserva(date, hora);
-       return s.reservarSede(res, date, hora, user);
+        Reserva res = buscarReserva(date, hora, s);
+        return reservarSede(res, date, hora, user, s);
     }
-
+    
+    Reserva buscarReserva(Date date, int hora, Sede s) {
+        Reserva definitiva=null;
+       for(Reserva r:reservas)
+       {
+           if(r.getInicio()==date && r.getHora()==hora && r.getSede() == s)
+               definitiva=r;
+       }
+       return definitiva;
+    }
+    
+    boolean reservarSede(Reserva reserva, Date date, int hora, Usuario user, Sede s) {
+        Reserva r;
+        boolean ok= true;
+        if(reserva != null && reserva.getContador()<2)
+        {
+            reserva.setContador(reserva.getContador()+1);
+        }
+        else if(reserva == null)
+        {
+            r= new Reserva(user, date, hora, s);
+            reservas.add(r);
+        }
+        else if(reserva != null && reserva.getContador()>=2)
+        {
+            ok=false;
+        }
+        return ok;
+    }
     
     void removeJugadorMoroso(JugadorModel aThis) {
         jugadoresMorosos.remove(aThis);
@@ -188,6 +218,9 @@ public class Liga {
         });
         sedes.forEach((sede) -> {
             session.saveOrUpdate(sede);
+        });
+        reservas.forEach((reserva) -> {
+            session.saveOrUpdate(reserva);
         });
         federaciones.forEach((federacion) -> {
             session.saveOrUpdate(federacion);
