@@ -6,6 +6,7 @@
 package ligaajedrez.vista;
 
 import javax.swing.JFrame;
+import ligaajedrez.modelo.Administrador;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -62,6 +63,11 @@ public class CrearModificarEntrenadors extends javax.swing.JFrame {
         jLabel4.setText("Telefono:");
 
         checkBtn.setText("Confirmar");
+        checkBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,6 +121,11 @@ public class CrearModificarEntrenadors extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void checkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBtnActionPerformed
+        // TODO add your handling code here:
+        ((Administrador)usuario).nuevoEntrenador(nameField.getText(), surnameText.getText(), birthText.getText(), phonenumberText.getText());
+    }//GEN-LAST:event_checkBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField birthText;
