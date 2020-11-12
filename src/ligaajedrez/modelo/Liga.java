@@ -373,4 +373,14 @@ public class Liga {
         }
         return ListaEntrenadores;
     }
+
+    void asignarClubEntrenador(EntrenadorModel entrenadorAct, Club club) {
+        EntrenadorModel entrenador = entrenadores.get(entrenadores.indexOf(entrenadorAct));
+        entrenador.getClubs().add(club);
+    }
+    
+    void asignarClubGerente(GerenteModel gerenteAct, Club club) {
+        GerenteModel gerente = gerentes.get(gerentes.indexOf(gerenteAct));
+        gerente.setClub(club);
+    }
 }

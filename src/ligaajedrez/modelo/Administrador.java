@@ -79,4 +79,12 @@ public class Administrador extends Usuario {
     public boolean eliminarGerente(Object gerente) {
         return getLiga().eliminarGerente(gerente);
     }
+
+    public void asignarClubEntrenador(EntrenadorModel entrenador, Object club) {
+        getLiga().asignarClubEntrenador(entrenador, (Club) club);
+    }
+    
+    public void asignarClubGerente(GerenteModel gerente, Object club) {
+        getLiga().asignarClubGerente(gerente, (Club) club);
+    }
 }
