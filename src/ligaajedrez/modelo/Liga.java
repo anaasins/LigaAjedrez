@@ -73,6 +73,11 @@ public class Liga {
         player.setResponsableName(responsableName);
         player.setReponsablePhoneNumber(responsablePhoneNumber);
     }
+    
+    public void modificarEntrenador (String name, String surname, String  birth, String phone)
+    {
+        
+    }
 
     public ArrayList consultarClubs() {
         ArrayList listaClubs = new ArrayList();
