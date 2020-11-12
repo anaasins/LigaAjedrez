@@ -5,7 +5,6 @@
  */
 package ligaajedrez.modelo;
 
-import java.sql.Time;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,6 +38,9 @@ public class Partida {
     @ManyToOne
     @JoinColumn(name = "torneoId", referencedColumnName = "id")
     private Torneo torneo;
+    @ManyToOne
+    @JoinColumn(name = "ganadorId", referencedColumnName = "id")
+    private JugadorModel ganador;
     
     public Partida() {}
     
@@ -103,5 +105,17 @@ public class Partida {
     {
         return jugador2;
     }
-       
+
+    public JugadorModel getGanador() {
+        return ganador;
+    }
+
+    public void setGanador(JugadorModel ganador) {
+        this.ganador = ganador;
+    }
+
+    @Override
+    public String toString() {
+        return fechaPartida.toString() + ", " + hora;
+    }
 }
