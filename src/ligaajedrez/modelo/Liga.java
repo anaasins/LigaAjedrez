@@ -299,4 +299,9 @@ public class Liga {
         EntrenadorModel entrenador = new EntrenadorModel(name, surname, birth, phone);
         entrenadores.add(entrenador);
     }
+
+    void registrarEnTorneo(Torneo torneoAct, JugadorModel player) {
+        Torneo torneo = torneos.get(torneos.indexOf(torneoAct));
+        torneo.getParticipantes().add(player);
+    }
 }

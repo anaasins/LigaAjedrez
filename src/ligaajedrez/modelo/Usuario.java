@@ -41,6 +41,8 @@ public class Usuario {
     private Partida partidaAct;
     @Transient
     private Club clubAct;
+    @Transient
+    private Torneo torneoAct;
 
     public Usuario() {}
     
@@ -192,5 +194,17 @@ public class Usuario {
             clubs.add(club);
         }
       return clubs;
+    }
+    
+    public void registrarEnTorneo() {
+        getLiga().registrarEnTorneo(torneoAct, getPlayer());
+    }
+
+    public Torneo getTorneoAct() {
+        return torneoAct;
+    }
+
+    public void setTorneoAct(Torneo torneoAct) {
+        this.torneoAct = torneoAct;
     }
 }

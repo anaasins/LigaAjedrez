@@ -73,6 +73,11 @@ public class ApuntarmeTorneo extends javax.swing.JFrame {
         });
 
         aceptarButton.setText("Aceptar");
+        aceptarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,6 +119,12 @@ public class ApuntarmeTorneo extends javax.swing.JFrame {
         previousView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_buttonAtrasActionPerformed
+
+    private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
+        usuario.registrarEnTorneo();
+        previousView.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_aceptarButtonActionPerformed
 
     private void rellenarLista() {
         modeloLista = new DefaultListModel();

@@ -16,7 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -36,6 +35,9 @@ public class Torneo {
     @ManyToMany
     @JoinTable(name = "torneoClub", joinColumns = @JoinColumn(name = "torneoId"), inverseJoinColumns = @JoinColumn(name = "clubId"))
     private List<Club> clubs = new ArrayList<Club>();  
+    @ManyToMany()
+    @JoinTable(name = "torneoPaticipantes", joinColumns = @JoinColumn(name = "torneoId"), inverseJoinColumns = @JoinColumn(name = "jugadorId"))
+    private List<JugadorModel> participantes;
     
     public Torneo() {}
     
@@ -74,6 +76,14 @@ public class Torneo {
     public FederacionModel getFederacion()
     {
         return federacion;
+    }
+
+    public List<JugadorModel> getParticipantes() {
+        return participantes;
+    }
+
+    public void setParticipantes(List<JugadorModel> participantes) {
+        this.participantes = participantes;
     }
 
     @Override
