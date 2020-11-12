@@ -5,6 +5,7 @@
  */
 package ligaajedrez.modelo;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,6 +38,7 @@ public class JugadorModel{
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean moroso;
     private int multa;
+    private List<Club> clubs;
 
     public JugadorModel() {
     }
@@ -99,6 +101,8 @@ public class JugadorModel{
     
     public void setClub(Club club) {
         this.club = club;
+        if (club != null)
+            clubs.add(club);
     }
     
     public int getAge() {
@@ -146,6 +150,14 @@ public class JugadorModel{
 
     public void setMulta(int multa) {
         this.multa = multa;
+    }
+
+    public List<Club> getClubs() {
+        return clubs;
+    }
+
+    public void setClubs(List<Club> clubs) {
+        this.clubs = clubs;
     }
     
     @Override
