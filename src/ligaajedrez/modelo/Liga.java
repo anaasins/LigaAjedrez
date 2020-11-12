@@ -28,6 +28,7 @@ public class Liga {
     private ArrayList<Reserva> reservas;
     private ArrayList<FederacionModel> federaciones;
     private ArrayList<Partida> partidas;
+    private ArrayList<Usuario> newUsuarios;
     private DB db;
     
     public Liga()
@@ -51,11 +52,14 @@ public class Liga {
         reservas = (ArrayList<Reserva>) db.getAll(Reserva.class);
         federaciones = (ArrayList<FederacionModel>) db.getAll(FederacionModel.class);
         partidas = (ArrayList<Partida>) db.getAll(Partida.class);
+        newUsuarios = new ArrayList<>();
     }
     
      public void crearJugador(String name, int elo, int age, Object club, String responsableName, String responsablePhoneNumber) {
         JugadorModel player = new JugadorModel(name, elo, age, (Club) club, responsableName, responsablePhoneNumber);
         jugadores.add(player);
+        Usuario u = new Usuario(player.getName().toLowerCase(), player.getName().toLowerCase(), player);
+        newUsuarios.add(u);
     }
 
     public ArrayList consultarClubs() {
@@ -237,6 +241,9 @@ public class Liga {
         });
         partidas.forEach((partida) -> {
             session.saveOrUpdate(partida);
+        });
+        newUsuarios.forEach((usuario) -> {
+            session.save(usuario);
         });
         t.commit();
     }
