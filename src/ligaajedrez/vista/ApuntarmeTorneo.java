@@ -26,9 +26,9 @@ public class ApuntarmeTorneo extends javax.swing.JFrame {
      */
     public ApuntarmeTorneo(Usuario usuario, JFrame previousView) {
         initComponents();
-        this.rellenarLista();
         this.usuario = usuario;
         this.previousView = previousView;
+        this.rellenarLista();
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
