@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import ligaajedrez.modelo.Club;
+import ligaajedrez.modelo.EntrenadorModel;
 import ligaajedrez.modelo.FederacionModel;
 import ligaajedrez.modelo.JugadorModel;
 import ligaajedrez.modelo.Partida;
@@ -109,6 +110,10 @@ public class DB {
         // Create initial Reserva
         Reserva r = new Reserva(u1, new Date(), 10, s);
         session.save(r);
+        
+        // Create initial EntrenadorModel
+        EntrenadorModel em = new EntrenadorModel("Entrenador1", "entrenador", "36/3/2001", "61942301845");
+        session.save(em);
         
         // Save objects
         t.commit();
