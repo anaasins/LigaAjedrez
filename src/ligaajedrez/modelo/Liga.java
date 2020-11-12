@@ -300,6 +300,26 @@ public class Liga {
         entrenadores.add(entrenador);
     }
 
+    public ArrayList consultarEntrenadores() {
+        ArrayList<EntrenadorModel> m = new ArrayList<EntrenadorModel>();
+        
+        for (EntrenadorModel entrenador : entrenadores) {
+            m.add(entrenador);
+        }
+        return m;
+    }
+
+    boolean eliminarEntrenador(Object entrenador) {
+        EntrenadorModel e = (EntrenadorModel) entrenador;
+        
+        Session session = db.getSession();
+        Transaction t = session.beginTransaction();
+        session.delete(entrenador);
+        t.commit();
+        
+        return entrenadores.remove(entrenador);
+    }
+
     void registrarEnTorneo(Torneo torneoAct, JugadorModel player) {
         Torneo torneo = torneos.get(torneos.indexOf(torneoAct));
         torneo.getParticipantes().add(player);
