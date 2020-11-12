@@ -109,7 +109,7 @@ public class AsignarClub extends javax.swing.JFrame {
     }//GEN-LAST:event_atrasButtonActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        ((Administrador)usuario).setClubAct(clubList.getSelectedValue());
+        usuario.setClubAct(clubList.getSelectedValue());
         ((ModificarJugador)previousView).paintClub();
         previousView.setVisible(true);
         this.setVisible(false);

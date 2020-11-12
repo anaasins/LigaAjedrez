@@ -55,4 +55,8 @@ public class Administrador extends Usuario {
     public boolean eliminarJugador(Object jug) {
        return getLiga().eliminarJugador(jug);
     }
+
+    public void nuevoEntrenador(String name, String surname, String birth, String phone) {
+        getLiga().nuevoEntrenador(name, surname, birth, phone);
+    }
 }
