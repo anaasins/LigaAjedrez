@@ -34,7 +34,6 @@ public class GerenteModel{
     @JoinColumn(name = "clubId", referencedColumnName = "id")
     private Club club;
     private String birth;
-    private List<Club> clubs;
 
     public GerenteModel() {
     }
@@ -117,16 +116,6 @@ public class GerenteModel{
     
     public void setClub(Club club) {
         this.club = club;
-        if (club != null)
-            clubs.add(club);
-    }
-
-    public List<Club> getClubs() {
-        return clubs;
-    }
-
-    public void setClubs(List<Club> clubs) {
-        this.clubs = clubs;
     }
     
     @Override
