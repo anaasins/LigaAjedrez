@@ -74,9 +74,13 @@ public class Liga {
         player.setReponsablePhoneNumber(responsablePhoneNumber);
     }
     
-    public void modificarEntrenador (String name, String surname, String  birth, String phone)
+    public void modificarEntrenador (String name, String surname, String  birth, String phone, Object entranadorModel)
     {
-        
+        EntrenadorModel entrenador = entrenadores.get(entrenadores.indexOf((JugadorModel) entranadorModel));
+        entrenador.setName(name);
+        entrenador.setSurname(surname);
+        entrenador.setBirth(birth);
+        entrenador.setPhone(phone);       
     }
 
     public ArrayList consultarClubs() {
@@ -329,5 +333,14 @@ public class Liga {
     void registrarEnTorneo(Torneo torneoAct, JugadorModel player) {
         Torneo torneo = torneos.get(torneos.indexOf(torneoAct));
         torneo.getParticipantes().add(player);
+    }
+
+    public ArrayList consultaEntrenadores() {
+        ArrayList<EntrenadorModel> ListaEntrenadores = new ArrayList<EntrenadorModel>();
+
+        for (EntrenadorModel entrenador : entrenadores) {
+            ListaEntrenadores.add(entrenador);
+        }
+        return ListaEntrenadores;
     }
 }

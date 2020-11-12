@@ -7,6 +7,7 @@ package ligaajedrez.vista;
 
 import javax.swing.JFrame;
 import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.EntrenadorModel;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -15,6 +16,7 @@ import ligaajedrez.modelo.Usuario;
  */
 public class CrearModificarEntrenadors extends javax.swing.JFrame {
     private Usuario usuario;
+    private EntrenadorModel entrenador;
     private JFrame previousView;
     
     /**
@@ -24,6 +26,24 @@ public class CrearModificarEntrenadors extends javax.swing.JFrame {
         initComponents();
         this.usuario = usuario;
         this.previousView = previousView;
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                usuario.saveData();
+                e.getWindow().dispose();
+            }
+        });
+    }
+     public CrearModificarEntrenadors(Usuario usuario, JFrame previousView,Object entrenador) {
+        initComponents();
+        this.usuario = usuario;
+        this.previousView = previousView;
+        this.entrenador = (EntrenadorModel)entrenador;       
+        nameField.setText(((EntrenadorModel)entrenador).getName());
+        surnameText.setText(((EntrenadorModel)entrenador).getSurname());
+        birthText.setText(((EntrenadorModel)entrenador).getBirth());
+        phonenumberText.setText(((EntrenadorModel)entrenador).getPhone());
+        
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
