@@ -75,6 +75,15 @@ public class Liga {
         player.setResponsableName(responsableName);
         player.setReponsablePhoneNumber(responsablePhoneNumber);
     }
+    
+    public void modificarEntrenador (String name, String surname, String  birth, String phone, Object entranadorModel)
+    {
+        EntrenadorModel entrenador = entrenadores.get(entrenadores.indexOf((JugadorModel) entranadorModel));
+        entrenador.setName(name);
+        entrenador.setSurname(surname);
+        entrenador.setBirth(birth);
+        entrenador.setPhone(phone);       
+    }
 
     public ArrayList consultarClubs() {
         ArrayList listaClubs = new ArrayList();
@@ -356,6 +365,7 @@ public class Liga {
         torneo.getParticipantes().add(player);
     }
 
+<<<<<<< HEAD
     void modificarGerente(String name, String surname, String birth, String phone, String nomina, String irpf, GerenteModel gerenteModel) {
         GerenteModel gerente = gerentes.get(gerentes.indexOf((GerenteModel) gerenteModel));
         gerente.setName(name);
@@ -363,5 +373,24 @@ public class Liga {
         gerente.setBirth(birth);
         gerente.setPhone(phone);
         gerente.setIrpf(irpf);
+=======
+    public ArrayList consultaEntrenadores() {
+        ArrayList<EntrenadorModel> ListaEntrenadores = new ArrayList<EntrenadorModel>();
+
+        for (EntrenadorModel entrenador : entrenadores) {
+            ListaEntrenadores.add(entrenador);
+        }
+        return ListaEntrenadores;
+    }
+
+    void asignarClubEntrenador(EntrenadorModel entrenadorAct, Club club) {
+        EntrenadorModel entrenador = entrenadores.get(entrenadores.indexOf(entrenadorAct));
+        entrenador.getClubs().add(club);
+    }
+    
+    void asignarClubGerente(GerenteModel gerenteAct, Club club) {
+        GerenteModel gerente = gerentes.get(gerentes.indexOf(gerenteAct));
+        gerente.setClub(club);
+>>>>>>> 10ce75379bfc5f50dcb06780226fa08225a957d5
     }
 }

@@ -7,6 +7,7 @@ package ligaajedrez.vista;
 
 import javax.swing.JFrame;
 import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.EntrenadorModel;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -15,6 +16,7 @@ import ligaajedrez.modelo.Usuario;
  */
 public class CrearModificarEntrenadors extends javax.swing.JFrame {
     private Usuario usuario;
+    private EntrenadorModel entrenador;
     private JFrame previousView;
     
     /**
@@ -24,6 +26,24 @@ public class CrearModificarEntrenadors extends javax.swing.JFrame {
         initComponents();
         this.usuario = usuario;
         this.previousView = previousView;
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                usuario.saveData();
+                e.getWindow().dispose();
+            }
+        });
+    }
+     public CrearModificarEntrenadors(Usuario usuario, JFrame previousView,Object entrenador) {
+        initComponents();
+        this.usuario = usuario;
+        this.previousView = previousView;
+        this.entrenador = (EntrenadorModel)entrenador;       
+        nameField.setText(((EntrenadorModel)entrenador).getName());
+        surnameText.setText(((EntrenadorModel)entrenador).getSurname());
+        birthText.setText(((EntrenadorModel)entrenador).getBirth());
+        phonenumberText.setText(((EntrenadorModel)entrenador).getPhone());
+        
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -51,6 +71,7 @@ public class CrearModificarEntrenadors extends javax.swing.JFrame {
         phonenumberText = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         checkBtn = new javax.swing.JToggleButton();
+        asignClub = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,6 +87,13 @@ public class CrearModificarEntrenadors extends javax.swing.JFrame {
         checkBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkBtnActionPerformed(evt);
+            }
+        });
+
+        asignClub.setText("Asignar club");
+        asignClub.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asignClubActionPerformed(evt);
             }
         });
 
@@ -92,7 +120,8 @@ public class CrearModificarEntrenadors extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(birthText, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(birthText, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(asignClub, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
@@ -114,9 +143,11 @@ public class CrearModificarEntrenadors extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(phonenumberText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(8, 8, 8)
+                .addComponent(asignClub)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(checkBtn)
-                .addGap(64, 64, 64))
+                .addGap(39, 39, 39))
         );
 
         pack();
@@ -124,10 +155,19 @@ public class CrearModificarEntrenadors extends javax.swing.JFrame {
 
     private void checkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBtnActionPerformed
         // TODO add your handling code here:
+        if (entrenador == null)
         ((Administrador)usuario).nuevoEntrenador(nameField.getText(), surnameText.getText(), birthText.getText(), phonenumberText.getText());
+        else 
+            ((Administrador)usuario).modificarEntrenador(nameField.getText(), surnameText.getText(), birthText.getText(), phonenumberText.getText(),entrenador);
     }//GEN-LAST:event_checkBtnActionPerformed
 
+    private void asignClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignClubActionPerformed
+        new AsignClub(usuario, this, previousView, entrenador).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_asignClubActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton asignClub;
     private javax.swing.JTextField birthText;
     private javax.swing.JToggleButton checkBtn;
     private javax.swing.JLabel jLabel1;

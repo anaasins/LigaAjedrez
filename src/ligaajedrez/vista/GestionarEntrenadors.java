@@ -120,7 +120,7 @@ public class GestionarEntrenadors extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        new CrearModificarEntrenadors(usuario, this).setVisible(true);
+        new ElegirEntrenador(usuario, this).setVisible(true);
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void backHistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backHistoryBtnActionPerformed

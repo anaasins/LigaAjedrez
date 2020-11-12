@@ -141,7 +141,9 @@ public class Usuario {
     public ArrayList consultarFederaciones() {
         return liga.consultarFederaciones();
     }
-    
+    public ArrayList consultarEntrenadores(){
+        return liga.consultaEntrenadores();
+    }
     public ArrayList getTorneosDisponibles() {
         return liga.torneosDisponibles(player.getClub().getFederation());
     }
@@ -186,7 +188,11 @@ public class Usuario {
     public void modificarJugador(String name, int elo, int age, String responsableName, String responsablePhoneNumber, Object playerModel) {
         getLiga().modificarJugador(name, elo, age, getClubAct(), responsableName, responsablePhoneNumber, playerModel);
     }
-
+    
+    public void modificarEntrenador(String name, String surname, String  birth, String phone, Object entrendorModel)
+    {
+        getLiga().modificarEntrenador(name, surname, birth, phone,entrendorModel);
+    }
     public ArrayList consultarMisClubs() {
         ArrayList clubs = new ArrayList();
         for (Club club :this.player.getClubs())
