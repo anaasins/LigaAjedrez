@@ -5,6 +5,8 @@
  */
 package ligaajedrez.vista;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import ligaajedrez.modelo.Administrador;
 import ligaajedrez.modelo.Usuario;
@@ -31,6 +33,13 @@ public class IntroducirResultadosPartida extends javax.swing.JFrame {
                 e.getWindow().dispose();
             }
         });
+        
+        ArrayList partidas = usuario.consultarPartidasJugador();
+        DefaultListModel model = new DefaultListModel();
+        jList1.setModel(model);
+        partidas.forEach((partida) -> {
+            model.addElement(partida);
+        });
     }
 
     /**
@@ -52,11 +61,7 @@ public class IntroducirResultadosPartida extends javax.swing.JFrame {
 
         jLabel1.setText("Seleccionar partida");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Partida X", "Partida X" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jList1);
 
         SiguientePartida.setText("Siguiente");
@@ -113,8 +118,9 @@ public class IntroducirResultadosPartida extends javax.swing.JFrame {
 
     private void SiguientePartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguientePartidaActionPerformed
         // TODO add your handling code here:
+        usuario.setPartidaAct(jList1.getSelectedValue());
         ElegirGanador ganador;
-        ganador = new ElegirGanador(usuario, this);
+        ganador = new ElegirGanador(usuario, this, previousView);
         ganador.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_SiguientePartidaActionPerformed
@@ -128,7 +134,7 @@ public class IntroducirResultadosPartida extends javax.swing.JFrame {
     private javax.swing.JButton AtrasPartida;
     private javax.swing.JButton SiguientePartida;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<Object> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

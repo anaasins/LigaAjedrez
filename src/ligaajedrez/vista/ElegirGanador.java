@@ -5,6 +5,10 @@
  */
 package ligaajedrez.vista;
 
+import java.util.ArrayList;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import ligaajedrez.modelo.Usuario;
 
@@ -15,20 +19,29 @@ import ligaajedrez.modelo.Usuario;
 public class ElegirGanador extends javax.swing.JFrame {
     private Usuario usuario;
     private JFrame previousView;
+    private JFrame menuView;
     
     /**
      * Creates new form ElegirGanador
      */
-    public ElegirGanador(Usuario usuario, JFrame previousView) {
+    public ElegirGanador(Usuario usuario, JFrame previousView, JFrame menuView) {
         initComponents();
         this.usuario = usuario;
         this.previousView = previousView;
+        this.menuView = menuView;
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
                 usuario.saveData();
                 e.getWindow().dispose();
             }
+        });
+        
+        ArrayList jugadores = usuario.consultarJugadoresPartida();
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        jComboBox1.setModel(model);
+        jugadores.forEach((jugador) -> {
+            model.addElement(jugador);
         });
     }
 
@@ -49,13 +62,6 @@ public class ElegirGanador extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         ganador.setText("Ganador");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
 
         confirmar.setText("Confirmar");
         confirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -111,13 +117,10 @@ public class ElegirGanador extends javax.swing.JFrame {
 
     private void confirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarActionPerformed
         // TODO add your handling code here:
-        previousView.setVisible(true);
+        usuario.setGanadorPartida(jComboBox1.getSelectedItem());
+        menuView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_confirmarActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void AtrasEleGanadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasEleGanadorActionPerformed
         // TODO add your handling code here:
@@ -129,6 +132,6 @@ public class ElegirGanador extends javax.swing.JFrame {
     private javax.swing.JButton AtrasEleGanador;
     private javax.swing.JButton confirmar;
     private javax.swing.JLabel ganador;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Object> jComboBox1;
     // End of variables declaration//GEN-END:variables
 }
