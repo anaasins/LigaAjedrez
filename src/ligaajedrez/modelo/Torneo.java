@@ -75,5 +75,10 @@ public class Torneo {
     {
         return federacion;
     }
+
+    @Override
+    public String toString() {
+        return "Torneo: " + id;
+    }
             
 }
