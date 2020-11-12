@@ -67,4 +67,16 @@ public class Administrador extends Usuario {
     public boolean eliminarEntrenador(Object entrenador) {
         return getLiga().eliminarEntrenador(entrenador);
     }
+    
+    public void nuevoGerente(String name, String surname, String birth, String phone, String nomina, String irpf) {
+        getLiga().nuevoGerente(name, surname, birth, phone, nomina, irpf);
+    }
+
+    public ArrayList getGerentes() {
+       return getLiga().consultarGerentes();
+    }
+
+    public boolean eliminarGerente(Object gerente) {
+        return getLiga().eliminarGerente(gerente);
+    }
 }
