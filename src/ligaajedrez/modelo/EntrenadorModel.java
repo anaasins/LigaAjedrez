@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import ligaajedrez.modelo.enums.CategoriaEnum;
 import org.hibernate.annotations.Type;
@@ -29,11 +30,10 @@ public class EntrenadorModel{
     private String name;
     private String surname;
     private String phone;
-    @ManyToOne
+    @OneToMany
     @JoinColumn(name = "clubId", referencedColumnName = "id")
-    private Club club;
-    private String birth;
     private List<Club> clubs;
+    private String birth;
 
     public EntrenadorModel() {
     }
@@ -88,16 +88,6 @@ public class EntrenadorModel{
     public void setBirth(String birth) {
         if (!birth.trim().isEmpty())
             this.birth = birth;
-    }
-    
-    public Club getClub() {
-        return club;
-    }
-    
-    public void setClub(Club club) {
-        this.club = club;
-        if (club != null)
-            clubs.add(club);
     }
 
     public List<Club> getClubs() {
