@@ -86,7 +86,7 @@ public class DB {
         
         // Create initial Usuario
         Usuario u = new Usuario("usuario", "usuario", jm);
-        Usuario u1 = new Usuario("admin", "admin", jm1);
+        Usuario u1 = new Usuario("admin", "admin", jm1, true);
         session.save(u);
         session.save(u1);
         

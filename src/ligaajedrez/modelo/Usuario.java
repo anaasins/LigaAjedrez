@@ -54,6 +54,13 @@ public class Usuario {
         this.player = player;
     }
     
+    public Usuario(String userName, String userPass, JugadorModel player, boolean isAdmin) {
+        this.userName = userName;
+        this.userPass = userPass;
+        this.player = player;
+        this.isAdmin = isAdmin;
+    }
+    
     public Usuario(String userName, String userPass, JugadorModel player, Liga liga) {
         this.userName = userName;
         this.userPass = userPass;
