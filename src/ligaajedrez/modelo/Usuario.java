@@ -184,4 +184,13 @@ public class Usuario {
     public void modificarJugador(String name, int elo, int age, String responsableName, String responsablePhoneNumber, Object playerModel) {
         getLiga().modificarJugador(name, elo, age, getClubAct(), responsableName, responsablePhoneNumber, playerModel);
     }
+
+    public ArrayList consultarMisClubs() {
+        ArrayList clubs = new ArrayList();
+        for (Club club :this.player.getClubs())
+        {
+            clubs.add(club);
+        }
+      return clubs;
+    }
 }
