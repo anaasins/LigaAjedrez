@@ -137,6 +137,16 @@ public class Liga {
         }
         return f;
     }
+    
+    public ArrayList consultarPartidasJugador(JugadorModel jm) {
+        ArrayList<Object> p = new ArrayList<Object>();
+
+        for (Partida partida : partidas) {
+            if (partida.getJugador1() == jm || partida.getJugador2() == jm)
+                p.add(partida);
+        }
+        return p;
+    }
 
     ArrayList torneosDisponibles(FederacionModel miFederacion) {
        ArrayList<Torneo> disponibles;
@@ -245,5 +255,13 @@ public class Liga {
             usuario = new Jugador(usuario);
         
         return usuario;
+    }
+
+    void setGanadorPartida(Partida partidaAct, Object ganador) {
+        for (Partida partida : partidas) {
+            if (partida == partidaAct) {
+                partida.setGanador((JugadorModel) ganador);
+            }
+        }
     }
 }
