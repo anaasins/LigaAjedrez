@@ -39,6 +39,8 @@ public class Usuario {
     private Liga liga;
     @Transient
     private Partida partidaAct;
+    @Transient
+    private Club clubAct;
 
     public Usuario() {}
     
@@ -110,6 +112,14 @@ public class Usuario {
         this.liga = liga;
     }
     
+    public void setClubAct(Object clubAct) {
+        this.clubAct = (Club) clubAct;
+    }
+    
+    public Object getClubAct() {
+        return clubAct;
+    }
+    
     public ArrayList consultarClubs() {
         return liga.consultarClubs();
     }
@@ -169,5 +179,9 @@ public class Usuario {
 
     public void setGanadorPartida(Object ganador) {
         liga.setGanadorPartida(partidaAct, ganador);
+    }
+    
+    public void modificarJugador(String name, int elo, int age, String responsableName, String responsablePhoneNumber, Object playerModel) {
+        getLiga().modificarJugador(name, elo, age, getClubAct(), responsableName, responsablePhoneNumber, playerModel);
     }
 }

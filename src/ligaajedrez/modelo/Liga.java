@@ -61,6 +61,16 @@ public class Liga {
         Usuario u = new Usuario(player.getName().toLowerCase(), player.getName().toLowerCase(), player);
         newUsuarios.add(u);
     }
+     
+    public void modificarJugador(String name, int elo, int age, Object club, String responsableName, String responsablePhoneNumber, Object playerModel) {
+        JugadorModel player = jugadores.get(jugadores.indexOf((JugadorModel) playerModel));
+        player.setName(name);
+        player.setElo(elo);
+        player.setAge(age);
+        player.setClub((Club) club);
+        player.setResponsableName(responsableName);
+        player.setReponsablePhoneNumber(responsablePhoneNumber);
+    }
 
     public ArrayList consultarClubs() {
         ArrayList listaClubs = new ArrayList();

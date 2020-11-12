@@ -157,7 +157,7 @@ public class GestionarJugadores extends javax.swing.JFrame {
 
     private void modificarJugadorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarJugadorButtonActionPerformed
         // TODO add your handling code here:
-        new ModificarJugador(usuario, null, this).setVisible(true);
+        new ModificarJugador(usuario, usuario.getPlayer(), this).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_modificarJugadorButtonActionPerformed
 

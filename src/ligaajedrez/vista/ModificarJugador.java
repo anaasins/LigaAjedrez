@@ -56,8 +56,9 @@ public class ModificarJugador extends javax.swing.JFrame {
         this.player = player;
         this.previousView = previousView;
         
-        ((Administrador)usuario).setClubAct(player.getClub());
+        usuario.setClubAct(player.getClub());
         paintClub();
+        paintPlayer();
     }
 
     public ModificarJugador() {
@@ -65,10 +66,20 @@ public class ModificarJugador extends javax.swing.JFrame {
     }
     
     public void paintClub() {
-        if (((Administrador)usuario).getClubAct() != null)
-            clubName.setText(((Administrador)usuario).getClubAct().toString());
+        if (usuario.getClubAct() != null)
+            clubName.setText(usuario.getClubAct().toString());
         else
             clubName.setText("");
+    }
+    
+    private void paintPlayer() {
+        nameField.setText(player.getName());
+        eloField.setText(player.getElo()+"");
+        ageField.setText(player.getAge()+"");
+        categoryCombo.setSelectedItem(player.getCategory());
+        clubName.setText(player.getName());
+        responsableNameField.setText(player.getResponsableName());
+        responsablePhoneNumberField.setText(player.getReponsablePhoneNumber());
     }
 
     /**
@@ -302,7 +313,10 @@ public class ModificarJugador extends javax.swing.JFrame {
         }
 
         if (elo != null && age != null) {
-            ((Administrador)usuario).crearJugador(name, elo, age, responsableName, responsableNumber);
+            if (player == null)
+                ((Administrador)usuario).crearJugador(name, elo, age, responsableName, responsableNumber);
+            else
+                usuario.modificarJugador(name, elo, age, responsableName, responsableNumber, player);
         }
 
         previousView.setVisible(true);

@@ -171,7 +171,7 @@ public class MenuJugador extends javax.swing.JFrame {
     private void ModDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModDatosActionPerformed
         // TODO add your handling code here:
         ModificarJugador modificar;
-        modificar = new ModificarJugador(usuario, null, this);
+        modificar = new ModificarJugador(usuario, usuario.getPlayer(), this);
         modificar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_ModDatosActionPerformed
