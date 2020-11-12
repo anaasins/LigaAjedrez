@@ -281,4 +281,13 @@ public class Liga {
             }
         }
     }
+
+    boolean eliminarJugador(Object jug) {
+        JugadorModel j = (JugadorModel) jug;
+        Session session = db.getSession();
+        Transaction t = session.beginTransaction();
+        session.delete(jug);
+        t.commit();
+        return jugadores.remove(jug); 
+    }
 }

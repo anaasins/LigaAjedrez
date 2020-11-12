@@ -133,6 +133,9 @@ public class EliminarJugador extends javax.swing.JFrame {
     private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
         // TODO add your handling code here:
         //puc fer que me torne el index del element seleccionat i anar a liga i eliminar del arraylist el index que me ha tornat?
+        boolean ok;
+        Object jug = jugadoresList.getSelectedValue();
+        ok=((Administrador)usuario).eliminarJugador(jug);
         previousView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_eliminarButtonActionPerformed
@@ -142,6 +145,6 @@ public class EliminarJugador extends javax.swing.JFrame {
     private javax.swing.JButton eliminarButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jugadorLabel;
-    private javax.swing.JList<String> jugadoresList;
+    private javax.swing.JList<Object> jugadoresList;
     // End of variables declaration//GEN-END:variables
 }

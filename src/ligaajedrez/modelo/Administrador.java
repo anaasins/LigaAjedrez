@@ -51,4 +51,8 @@ public class Administrador extends Usuario {
     public ArrayList getTodosJugadores() {
         return getLiga().consultarTodosJugadores();
     }
+
+    public boolean eliminarJugador(Object jug) {
+       return getLiga().eliminarJugador(jug);
+    }
 }
