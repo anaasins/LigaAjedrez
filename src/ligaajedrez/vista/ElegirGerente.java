@@ -96,7 +96,8 @@ public class ElegirGerente extends javax.swing.JFrame {
 
     private void modBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modBtnActionPerformed
         // TODO add your handling code here:
-        new CrearModificarGerentes(usuario, jList1.getSelectedValue(), this);
+        new CrearModificarGerentes(usuario, jList1.getSelectedValue(), this).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_modBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
