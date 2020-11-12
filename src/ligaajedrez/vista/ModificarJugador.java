@@ -46,17 +46,17 @@ public class ModificarJugador extends javax.swing.JFrame {
         });
     }
     
-    public ModificarJugador(Usuario usuario, JugadorModel player, JFrame previousView) {
+    public ModificarJugador(Usuario usuario, Object player, JFrame previousView) {
         initComponents();
         this.usuario = usuario;
         
 
         DefaultComboBoxModel model = new DefaultComboBoxModel(CategoriaEnum.names());
         categoryCombo.setModel(model);
-        this.player = player;
+        this.player = (JugadorModel) player;
         this.previousView = previousView;
         
-        usuario.setClubAct(player.getClub());
+        usuario.setClubAct(this.player.getClub());
         paintClub();
         paintPlayer();
     }
