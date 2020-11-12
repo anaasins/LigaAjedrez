@@ -48,21 +48,22 @@ public class GestionarGerentes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        createBtn.setText("Nuevo entrenador");
+        createBtn.setText("Nuevo gerente");
         createBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createBtnActionPerformed(evt);
             }
         });
 
-        delete.setText("Eliminar entrenador");
+        delete.setText("Eliminar gerente");
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteActionPerformed(evt);
             }
         });
 
-        updateBtn.setText("Modificar entrenador");
+        updateBtn.setText("Modificar gerente");
+        updateBtn.setActionCommand("Modificar gerente");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateBtnActionPerformed(evt);
