@@ -355,4 +355,13 @@ public class Liga {
         Torneo torneo = torneos.get(torneos.indexOf(torneoAct));
         torneo.getParticipantes().add(player);
     }
+
+    void modificarGerente(String name, String surname, String birth, String phone, String nomina, String irpf, GerenteModel gerenteModel) {
+        GerenteModel gerente = gerentes.get(gerentes.indexOf((GerenteModel) gerenteModel));
+        gerente.setName(name);
+        gerente.setSurname(surname);
+        gerente.setBirth(birth);
+        gerente.setPhone(phone);
+        gerente.setIrpf(irpf);
+    }
 }

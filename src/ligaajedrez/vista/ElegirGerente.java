@@ -16,14 +16,14 @@ import ligaajedrez.modelo.Usuario;
  *
  * @author jbeltran
  */
-public class BorrarGerente extends javax.swing.JFrame {
+public class ElegirGerente extends javax.swing.JFrame {
     private Usuario usuario;
     private JFrame previousView;
     
     /**
      * Creates new form BorrarEntrenador
      */
-    public BorrarGerente(Usuario usuario, JFrame previousView) {
+    public ElegirGerente(Usuario usuario, JFrame previousView) {
         initComponents();
         this.usuario = usuario;
         this.previousView = previousView;
@@ -50,21 +50,21 @@ public class BorrarGerente extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        deleteBtn = new javax.swing.JButton();
+        modBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jScrollPane1.setViewportView(jList1);
 
-        deleteBtn.setText("Borrar gerente");
-        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+        modBtn.setText("Modificar gerente");
+        modBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteBtnActionPerformed(evt);
+                modBtnActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Seleccionar un gerente:");
+        jLabel1.setText("Seleccionar un gerente para modificar:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,7 +76,7 @@ public class BorrarGerente extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jScrollPane1)
-                        .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)))
+                        .addComponent(modBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -87,30 +87,23 @@ public class BorrarGerente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(deleteBtn)
+                .addComponent(modBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+    private void modBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modBtnActionPerformed
         // TODO add your handling code here:
-        boolean ok;
-        Object gerente = jList1.getSelectedValue();
-        ok=((Administrador)usuario).eliminarGerente(gerente);
-        if(!ok)
-            JOptionPane.showMessageDialog(this, "No se ha podido eliminar el gerente seleccionado.");
-        
-        previousView.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_deleteBtnActionPerformed
+        new CrearModificarGerentes(usuario, jList1.getSelectedValue(), this);
+    }//GEN-LAST:event_modBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton deleteBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<Object> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton modBtn;
     // End of variables declaration//GEN-END:variables
 
     private void mostrarGerentes() {

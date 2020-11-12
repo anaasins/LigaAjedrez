@@ -79,4 +79,8 @@ public class Administrador extends Usuario {
     public boolean eliminarGerente(Object gerente) {
         return getLiga().eliminarGerente(gerente);
     }
+
+    public void modificarGerente(String name, String surname, String birth, String phone, String nomina, String irpf, GerenteModel gerente) {
+        getLiga().modificarGerente(name, surname, birth, phone, nomina, irpf, gerente);
+    }
 }

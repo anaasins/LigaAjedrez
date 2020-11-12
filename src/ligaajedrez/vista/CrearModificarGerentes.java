@@ -7,6 +7,7 @@ package ligaajedrez.vista;
 
 import javax.swing.JFrame;
 import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.GerenteModel;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -16,6 +17,7 @@ import ligaajedrez.modelo.Usuario;
 public class CrearModificarGerentes extends javax.swing.JFrame {
     private Usuario usuario;
     private JFrame previousView;
+    private GerenteModel gerente;
     
     /**
      * Creates new form CrearModifiarEntrenadors
@@ -24,6 +26,23 @@ public class CrearModificarGerentes extends javax.swing.JFrame {
         initComponents();
         this.usuario = usuario;
         this.previousView = previousView;
+        
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                usuario.saveData();
+                e.getWindow().dispose();
+            }
+        });
+    }
+    
+    public CrearModificarGerentes(Usuario usuario,Object gerente, JFrame previousView) {
+        initComponents();
+        this.usuario = usuario;
+        this.previousView = previousView;
+        this.gerente = (GerenteModel) gerente;
+        
+        paintGerente();
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -155,7 +174,10 @@ public class CrearModificarGerentes extends javax.swing.JFrame {
 
     private void checkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBtnActionPerformed
         // TODO add your handling code here:
+        if(gerente == null)
         ((Administrador)usuario).nuevoGerente(nameField.getText(), surnameText.getText(), birthText.getText(), phonenumberText.getText(), nominaText.getText(), irpfText.getText());
+        else
+            ((Administrador)usuario).modificarGerente(nameField.getText(), surnameText.getText(), birthText.getText(), phonenumberText.getText(), nominaText.getText(), irpfText.getText(), gerente);
         previousView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_checkBtnActionPerformed
@@ -175,4 +197,13 @@ public class CrearModificarGerentes extends javax.swing.JFrame {
     private javax.swing.JLabel surnameLabel;
     private javax.swing.JTextField surnameText;
     // End of variables declaration//GEN-END:variables
+
+    private void paintGerente() {
+       nameField.setText(gerente.getName());
+       surnameText.setText(gerente.getSurname());
+       birthText.setText(gerente.getBirth());
+       irpfText.setText(gerente.getIrpf());
+       nominaText.setText(gerente.getNomina());
+       phonenumberText.setText(gerente.getPhone());
+    }
 }
