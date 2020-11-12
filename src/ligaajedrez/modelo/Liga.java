@@ -365,7 +365,7 @@ public class Liga {
         torneo.getParticipantes().add(player);
     }
 
-<<<<<<< HEAD
+
     void modificarGerente(String name, String surname, String birth, String phone, String nomina, String irpf, GerenteModel gerenteModel) {
         GerenteModel gerente = gerentes.get(gerentes.indexOf((GerenteModel) gerenteModel));
         gerente.setName(name);
@@ -373,7 +373,7 @@ public class Liga {
         gerente.setBirth(birth);
         gerente.setPhone(phone);
         gerente.setIrpf(irpf);
-=======
+    }
     public ArrayList consultaEntrenadores() {
         ArrayList<EntrenadorModel> ListaEntrenadores = new ArrayList<EntrenadorModel>();
 
@@ -391,6 +391,6 @@ public class Liga {
     void asignarClubGerente(GerenteModel gerenteAct, Club club) {
         GerenteModel gerente = gerentes.get(gerentes.indexOf(gerenteAct));
         gerente.setClub(club);
->>>>>>> 10ce75379bfc5f50dcb06780226fa08225a957d5
+
     }
 }

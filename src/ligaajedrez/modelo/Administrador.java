@@ -80,16 +80,15 @@ public class Administrador extends Usuario {
         return getLiga().eliminarGerente(gerente);
     }
 
-<<<<<<< HEAD
     public void modificarGerente(String name, String surname, String birth, String phone, String nomina, String irpf, GerenteModel gerente) {
         getLiga().modificarGerente(name, surname, birth, phone, nomina, irpf, gerente);
-=======
+    }
     public void asignarClubEntrenador(EntrenadorModel entrenador, Object club) {
         getLiga().asignarClubEntrenador(entrenador, (Club) club);
     }
     
     public void asignarClubGerente(GerenteModel gerente, Object club) {
         getLiga().asignarClubGerente(gerente, (Club) club);
->>>>>>> 10ce75379bfc5f50dcb06780226fa08225a957d5
+
     }
 }
