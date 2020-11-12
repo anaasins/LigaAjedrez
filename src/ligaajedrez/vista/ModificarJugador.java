@@ -178,7 +178,7 @@ public class ModificarJugador extends javax.swing.JFrame {
             }
         });
 
-        historyBtn.setText("Modificar");
+        historyBtn.setText("Mostrar");
         historyBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 historyBtnActionPerformed(evt);
@@ -325,6 +325,9 @@ public class ModificarJugador extends javax.swing.JFrame {
 
     private void historyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyBtnActionPerformed
         // TODO add your handling code here:
+        HistoricClubs historicClub= new HistoricClubs(usuario,this);
+        historicClub.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_historyBtnActionPerformed
 
     private void assignationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignationBtnActionPerformed
