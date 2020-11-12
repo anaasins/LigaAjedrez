@@ -59,4 +59,12 @@ public class Administrador extends Usuario {
     public void nuevoEntrenador(String name, String surname, String birth, String phone) {
         getLiga().nuevoEntrenador(name, surname, birth, phone);
     }
+
+    public ArrayList getEntrenadores() {
+       return getLiga().consultarEntrenadores();
+    }
+
+    public boolean eliminarEntrenador(Object entrenador) {
+        return getLiga().eliminarEntrenador(entrenador);
+    }
 }

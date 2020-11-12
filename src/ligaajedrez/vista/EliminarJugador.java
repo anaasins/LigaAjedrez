@@ -136,6 +136,8 @@ public class EliminarJugador extends javax.swing.JFrame {
         boolean ok;
         Object jug = jugadoresList.getSelectedValue();
         ok=((Administrador)usuario).eliminarJugador(jug);
+        if(!ok)
+            JOptionPane.showMessageDialog(this, "No se ha podido eliminar al jugador seleccionado.");
         previousView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_eliminarButtonActionPerformed

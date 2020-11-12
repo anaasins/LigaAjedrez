@@ -299,4 +299,24 @@ public class Liga {
         EntrenadorModel entrenador = new EntrenadorModel(name, surname, birth, phone);
         entrenadores.add(entrenador);
     }
+
+    public ArrayList consultarEntrenadores() {
+        ArrayList<EntrenadorModel> m = new ArrayList<EntrenadorModel>();
+        
+        for (EntrenadorModel entrenador : entrenadores) {
+            m.add(entrenador);
+        }
+        return m;
+    }
+
+    boolean eliminarEntrenador(Object entrenador) {
+        EntrenadorModel e = (EntrenadorModel) entrenador;
+        
+        Session session = db.getSession();
+        Transaction t = session.beginTransaction();
+        session.delete(entrenador);
+        t.commit();
+        
+        return entrenadores.remove(entrenador);
+    }
 }
