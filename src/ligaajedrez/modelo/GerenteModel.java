@@ -12,17 +12,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
-import ligaajedrez.modelo.enums.CategoriaEnum;
-import org.hibernate.annotations.Type;
+
 
 /**
  *
  * @author jbeltran
  */
 @Entity
-public class EntrenadorModel{
+public class GerenteModel{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entrenadorSeq")
     @SequenceGenerator(name="entrenadorSeq",sequenceName="entrenadorSeq", allocationSize=1, initialValue = 1)
@@ -30,19 +28,23 @@ public class EntrenadorModel{
     private String name;
     private String surname;
     private String phone;
-    @OneToMany
+    private String nomina;
+    private String irpf;
+    @ManyToOne
     @JoinColumn(name = "clubId", referencedColumnName = "id")
-    private List<Club> clubs;
+    private Club club;
     private String birth;
 
-    public EntrenadorModel() {
+    public GerenteModel() {
     }
 
-    public EntrenadorModel(String name, String surname, String  birth, String phone) {
+    public GerenteModel(String name, String surname, String  birth, String phone, String nomina, String irpf) {
         setName(name);
         setSurname(surname);
         setBirth(birth);
         setPhone(phone);
+        setNomina(nomina);
+        setIrpf(irpf);
     }
     
 
@@ -61,6 +63,24 @@ public class EntrenadorModel{
     public void setName(String name) {
         if (!name.trim().isEmpty())
             this.name = name;
+    }
+    
+    public String getNomina() {
+        return nomina;
+    }
+
+    public void setNomina(String nomina) {
+        if (!nomina.trim().isEmpty())
+            this.nomina = nomina;
+    }
+    
+    public String getIrpf() {
+        return irpf;
+    }
+
+    public void setIrpf(String irpf) {
+        if (!irpf.trim().isEmpty())
+            this.irpf = irpf;
     }
 
     public String getSurname() {
@@ -89,13 +109,13 @@ public class EntrenadorModel{
         if (!birth.trim().isEmpty())
             this.birth = birth;
     }
-
-    public List<Club> getClubs() {
-        return clubs;
+    
+    public Club getClub() {
+        return club;
     }
-
-    public void setClubs(List<Club> clubs) {
-        this.clubs = clubs;
+    
+    public void setClub(Club club) {
+        this.club = club;
     }
     
     @Override

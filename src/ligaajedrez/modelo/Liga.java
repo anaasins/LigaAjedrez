@@ -30,6 +30,7 @@ public class Liga {
     private ArrayList<FederacionModel> federaciones;
     private ArrayList<Partida> partidas;
     private ArrayList<Usuario> newUsuarios;
+    private ArrayList<GerenteModel> gerentes;
     private DB db;
     
     public Liga()
@@ -55,6 +56,7 @@ public class Liga {
         partidas = (ArrayList<Partida>) db.getAll(Partida.class);
         newUsuarios = new ArrayList<>();
         entrenadores = (ArrayList<EntrenadorModel>) db.getAll(EntrenadorModel.class);
+        gerentes = (ArrayList<GerenteModel>) db.getAll(GerenteModel.class);
     }
     
      public void crearJugador(String name, int elo, int age, Object club, String responsableName, String responsablePhoneNumber) {
@@ -269,6 +271,9 @@ public class Liga {
         entrenadores.forEach((entrenador)->{
             session.saveOrUpdate(entrenador);
         });
+        gerentes.forEach((gerente)->{
+            session.saveOrUpdate(gerente);
+        });
         t.commit();
     }
 
@@ -328,6 +333,31 @@ public class Liga {
         t.commit();
         
         return entrenadores.remove(entrenador);
+    }
+    
+     void nuevoGerente(String name, String surname, String birth, String phone, String nomina, String irpf) {
+        GerenteModel gerente = new GerenteModel(name, surname, birth, phone, nomina, irpf);
+        gerentes.add(gerente);
+    }
+
+    public ArrayList consultarGerentes() {
+        ArrayList<GerenteModel> m = new ArrayList<GerenteModel>();
+        
+        for (GerenteModel gerente : gerentes) {
+            m.add(gerente);
+        }
+        return m;
+    }
+
+    boolean eliminarGerente(Object gerente) {
+        GerenteModel e = (GerenteModel) gerente;
+        
+        Session session = db.getSession();
+        Transaction t = session.beginTransaction();
+        session.delete(gerente);
+        t.commit();
+        
+        return gerentes.remove(gerente);
     }
 
     void registrarEnTorneo(Torneo torneoAct, JugadorModel player) {

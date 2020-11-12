@@ -6,6 +6,7 @@
 package ligaajedrez.vista;
 
 import javax.swing.JFrame;
+import ligaajedrez.modelo.Administrador;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -70,6 +71,11 @@ public class CrearModificarGerentes extends javax.swing.JFrame {
         phonenumberLabel.setText("Telefono:");
 
         checkBtn.setText("Confirmar");
+        checkBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBtnActionPerformed(evt);
+            }
+        });
 
         nominaLabel.setLabelFor(nominaText);
         nominaLabel.setText("Nomina:");
@@ -146,6 +152,13 @@ public class CrearModificarGerentes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void checkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBtnActionPerformed
+        // TODO add your handling code here:
+        ((Administrador)usuario).nuevoGerente(nameField.getText(), surnameText.getText(), birthText.getText(), phonenumberText.getText(), nominaText.getText(), irpfText.getText());
+        previousView.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_checkBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel birthLabel;

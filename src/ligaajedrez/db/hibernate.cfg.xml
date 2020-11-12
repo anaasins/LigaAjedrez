@@ -57,5 +57,7 @@ Contributor(s):
     <mapping class="ligaajedrez.modelo.Sede"/>
     <mapping class="ligaajedrez.modelo.Torneo"/>
     <mapping class="ligaajedrez.modelo.Usuario"/>
+    <mapping class="ligaajedrez.modelo.EntrenadorModel"/>
+    <mapping class="ligaajedrez.modelo.GerenteModel"/>
   </session-factory>
 </hibernate-configuration>
