@@ -77,7 +77,7 @@ public class ModificarJugador extends javax.swing.JFrame {
         eloField.setText(player.getElo()+"");
         ageField.setText(player.getAge()+"");
         categoryCombo.setSelectedItem(player.getCategory());
-        clubName.setText(player.getName());
+        clubName.setText(player.getClub().toString());
         responsableNameField.setText(player.getResponsableName());
         responsablePhoneNumberField.setText(player.getReponsablePhoneNumber());
     }
