@@ -5,7 +5,10 @@
  */
 package ligaajedrez.modelo;
 
+<<<<<<< HEAD
+=======
 import java.util.ArrayList;
+>>>>>>> d022648f5b364f6dcc5da7cadc6557579bfe55bb
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,7 +43,10 @@ public class JugadorModel{
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean moroso;
     private int multa;
+<<<<<<< HEAD
+=======
     @ManyToMany()
+>>>>>>> d022648f5b364f6dcc5da7cadc6557579bfe55bb
     private List<Club> clubs;
 
     public JugadorModel() {

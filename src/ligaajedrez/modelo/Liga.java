@@ -22,6 +22,7 @@ import org.hibernate.criterion.Restrictions;
 public class Liga {
     private ArrayList<JugadorModel> jugadores;
     private ArrayList<JugadorModel> jugadoresMorosos;
+    private ArrayList<EntrenadorModel> entrenadores;
     private ArrayList<Club> clubs;
     private ArrayList<Torneo> torneos;
     private ArrayList<Sede> sedes;
@@ -255,6 +256,9 @@ public class Liga {
         newUsuarios.forEach((usuario) -> {
             session.save(usuario);
         });
+        entrenadores.forEach((entrenador)->{
+            session.saveOrUpdate(entrenador);
+        });
         t.commit();
     }
 
@@ -289,5 +293,10 @@ public class Liga {
         session.delete(jug);
         t.commit();
         return jugadores.remove(jug); 
+    }
+
+    void nuevoEntrenador(String name, String surname, String birth, String phone) {
+        EntrenadorModel entrenador = new EntrenadorModel(name, surname, birth, phone);
+        entrenadores.add(entrenador);
     }
 }
