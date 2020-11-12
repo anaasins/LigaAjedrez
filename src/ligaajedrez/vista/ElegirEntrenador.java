@@ -23,7 +23,7 @@ public class ElegirEntrenador extends javax.swing.JFrame {
     /**
      * Creates new form ElegirEntrenador
      */
-    public ElegirEntrenador() {
+    public ElegirEntrenador(Usuario usuario,JFrame prevousView) {
         initComponents();
         this.previousView = previousView;
         modeloLista= new DefaultListModel();

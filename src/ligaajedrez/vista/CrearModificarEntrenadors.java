@@ -144,7 +144,10 @@ public class CrearModificarEntrenadors extends javax.swing.JFrame {
 
     private void checkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBtnActionPerformed
         // TODO add your handling code here:
+        if (entrenador == null)
         ((Administrador)usuario).nuevoEntrenador(nameField.getText(), surnameText.getText(), birthText.getText(), phonenumberText.getText());
+        else 
+            ((Administrador)usuario).modificarEntrenador(nameField.getText(), surnameText.getText(), birthText.getText(), phonenumberText.getText(),entrenador);
     }//GEN-LAST:event_checkBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
