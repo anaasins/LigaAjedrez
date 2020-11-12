@@ -54,6 +54,7 @@ public class Liga {
         federaciones = (ArrayList<FederacionModel>) db.getAll(FederacionModel.class);
         partidas = (ArrayList<Partida>) db.getAll(Partida.class);
         newUsuarios = new ArrayList<>();
+        entrenadores = (ArrayList<EntrenadorModel>) db.getAll(EntrenadorModel.class);
     }
     
      public void crearJugador(String name, int elo, int age, Object club, String responsableName, String responsablePhoneNumber) {
