@@ -5,12 +5,16 @@
  */
 package ligaajedrez.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import ligaajedrez.modelo.enums.CategoriaEnum;
 import org.hibernate.annotations.Type;
@@ -37,11 +41,15 @@ public class JugadorModel{
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean moroso;
     private int multa;
+    @ManyToMany()
+    private List<Club> clubs;
 
     public JugadorModel() {
+        clubs = new ArrayList<>();
     }
 
     public JugadorModel(String name, int elo, int age, Club club) {
+        clubs = new ArrayList<>();
         setName(name);
         setElo(elo);
         setAge(age);
@@ -49,6 +57,7 @@ public class JugadorModel{
     }
     
     public JugadorModel(String name, int elo, int age, Club club, String responsableName, String reponsablePhoneNumber) {
+        clubs = new ArrayList<>();
         setName(name);
         setElo(elo);
         setAge(age);
@@ -99,6 +108,8 @@ public class JugadorModel{
     
     public void setClub(Club club) {
         this.club = club;
+        if (club != null)
+            clubs.add(club);
     }
     
     public int getAge() {
@@ -146,6 +157,14 @@ public class JugadorModel{
 
     public void setMulta(int multa) {
         this.multa = multa;
+    }
+
+    public List<Club> getClubs() {
+        return clubs;
+    }
+
+    public void setClubs(List<Club> clubs) {
+        this.clubs = clubs;
     }
     
     @Override
