@@ -33,10 +33,12 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name = "playerId", referencedColumnName = "id")
     private JugadorModel player;
-    @Transient
-    private Liga liga;
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean isAdmin;
+    @Transient
+    private Liga liga;
+    @Transient
+    private Partida partidaAct;
 
     public Usuario() {}
     
@@ -146,5 +148,26 @@ public class Usuario {
     
     public boolean isAdmin() {
         return isAdmin;
+    }
+
+    public ArrayList consultarPartidasJugador() {
+        return liga.consultarPartidasJugador(player);
+    }
+
+    public ArrayList consultarJugadoresPartida() {
+        ArrayList jsm = new ArrayList();
+        
+        jsm.add(partidaAct.getJugador1());
+        jsm.add(partidaAct.getJugador2());
+        
+        return jsm;
+    }
+
+    public void setPartidaAct(Object partida) {
+        partidaAct = (Partida) partida;
+    }
+
+    public void setGanadorPartida(Object ganador) {
+        liga.setGanadorPartida(partidaAct, ganador);
     }
 }
