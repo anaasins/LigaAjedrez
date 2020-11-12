@@ -32,8 +32,8 @@ public class Administrador extends Usuario {
         return clubAct;
     }
 
-    public void crearJugador(String name, int elo, int age, Object club, String responsableName, String responsablePhoneNumber) {
-        getLiga().crearJugador(name, elo, age, club, responsableName, responsablePhoneNumber);
+    public void crearJugador(String name, int elo, int age, String responsableName, String responsablePhoneNumber) {
+        getLiga().crearJugador(name, elo, age, clubAct, responsableName, responsablePhoneNumber);
     }
    
     public void crearTorneo( int federacion, Date fecha, int[] clubs) {

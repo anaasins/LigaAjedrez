@@ -302,7 +302,7 @@ public class ModificarJugador extends javax.swing.JFrame {
         }
 
         if (elo != null && age != null) {
-            ((Administrador)usuario).crearJugador(name, elo, age, ((Administrador)usuario).getClubAct(), responsableName, responsableNumber);
+            ((Administrador)usuario).crearJugador(name, elo, age, responsableName, responsableNumber);
         }
 
         previousView.setVisible(true);
