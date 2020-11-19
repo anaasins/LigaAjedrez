@@ -90,11 +90,43 @@ public class SedeDao {
         Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
         
         oracleConn.setAutoCommit(false);
-        PreparedStatement create = oracleConn.prepareStatement(CTABLE);
+        PreparedStatement create = oracleConn.prepareStatement(ISEDE);
         create.setInt(1, id);
         create.executeUpdate();
         
          oracleConn.commit();
+        oracleConn.setAutoCommit(true);
+        oracleConn.close();
+    }
+    
+    public void updateSede(int id)throws
+            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
+    {
+        Class.forName(DRIVER).newInstance();
+        Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+        
+        oracleConn.setAutoCommit(false);
+        PreparedStatement create = oracleConn.prepareStatement(ASEDE);
+        create.setInt(1, id);
+        create.executeUpdate();
+        
+         oracleConn.commit();
+        oracleConn.setAutoCommit(true);
+        oracleConn.close();
+    }
+    
+    public void deleteSede(int id) throws 
+            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+        Class.forName(DRIVER).newInstance();
+        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+           
+        oracleConn.setAutoCommit(false);
+        // Sentencia de insert
+        PreparedStatement delete = oracleConn.prepareStatement(BSEDE);
+        delete.setInt(1, id);
+        delete.executeUpdate();
+        
+        oracleConn.commit();
         oracleConn.setAutoCommit(true);
         oracleConn.close();
     }
