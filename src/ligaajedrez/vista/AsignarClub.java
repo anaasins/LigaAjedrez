@@ -7,7 +7,7 @@ package ligaajedrez.vista;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
-import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -27,7 +27,7 @@ public class AsignarClub extends javax.swing.JFrame {
         this.previousView = previousView;
         
         DefaultListModel model = new DefaultListModel();
-        for (Object club : usuario.consultarClubs())
+        for (Object club : Fachada.consultarClubs())
             model.addElement(club);
         clubList.setModel(model);
         

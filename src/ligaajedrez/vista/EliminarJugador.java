@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -108,7 +108,7 @@ public class EliminarJugador extends javax.swing.JFrame {
     private void mostrarJugadores()
     {
        ArrayList jugadoresAux;
-       jugadoresAux = ((Administrador)usuario).getJugadores(); 
+       jugadoresAux = Fachada.getJugadores(); 
        DefaultListModel modeloLista = new DefaultListModel();
        jugadoresList.setModel(modeloLista); 
        
@@ -135,7 +135,7 @@ public class EliminarJugador extends javax.swing.JFrame {
         //puc fer que me torne el index del element seleccionat i anar a liga i eliminar del arraylist el index que me ha tornat?
         boolean ok;
         Object jug = jugadoresList.getSelectedValue();
-        ok=((Administrador)usuario).eliminarJugador(jug);
+        ok=Fachada.eliminarJugador(jug);
         if(!ok)
             JOptionPane.showMessageDialog(this, "No se ha podido eliminar al jugador seleccionado.");
         previousView.setVisible(true);

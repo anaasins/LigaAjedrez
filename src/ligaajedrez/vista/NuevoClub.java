@@ -8,7 +8,7 @@ package ligaajedrez.vista;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
-import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -27,7 +27,7 @@ public class NuevoClub extends javax.swing.JFrame {
         this.usuario = usuario;
         this.previousView = previousView;
         
-        ArrayList federations = usuario.consultarFederaciones();
+        ArrayList federations = Fachada.consultarFederaciones();
         DefaultComboBoxModel model = new DefaultComboBoxModel(federations.toArray());
         federacionCombo.setModel(model);
         // TODO Implements when add the modify club
@@ -172,7 +172,7 @@ public class NuevoClub extends javax.swing.JFrame {
         name = nameField.getText();
         federation = federacionCombo.getSelectedItem();
         
-        ((Administrador) usuario).crearClub(name, federation);
+        Fachada.crearClub(name, federation);
         
         previousView.setVisible(true);
         this.setVisible(false);

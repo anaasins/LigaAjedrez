@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -31,7 +32,7 @@ public class RegistrarPartida extends javax.swing.JFrame {
         usuario = _usuario;
         this.vAnterior = Vanterior;
         
-        ArrayList jugadores = this.administrador.consultarJugadores();
+        ArrayList jugadores = Fachada.consultarJugadores();
         jugador1Combo.removeAllItems();
         for (Object jugador : jugadores) {
             jugador1Combo.addItem((String) jugador);
@@ -42,13 +43,13 @@ public class RegistrarPartida extends javax.swing.JFrame {
             jugador1Combo.addItem((String) jugador);
         }
         
-        ArrayList sedes = administrador.consultarSedes();
+        ArrayList sedes = Fachada.consultarSedes();
         sedeCombo.removeAllItems();
         for (Object sede : sedes) {
             sedeCombo.addItem(sede.toString());
         }
         
-        ArrayList torneos = administrador.consultarTorneos();
+        ArrayList torneos = Fachada.consultarTorneos();
         torneoCombo.removeAllItems();
         for (Object torneo : torneos) {
             torneoCombo.addItem((String) torneo);
@@ -203,7 +204,7 @@ public class RegistrarPartida extends javax.swing.JFrame {
     private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarButtonActionPerformed
         try {
             // TODO add your handling code here:
-            administrador.crearPartida(jugador1Combo.getSelectedIndex(),jugador2Combo.getSelectedIndex(),sedeCombo.getSelectedIndex(),new SimpleDateFormat("dd/MM/yyyy").parse(FechaField .getText()),new SimpleDateFormat("HH").parse(HoraField.getText()),torneoCombo.getSelectedIndex());
+            Fachada.crearPartida(jugador1Combo.getSelectedIndex(),jugador2Combo.getSelectedIndex(),sedeCombo.getSelectedIndex(),new SimpleDateFormat("dd/MM/yyyy").parse(FechaField .getText()),new SimpleDateFormat("HH").parse(HoraField.getText()),torneoCombo.getSelectedIndex());
         } catch (ParseException ex) {
             Logger.getLogger(RegistrarPartida.class.getName()).log(Level.SEVERE, null, ex);
         }

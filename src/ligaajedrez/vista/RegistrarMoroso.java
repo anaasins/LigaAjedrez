@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -29,7 +29,7 @@ public class RegistrarMoroso extends javax.swing.JFrame {
         this.previousView = previousView;
         modeloLista= new DefaultListModel();
         jugadorList.setModel(modeloLista);
-        ArrayList jugadores= usuario.consultarJugadores();
+        ArrayList jugadores= Fachada.consultarJugadores();
         if (!jugadores.isEmpty()){
             for (Object item : jugadores) {
             modeloLista.addElement(item);
@@ -149,7 +149,7 @@ public class RegistrarMoroso extends javax.swing.JFrame {
         // TODO add your handling code here:
         previousView.setVisible(true);
         this.setVisible(false);
-        ((Administrador)usuario).registrarMoroso(jugadorList.getSelectedIndex(),cantidadTextField.getText());
+        Fachada.registrarMoroso(jugadorList.getSelectedIndex(),cantidadTextField.getText());
        
         JOptionPane.showMessageDialog(this,"Jugador registrado como que debe"+cantidadTextField.getText());
     }//GEN-LAST:event_confirmarButtonActionPerformed
