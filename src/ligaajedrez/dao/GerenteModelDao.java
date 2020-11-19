@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import ligaajedrez.modelo.GerenteModel;
@@ -36,23 +37,26 @@ public class GerenteModelDao {
             "UPDATE gerentemodel " +
             " SET id = ?, name = ?, surname = ?, phone = ?, nomina = ?," +
             " irpf = ?, clubId = ?, birth = ?" +
-            " WHERE idmascota = ?";
+            " WHERE id = ?";
     private static final String DELETE =
             "DELETE FROM gerentemodel " +
             " WHERE id = ?";
     private static final String CREATE = 
-            "CREATE TABLE 'USUARIO'" +
-            "('ID' NUMBER(10,0) NOT NULL ENABLE, " +
-            "'ISADMIN' NUMBER(10,0) NOT NULL ENABLE, " +
-            "'USERNAME' VARCHAR2(255), " +
-            "'USERPASS' VARCHAR2(255), " + 
-            "'PLAYERID' NUMBER(10,0), " +
+            "CREATE TABLE 'GERENTEMODEL' " + 
+            "('ID' NUMBER(10,0) NOT NULL ENABLE, " + 
+            "'BIRTH' VARCHAR2(255), " + 
+            "'IRPF' VARCHAR2(255), " + 
+            "'NAME' VARCHAR2(255), " + 
+            "'NOMINA' VARCHAR2(255), " + 
+            "'PHONE' VARCHAR2(255), " + 
+            "'SURNAME' VARCHAR2(255), " + 
+            "'CLUBID' NUMBER(10,0), " + 
             "PRIMARY KEY ('ID')";
     
     public GerenteModelDao() {}
     
     public List<GerenteModel> selectAll() throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException {
         List<GerenteModel> gerentes = new ArrayList<GerenteModel>();
         
         Class.forName(DRIVER).newInstance();
@@ -71,6 +75,7 @@ public class GerenteModelDao {
                     rs.getString("irpf")
             );
             gerente.setId(rs.getInt("id"));
+            gerente.setClub(new ClubDao().leerClub(rs.getInt("clubId")));
             gerentes.add(gerente);
         }
         
@@ -78,7 +83,7 @@ public class GerenteModelDao {
     }
     
     public GerenteModel selectOne(int id) throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException {
         GerenteModel gerente = null;
         
         Class.forName(DRIVER).newInstance();
@@ -98,6 +103,7 @@ public class GerenteModelDao {
                     rs.getString("irpf")
             );
             gerente.setId(rs.getInt("id"));
+            gerente.setClub(new ClubDao().leerClub(rs.getInt("clubId")));
         }
         
         return gerente;
@@ -109,7 +115,6 @@ public class GerenteModelDao {
         Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
            
         oracleConn.setAutoCommit(false);
-        // Sentencia de insert
         PreparedStatement insert = oracleConn.prepareStatement(INSERT);
         insert.setInt(1, gerente.getId());
         insert.setString(2, gerente.getName());
@@ -132,7 +137,6 @@ public class GerenteModelDao {
         Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
            
         oracleConn.setAutoCommit(false);
-        // Sentencia de insert
         PreparedStatement update = oracleConn.prepareStatement(UPDATE);
         update.setInt(1, gerente.getId());
         update.setString(2, gerente.getName());
@@ -156,7 +160,6 @@ public class GerenteModelDao {
         Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
            
         oracleConn.setAutoCommit(false);
-        // Sentencia de insert
         PreparedStatement delete = oracleConn.prepareStatement(DELETE);
         delete.setInt(1, id);
         delete.executeUpdate();
