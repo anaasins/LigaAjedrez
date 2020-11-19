@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import ligaajedrez.db.DB;
+import ligaajedrez.factory.UsuarioFactory;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
@@ -285,10 +286,8 @@ public class Liga {
         criterions.add(Restrictions.eq("userPass", pass));
         usuario = db.getFiltered(Usuario.class, criterions).get(0);
         
-        if (usuario != null && usuario.isAdmin())
-            usuario = new Administrador(usuario);
-        else
-            usuario = new Jugador(usuario);
+        usuario = UsuarioFactory.crearUsuario(usuario);
+
         
         return usuario;
     }
