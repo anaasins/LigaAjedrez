@@ -6,6 +6,7 @@
 package ligaajedrez.vista;
 
 import javax.swing.JOptionPane;
+import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.Jugador;
 import ligaajedrez.modelo.JugadorModel;
 import ligaajedrez.modelo.Usuario;
@@ -197,7 +198,7 @@ public class MenuJugador extends javax.swing.JFrame {
     private void payBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payBtnActionPerformed
         int result = JOptionPane.showConfirmDialog(this, "Desea pagar la multa pendiente de " + ((Jugador)usuario).getMulta() + " €", "Pago multa pendiente",JOptionPane.YES_NO_OPTION);
         if (result == JOptionPane.OK_OPTION) {
-            ((Jugador) usuario).pagarMulta();
+            Fachada.pagarMulta();
             modifyMenuForMoroso();
         }
     }//GEN-LAST:event_payBtnActionPerformed

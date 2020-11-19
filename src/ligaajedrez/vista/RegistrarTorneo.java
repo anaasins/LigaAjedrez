@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import ligaajedrez.modelo.Administrador;
 import ligaajedrez.modelo.Club;
+import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -35,7 +36,7 @@ public class RegistrarTorneo extends javax.swing.JFrame {
         usuario = _usuario;
         this.vAnterior = Vanterior;
         
-        ArrayList federaciones= this.usuario.consultarFederaciones();
+        ArrayList federaciones= Fachada.consultarFederaciones();
         federacionCombo.removeAllItems();
         for (Object fede : federaciones) {
             federacionCombo.addItem(fede.toString());
@@ -43,7 +44,7 @@ public class RegistrarTorneo extends javax.swing.JFrame {
         
         modeloLista = new DefaultListModel();
         jList1.setModel(modeloLista);
-        ArrayList clubs= this.usuario.consultarClubs();
+        ArrayList clubs= Fachada.consultarClubs();
         if (!clubs.isEmpty()){
             for (Object item : clubs) {
             modeloLista.addElement(item);
@@ -154,7 +155,7 @@ public class RegistrarTorneo extends javax.swing.JFrame {
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
 
      try {
-            ((Administrador)usuario).crearTorneo(federacionCombo.getSelectedIndex(),new SimpleDateFormat("dd/MM/yyyy").parse(dateField.getText()),jList1.getSelectedIndices());
+            Fachada.crearTorneo(federacionCombo.getSelectedIndex(),new SimpleDateFormat("dd/MM/yyyy").parse(dateField.getText()),jList1.getSelectedIndices());
         } catch (ParseException ex) {
             Logger.getLogger(RegistrarTorneo.class.getName()).log(Level.SEVERE, null, ex);
         }

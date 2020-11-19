@@ -9,6 +9,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.JugadorModel;
 import ligaajedrez.modelo.Usuario;
 import ligaajedrez.modelo.enums.CategoriaEnum;
@@ -314,9 +315,9 @@ public class ModificarJugador extends javax.swing.JFrame {
 
         if (elo != null && age != null) {
             if (player == null)
-                ((Administrador)usuario).crearJugador(name, elo, age, responsableName, responsableNumber);
+                Fachada.crearJugador(name, elo, age, responsableName, responsableNumber);
             else
-                usuario.modificarJugador(name, elo, age, responsableName, responsableNumber, player);
+                Fachada.modificarJugador(name, elo, age, responsableName, responsableNumber, player);
         }
 
         previousView.setVisible(true);

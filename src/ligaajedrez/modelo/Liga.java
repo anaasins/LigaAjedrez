@@ -33,6 +33,7 @@ public class Liga {
     private ArrayList<Usuario> newUsuarios;
     private ArrayList<GerenteModel> gerentes;
     private DB db;
+    private Usuario userAct;
     
     public Liga()
     {
@@ -60,19 +61,24 @@ public class Liga {
         gerentes = (ArrayList<GerenteModel>) db.getAll(GerenteModel.class);
     }
     
-     public void crearJugador(String name, int elo, int age, Object club, String responsableName, String responsablePhoneNumber) {
-        JugadorModel player = new JugadorModel(name, elo, age, (Club) club, responsableName, responsablePhoneNumber);
+    public void setUsuario(Usuario user)
+    {
+        userAct = user;
+    }
+    
+     public void crearJugador(String name, int elo, int age, String responsableName, String responsablePhoneNumber) {
+        JugadorModel player = new JugadorModel(name, elo, age,(Club) userAct.getClubAct(), responsableName, responsablePhoneNumber);
         jugadores.add(player);
         Usuario u = new Usuario(player.getName().toLowerCase(), player.getName().toLowerCase(), player);
         newUsuarios.add(u);
     }
      
-    public void modificarJugador(String name, int elo, int age, Object club, String responsableName, String responsablePhoneNumber, Object playerModel) {
+    public void modificarJugador(String name, int elo, int age, String responsableName, String responsablePhoneNumber, Object playerModel) {
         JugadorModel player = jugadores.get(jugadores.indexOf((JugadorModel) playerModel));
         player.setName(name);
         player.setElo(elo);
         player.setAge(age);
-        player.setClub((Club) club);
+        player.setClub((Club) userAct.getClubAct());
         player.setResponsableName(responsableName);
         player.setReponsablePhoneNumber(responsablePhoneNumber);
     }
@@ -166,7 +172,8 @@ public class Liga {
         return f;
     }
     
-    public ArrayList consultarPartidasJugador(JugadorModel jm) {
+    public ArrayList consultarPartidasJugador() {
+        JugadorModel jm = userAct.getPlayer();
         ArrayList<Object> p = new ArrayList<Object>();
 
         for (Partida partida : partidas) {
@@ -176,7 +183,8 @@ public class Liga {
         return p;
     }
 
-    ArrayList torneosDisponibles(FederacionModel miFederacion) {
+    ArrayList torneosDisponibles() {
+        FederacionModel miFederacion = userAct.getPlayer().getClub().getFederation();
        ArrayList<Torneo> disponibles;
        disponibles = new ArrayList<Torneo>();
        
@@ -194,7 +202,8 @@ public class Liga {
         clubs.add(club);
     }
 
-    boolean reservarSede(Date date, int hora, Sede s, Usuario user) {
+    boolean reservarSede(Date date, int hora, Usuario user) {
+        Sede s = userAct.getPlayer().getClub().getSede();
         Reserva res = buscarReserva(date, hora, s);
         return reservarSede(res, date, hora, user, s);
     }
@@ -231,8 +240,9 @@ public class Liga {
     void removeJugadorMoroso(JugadorModel aThis) {
         jugadoresMorosos.remove(aThis);
     }  
-    void pagarMulta(JugadorModel j)
+    void pagarMulta()
     {
+        JugadorModel j = userAct.getPlayer();
         j.setMoroso(false);
         j.setMulta(0);
         jugadoresMorosos.remove(j);
@@ -359,7 +369,9 @@ public class Liga {
         return gerentes.remove(gerente);
     }
 
-    void registrarEnTorneo(Torneo torneoAct, JugadorModel player) {
+    void registrarEnTorneo() {
+        Torneo torneoAct = userAct.getTorneoAct();
+        JugadorModel player = userAct.getPlayer();
         Torneo torneo = torneos.get(torneos.indexOf(torneoAct));
         torneo.getParticipantes().add(player);
     }

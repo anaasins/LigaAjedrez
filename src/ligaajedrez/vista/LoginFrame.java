@@ -7,6 +7,7 @@ package ligaajedrez.vista;
 
 import javax.swing.JOptionPane;
 import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.Jugador;
 import ligaajedrez.modelo.Liga;
 import ligaajedrez.modelo.Usuario;
@@ -17,12 +18,14 @@ import ligaajedrez.modelo.Usuario;
  */
 public class LoginFrame extends javax.swing.JFrame {
     Liga liga;
+    Fachada fachada;
     /**
      * Creates new form LoginFrame
      */
     public LoginFrame() {
         initComponents();
         liga = new Liga();
+        fachada = new Fachada(liga);
     }
 
     /**
@@ -99,11 +102,13 @@ public class LoginFrame extends javax.swing.JFrame {
         Usuario usuario = liga.login(userField.getText().toLowerCase(),new String(passField.getPassword()));
         if (usuario != null && !usuario.isAdmin()) {
             usuario.setLiga(liga);
+            liga.setUsuario(usuario);
             MenuJugador menuJugador = new MenuJugador(usuario);
             this.setVisible(false);
             menuJugador.setVisible(true);
         } else if (usuario != null && usuario.isAdmin()) {
             usuario.setLiga(liga);
+            liga.setUsuario(usuario);
             MenuAdministrador menuAdministrador = new MenuAdministrador(usuario);
             this.setVisible(false);
             menuAdministrador.setVisible(true);

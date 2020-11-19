@@ -10,6 +10,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -47,7 +48,7 @@ public class BorrarEntrenador extends javax.swing.JFrame {
     
     private void mostrarEntrenadores(){
         ArrayList entrenadoresAux;
-       entrenadoresAux = ((Administrador)usuario).getEntrenadores(); 
+       entrenadoresAux = Fachada.getEntrenadores(); 
        DefaultListModel modeloLista = new DefaultListModel();
        jList1.setModel(modeloLista); 
        
@@ -118,7 +119,7 @@ public class BorrarEntrenador extends javax.swing.JFrame {
         // TODO add your handling code here:
         Object entrenador = jList1.getSelectedValue();
         boolean ok;
-        ok = ((Administrador)usuario).eliminarEntrenador(entrenador);
+        ok = Fachada.eliminarEntrenador(entrenador);
         
         if(!ok)
             JOptionPane.showMessageDialog(this, "No se ha podido eliminar el entrenador seleccionado.");

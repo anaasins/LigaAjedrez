@@ -8,6 +8,7 @@ package ligaajedrez.vista;
 import javax.swing.JFrame;
 import ligaajedrez.modelo.Administrador;
 import ligaajedrez.modelo.EntrenadorModel;
+import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -156,9 +157,9 @@ public class CrearModificarEntrenadors extends javax.swing.JFrame {
     private void checkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBtnActionPerformed
         // TODO add your handling code here:
         if (entrenador == null)
-        ((Administrador)usuario).nuevoEntrenador(nameField.getText(), surnameText.getText(), birthText.getText(), phonenumberText.getText());
+            Fachada.nuevoEntrenador(nameField.getText(), surnameText.getText(), birthText.getText(), phonenumberText.getText());
         else 
-            ((Administrador)usuario).modificarEntrenador(nameField.getText(), surnameText.getText(), birthText.getText(), phonenumberText.getText(),entrenador);
+            Fachada.modificarEntrenador(nameField.getText(), surnameText.getText(), birthText.getText(), phonenumberText.getText(),entrenador);
     }//GEN-LAST:event_checkBtnActionPerformed
 
     private void asignClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignClubActionPerformed

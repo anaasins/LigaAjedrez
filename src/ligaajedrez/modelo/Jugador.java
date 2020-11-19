@@ -21,10 +21,6 @@ public class Jugador extends Usuario {
         super(userName, userPass, player, liga);
     }
     
-    public void pagarMulta()
-    {
-        getLiga().pagarMulta(getPlayer());
-    }
     
     public String getMulta()
     {

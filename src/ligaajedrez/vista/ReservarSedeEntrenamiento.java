@@ -7,6 +7,7 @@ package ligaajedrez.vista;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.Liga;
 import ligaajedrez.modelo.Usuario;
 
@@ -114,7 +115,7 @@ public class ReservarSedeEntrenamiento extends javax.swing.JFrame {
 
     private void reservarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservarButtonActionPerformed
         // TODO add your handling code here:
-        if(!usuario.reservarSede(dia.getDate(), (Integer) hora.getValue(), usuario))
+        if(!Fachada.reservarSede(dia.getDate(), (Integer) hora.getValue(), usuario))
         {
             //traure error per pantalla
             JOptionPane.showMessageDialog(this, "Fecha/Hora elegida no disponible. Vuelva a intentarlo.");

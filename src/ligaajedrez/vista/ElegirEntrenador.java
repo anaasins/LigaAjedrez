@@ -10,6 +10,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import ligaajedrez.modelo.EntrenadorModel;
+import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -28,7 +29,7 @@ public class ElegirEntrenador extends javax.swing.JFrame {
         this.previousView = previousView;
         modeloLista= new DefaultListModel();
         ListaEntrenadores.setModel(modeloLista);
-        ArrayList LEntrenadores = usuario.consultarEntrenadores();
+        ArrayList LEntrenadores = Fachada.consultarEntrenadores();
         
        if(!LEntrenadores.isEmpty())
         {

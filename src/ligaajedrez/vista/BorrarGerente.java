@@ -10,6 +10,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -98,7 +99,7 @@ public class BorrarGerente extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean ok;
         Object gerente = jList1.getSelectedValue();
-        ok=((Administrador)usuario).eliminarGerente(gerente);
+        ok=Fachada.eliminarGerente(gerente);
         if(!ok)
             JOptionPane.showMessageDialog(this, "No se ha podido eliminar el gerente seleccionado.");
         
@@ -115,7 +116,7 @@ public class BorrarGerente extends javax.swing.JFrame {
 
     private void mostrarGerentes() {
          ArrayList gerentesAux;
-       gerentesAux = ((Administrador)usuario).getGerentes(); 
+       gerentesAux = Fachada.getGerentes(); 
        DefaultListModel modeloLista = new DefaultListModel();
        jList1.setModel(modeloLista); 
        
