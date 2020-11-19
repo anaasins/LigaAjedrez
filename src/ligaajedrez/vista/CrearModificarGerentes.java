@@ -6,7 +6,7 @@
 package ligaajedrez.vista;
 
 import javax.swing.JFrame;
-import ligaajedrez.modelo.Administrador;
+import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.GerenteModel;
 import ligaajedrez.modelo.Usuario;
 
@@ -175,9 +175,9 @@ public class CrearModificarGerentes extends javax.swing.JFrame {
     private void checkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBtnActionPerformed
         // TODO add your handling code here:
         if(gerente == null)
-        ((Administrador)usuario).nuevoGerente(nameField.getText(), surnameText.getText(), birthText.getText(), phonenumberText.getText(), nominaText.getText(), irpfText.getText());
+            Fachada.nuevoGerente(nameField.getText(), surnameText.getText(), birthText.getText(), phonenumberText.getText(), nominaText.getText(), irpfText.getText());
         else
-            ((Administrador)usuario).modificarGerente(nameField.getText(), surnameText.getText(), birthText.getText(), phonenumberText.getText(), nominaText.getText(), irpfText.getText(), gerente);
+            Fachada.modificarGerente(nameField.getText(), surnameText.getText(), birthText.getText(), phonenumberText.getText(), nominaText.getText(), irpfText.getText(), gerente);
         previousView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_checkBtnActionPerformed

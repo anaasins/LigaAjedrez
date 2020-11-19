@@ -9,6 +9,7 @@ import java.util.*;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -121,7 +122,7 @@ public class ApuntarmeTorneo extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonAtrasActionPerformed
 
     private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
-        usuario.registrarEnTorneo();
+        Fachada.registrarEnTorneo();
         previousView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_aceptarButtonActionPerformed
@@ -129,7 +130,7 @@ public class ApuntarmeTorneo extends javax.swing.JFrame {
     private void rellenarLista() {
         modeloLista = new DefaultListModel();
         torneosLista.setModel(modeloLista);
-        ArrayList torneosDisponibles = usuario.getTorneosDisponibles();
+        ArrayList torneosDisponibles = Fachada.getTorneosDisponibles();
 
         if (!torneosDisponibles.isEmpty()) {
             for (Object item : torneosDisponibles) {

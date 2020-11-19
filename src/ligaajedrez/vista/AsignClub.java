@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import ligaajedrez.modelo.Administrador;
 import ligaajedrez.modelo.EntrenadorModel;
+import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.GerenteModel;
 import ligaajedrez.modelo.Usuario;
 
@@ -126,7 +126,7 @@ public class AsignClub extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mostrarClubs() {
-        ArrayList clubs = usuario.consultarClubs();
+        ArrayList clubs = Fachada.consultarClubs();
         DefaultListModel modeloLista = new DefaultListModel();
         clubsList.setModel(modeloLista);
 
@@ -147,11 +147,11 @@ public class AsignClub extends javax.swing.JFrame {
 
     private void addClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClubActionPerformed
         if (entrenador != null) {
-            ((Administrador) usuario).asignarClubEntrenador(entrenador, clubsList.getSelectedValue());
+            Fachada.asignarClubEntrenador(entrenador, clubsList.getSelectedValue());
             menuView.setVisible(true);
             this.setVisible(false);
         } else if (gerente != null) {
-            ((Administrador) usuario).asignarClubGerente(gerente, clubsList.getSelectedValue());
+            Fachada.asignarClubGerente(gerente, clubsList.getSelectedValue());
             menuView.setVisible(true);
             this.setVisible(false);
         }

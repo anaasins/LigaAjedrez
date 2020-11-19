@@ -5,9 +5,8 @@
  */
 package ligaajedrez.modelo;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -122,36 +121,6 @@ public class Usuario {
         return clubAct;
     }
     
-    public ArrayList consultarClubs() {
-        return liga.consultarClubs();
-    }
-    
-    public ArrayList consultarTorneos() {
-        return liga.consultarTorneos();
-    }
-
-    public ArrayList consultarJugadores() {
-        return liga.consultarJugadores();
-    }
-
-    public ArrayList consultarSedes() {
-        return liga.consultarSedes();
-    }
-
-    public ArrayList consultarFederaciones() {
-        return liga.consultarFederaciones();
-    }
-    public ArrayList consultarEntrenadores(){
-        return liga.consultaEntrenadores();
-    }
-    public ArrayList getTorneosDisponibles() {
-        return liga.torneosDisponibles(player.getClub().getFederation());
-    }
-
-    public boolean reservarSede(Date date, int hora, Usuario user) {
-        return liga.reservarSede(date, hora, this.player.getClub().getSede(), user);
-    }
-    
     public void saveData() {
         liga.saveData();
     }
@@ -164,18 +133,7 @@ public class Usuario {
         return isAdmin;
     }
 
-    public ArrayList consultarPartidasJugador() {
-        return liga.consultarPartidasJugador(player);
-    }
-
-    public ArrayList consultarJugadoresPartida() {
-        ArrayList jsm = new ArrayList();
-        
-        jsm.add(partidaAct.getJugador1());
-        jsm.add(partidaAct.getJugador2());
-        
-        return jsm;
-    }
+    
 
     public void setPartidaAct(Object partida) {
         partidaAct = (Partida) partida;
@@ -185,26 +143,7 @@ public class Usuario {
         liga.setGanadorPartida(partidaAct, ganador);
     }
     
-    public void modificarJugador(String name, int elo, int age, String responsableName, String responsablePhoneNumber, Object playerModel) {
-        getLiga().modificarJugador(name, elo, age, getClubAct(), responsableName, responsablePhoneNumber, playerModel);
-    }
     
-    public void modificarEntrenador(String name, String surname, String  birth, String phone, Object entrendorModel)
-    {
-        getLiga().modificarEntrenador(name, surname, birth, phone,entrendorModel);
-    }
-    public ArrayList consultarMisClubs() {
-        ArrayList clubs = new ArrayList();
-        for (Club club :this.player.getClubs())
-        {
-            clubs.add(club);
-        }
-      return clubs;
-    }
-    
-    public void registrarEnTorneo() {
-        getLiga().registrarEnTorneo(torneoAct, getPlayer());
-    }
 
     public Torneo getTorneoAct() {
         return torneoAct;
@@ -212,5 +151,23 @@ public class Usuario {
 
     public void setTorneoAct(Torneo torneoAct) {
         this.torneoAct = torneoAct;
+    }
+    
+     public ArrayList consultarMisClubs() {
+        ArrayList clubs = new ArrayList();
+        for (Club club :this.player.getClubs())
+        {
+            clubs.add(club);
+        }
+      return clubs;
+    }
+     
+     public ArrayList consultarJugadoresPartida() {
+        ArrayList jsm = new ArrayList();
+        
+        jsm.add(partidaAct.getJugador1());
+        jsm.add(partidaAct.getJugador2());
+        
+        return jsm;
     }
 }
