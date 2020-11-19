@@ -18,7 +18,7 @@ public class Administrador extends Usuario {
         super(usuario);
     }
     
-    public Administrador(String userName, String userPass, JugadorModel player, LigaFachada liga) {
+    public Administrador(String userName, String userPass, JugadorModel player, Liga liga) {
         super(userName, userPass, player, liga);
     }
 

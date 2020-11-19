@@ -36,7 +36,7 @@ public class Usuario {
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean isAdmin;
     @Transient
-    private LigaFachada liga;
+    private Liga liga;
     @Transient
     private Partida partidaAct;
     @Transient
@@ -67,7 +67,7 @@ public class Usuario {
         this.isAdmin = isAdmin;
     }
     
-    public Usuario(String userName, String userPass, JugadorModel player, LigaFachada liga) {
+    public Usuario(String userName, String userPass, JugadorModel player, Liga liga) {
         this.userName = userName;
         this.userPass = userPass;
         this.player = player;
@@ -106,11 +106,11 @@ public class Usuario {
         this.player = player;
     }
 
-    public LigaFachada getLiga() {
+    public Liga getLiga() {
         return liga;
     }
 
-    public void setLiga(LigaFachada liga) {
+    public void setLiga(Liga liga) {
         this.liga = liga;
     }
     
