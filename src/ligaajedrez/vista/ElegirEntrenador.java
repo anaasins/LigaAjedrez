@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import ligaajedrez.modelo.EntrenadorModel;
 import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.Usuario;
 

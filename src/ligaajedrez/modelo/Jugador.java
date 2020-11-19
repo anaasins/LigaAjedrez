@@ -5,7 +5,7 @@
  */
 package ligaajedrez.modelo;
 
-import java.util.ArrayList;
+
 
 /**
  *

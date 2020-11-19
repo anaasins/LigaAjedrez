@@ -8,14 +8,11 @@ package ligaajedrez.vista;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import ligaajedrez.modelo.Administrador;
-import ligaajedrez.modelo.Club;
 import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.Usuario;
 

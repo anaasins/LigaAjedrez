@@ -8,7 +8,6 @@ package ligaajedrez.vista;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import ligaajedrez.modelo.Fachada;
-import ligaajedrez.modelo.Liga;
 import ligaajedrez.modelo.Usuario;
 
 /**

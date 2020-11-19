@@ -6,9 +6,7 @@
 package ligaajedrez.vista;
 
 import java.util.ArrayList;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import ligaajedrez.modelo.Usuario;
 

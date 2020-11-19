@@ -7,7 +7,6 @@ package ligaajedrez.vista;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
-import ligaajedrez.modelo.Administrador;
 import ligaajedrez.modelo.Fachada;
 import ligaajedrez.modelo.Usuario;
 
