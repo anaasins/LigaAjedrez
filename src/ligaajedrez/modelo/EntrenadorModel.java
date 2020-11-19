@@ -28,10 +28,11 @@ public class EntrenadorModel{
     private String name;
     private String surname;
     private String phone;
+    private String birth;
     @OneToMany
     @JoinColumn(name = "clubId", referencedColumnName = "id")
     private List<Club> clubs;
-    private String birth;
+   
 
     public EntrenadorModel() {
     }

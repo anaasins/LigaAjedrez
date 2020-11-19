@@ -28,7 +28,7 @@ public class SedeDao {
     private static final String CTABLE = 
             "create table sede("
             + "id NUMBER NOT NULL,"
-            + "PRIMARY KEY(id)"
+            + "PRIMARY KEY('id')"
             + ");";
     
     public List<Sede> selectAll() 
