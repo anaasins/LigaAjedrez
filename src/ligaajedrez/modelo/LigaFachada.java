@@ -20,7 +20,7 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author asins
  */
-public class Liga {
+public class LigaFachada {
     private ArrayList<JugadorModel> jugadores;
     private ArrayList<JugadorModel> jugadoresMorosos;
     private ArrayList<EntrenadorModel> entrenadores;
@@ -34,7 +34,7 @@ public class Liga {
     private ArrayList<GerenteModel> gerentes;
     private DB db;
     
-    public Liga()
+    public LigaFachada()
     {
         // Get db connection
         db = DB.getDB();

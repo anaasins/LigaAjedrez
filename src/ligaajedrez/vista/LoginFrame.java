@@ -8,7 +8,7 @@ package ligaajedrez.vista;
 import javax.swing.JOptionPane;
 import ligaajedrez.modelo.Administrador;
 import ligaajedrez.modelo.Jugador;
-import ligaajedrez.modelo.Liga;
+import ligaajedrez.modelo.LigaFachada;
 import ligaajedrez.modelo.Usuario;
 
 /**
@@ -16,13 +16,13 @@ import ligaajedrez.modelo.Usuario;
  * @author jbeltran
  */
 public class LoginFrame extends javax.swing.JFrame {
-    Liga liga;
+    LigaFachada liga;
     /**
      * Creates new form LoginFrame
      */
     public LoginFrame() {
         initComponents();
-        liga = new Liga();
+        liga = new LigaFachada();
     }
 
     /**

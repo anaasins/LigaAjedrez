@@ -17,7 +17,7 @@ public class Jugador extends Usuario {
         super(usuario);
     }
     
-    public Jugador(String userName, String userPass, JugadorModel player, Liga liga) {
+    public Jugador(String userName, String userPass, JugadorModel player, LigaFachada liga) {
         super(userName, userPass, player, liga);
     }
     
