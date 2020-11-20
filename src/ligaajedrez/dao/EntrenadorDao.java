@@ -29,8 +29,8 @@ public class EntrenadorDao {
     
      private static final String selectOne= "SELECT * FROM entrenador WHERE id = ?";
      private static final String select = "SELECT * FROM entrenador";
-     private static final String insert = "INSERT INTO entrenador VALUES(?, ?, ?, ?, ?, ?)";
-     private static final String update = "UPDATE entrenador SET id=?, name=?, surname=?, phone=?, birth=?, clubId=? WHERE id=?";
+     private static final String insert = "INSERT INTO entrenador VALUES(?, ?, ?, ?, ?)";
+     private static final String update = "UPDATE entrenador SET id=?, name=?, surname=?, phone=?, birth=? WHERE id=?";
      private static final String delete = "DELETE FROM entrenador WHERE id=?";
      private static final String create = "CREATE TABLE entrenador("
              + "id NUMBER NOT NULL ENABLE,"
@@ -38,7 +38,6 @@ public class EntrenadorDao {
              + "surname VARCHAR(255),"
              + "phone VARCHAR(255),"
              + "birth VARCHAR(255),"
-             + "clubId NUMBER,"
              + "PRIMARY KEY(id)"
              + ");";
      
@@ -64,7 +63,6 @@ public class EntrenadorDao {
                     rs.getString("phone")
             );
             entrenador.setId(rs.getInt("id"));
-            //ME FALTA SET CLUB PERQUE NO SE COM ES FA.
             entrenadores.add(entrenador);
         }
         return entrenadores;
@@ -91,7 +89,6 @@ public class EntrenadorDao {
                     rs.getString("phone")
             );
             entrenador.setId(rs.getInt("id"));
-            //ME FALTA SET CLUB PERQUE NO SE COM ES FA.
             
         }
         return entrenador;
