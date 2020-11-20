@@ -55,6 +55,14 @@ public class Partida {
  
     }
 
+    public Sede getSede() {
+        return sede;
+    }
+
+    public Torneo getTorneo() {
+        return torneo;
+    }
+
     public int getId() {
         return id;
     }
