@@ -29,10 +29,10 @@ public class EntrenadorDao {
     
      private static final String selectOne= "SELECT * FROM entrenador WHERE id = ?";
      private static final String select = "SELECT * FROM entrenador";
-     private static final String insert = "INSERT INTO entrenador VALUES(?, ?, ?, ?, ?)";
-     private static final String update = "UPDATE entrenador SET id=?, name=?, surname=?, phone=?, birth=? WHERE id=?";
-     private static final String delete = "DELETE FROM entrenador WHERE id=?";
-     private static final String create = "CREATE TABLE entrenador("
+     private static final String insertEn = "INSERT INTO entrenador VALUES(?, ?, ?, ?, ?)";
+     private static final String updateEn = "UPDATE entrenador SET id=?, name=?, surname=?, phone=?, birth=? WHERE id=?";
+     private static final String deleteEn = "DELETE FROM entrenador WHERE id=?";
+     private static final String createEn = "CREATE TABLE entrenador("
              + "id NUMBER NOT NULL ENABLE,"
              + "name VARCHAR(255) NOT NULL,"
              + "surname VARCHAR(255),"
@@ -93,5 +93,73 @@ public class EntrenadorDao {
         }
         return entrenador;
      }
+     
+    public void insert(EntrenadorModel entrenador) throws 
+            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+        Class.forName(DRIVER).newInstance();
+        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+           
+        oracleConn.setAutoCommit(false);
+        PreparedStatement insert = oracleConn.prepareStatement(insertEn);
+        insert.setInt(1, entrenador.getId());
+        insert.setString(2, entrenador.getName());
+        insert.setString(3, entrenador.getSurname());
+        insert.setString(4, entrenador.getPhone());
+        insert.setString(8, entrenador.getBirth());
+        insert.executeUpdate();
         
+        oracleConn.commit();
+        oracleConn.setAutoCommit(true);
+        oracleConn.close();
+    }
+    
+    public void update(EntrenadorModel entrenador) throws 
+            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+        Class.forName(DRIVER).newInstance();
+        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+           
+        oracleConn.setAutoCommit(false);
+        PreparedStatement update = oracleConn.prepareStatement(updateEn);
+        update.setInt(1, entrenador.getId());
+        update.setString(2, entrenador.getName());
+        update.setString(3, entrenador.getSurname());
+        update.setString(4, entrenador.getPhone());
+        update.setString(8, entrenador.getBirth());
+        update.setInt(9, entrenador.getId());
+        update.executeUpdate();
+        
+        oracleConn.commit();
+        oracleConn.setAutoCommit(true);
+        oracleConn.close();
+    }
+       
+    public void delete(int id) throws 
+            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+        Class.forName(DRIVER).newInstance();
+        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+           
+        oracleConn.setAutoCommit(false);
+        PreparedStatement delete = oracleConn.prepareStatement(deleteEn);
+        delete.setInt(1, id);
+        delete.executeUpdate();
+        
+        oracleConn.commit();
+        oracleConn.setAutoCommit(true);
+        oracleConn.close();
+    }
+    
+    public void create() throws 
+            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+        Class.forName(DRIVER).newInstance();
+        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+           
+        oracleConn.setAutoCommit(false);
+        // Sentencia de insert
+        PreparedStatement create = oracleConn.prepareStatement(createEn);
+        create.executeUpdate();
+        
+        oracleConn.commit();
+        oracleConn.setAutoCommit(true);
+        oracleConn.close();
+    }
 }
