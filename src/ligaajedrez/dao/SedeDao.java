@@ -108,6 +108,7 @@ public class SedeDao {
         oracleConn.setAutoCommit(false);
         PreparedStatement create = oracleConn.prepareStatement(ASEDE);
         create.setInt(1, id);
+        create.setInt(2, id);
         create.executeUpdate();
         
          oracleConn.commit();
