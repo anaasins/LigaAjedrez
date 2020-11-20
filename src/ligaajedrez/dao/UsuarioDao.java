@@ -35,7 +35,7 @@ public class UsuarioDao {
             "(?, ?, ?, ?, ?)";
     private static final String UPDATE =
             "UPDATE usuario " +
-            " SET isAdmin = ?, username = ?, userpass = ?, playerid = ?," +
+            " SET isAdmin = ?, username = ?, userpass = ?, playerid = ?" +
             " WHERE id = ?";
     private static final String DELETE =
             "DELETE FROM usuario " +
