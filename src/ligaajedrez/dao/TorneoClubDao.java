@@ -39,7 +39,7 @@ public class TorneoClubDao {
             "(?, ?)";
     private static final String DELETE =
             "DELETE FROM gerentemodel " +
-            " WHERE id = ?";
+            " WHERE torneoId = ? AND clubId = ?";
     private static final String CREATE = 
             "CREATE TABLE 'TORNEOCLUB' " +
             "('TORNEOID' NUMBER(10,0) NOT NULL ENABLE, " + 
