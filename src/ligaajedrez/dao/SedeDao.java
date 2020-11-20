@@ -28,7 +28,7 @@ public class SedeDao {
     private static final String CTABLE = 
             "create table sede("
             + "id NUMBER NOT NULL,"
-            + "PRIMARY KEY(id)"
+            + "PRIMARY KEY('id')"
             + ");";
     
     public List<Sede> selectAll() 
@@ -108,6 +108,7 @@ public class SedeDao {
         oracleConn.setAutoCommit(false);
         PreparedStatement create = oracleConn.prepareStatement(ASEDE);
         create.setInt(1, id);
+        create.setInt(2, id);
         create.executeUpdate();
         
          oracleConn.commit();
