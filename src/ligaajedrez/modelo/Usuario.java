@@ -7,40 +7,20 @@ package ligaajedrez.modelo;
 
 
 import java.util.ArrayList;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Transient;
-import org.hibernate.annotations.Type;
 
 /**
  *
  * @author jbeltran
  */
-@Entity
 public class Usuario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="usuarioSeq")
-    @SequenceGenerator(name="usuarioSeq",sequenceName="usuarioSeq", allocationSize=1, initialValue = 1)
     private int id;
     private String userName;
     private String userPass;
-    @ManyToOne
-    @JoinColumn(name = "playerId", referencedColumnName = "id")
     private JugadorModel player;
-    @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean isAdmin;
-    @Transient
     private Liga liga;
-    @Transient
     private Partida partidaAct;
-    @Transient
     private Club clubAct;
-    @Transient
     private Torneo torneoAct;
 
     public Usuario() {}

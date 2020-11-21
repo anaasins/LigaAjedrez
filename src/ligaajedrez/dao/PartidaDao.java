@@ -99,17 +99,20 @@ public class PartidaDao {
         PreparedStatement read = oracleConn.prepareStatement(SELECTONE);
         ResultSet rs = read.executeQuery();
         Sede s = new Sede();
+        SedeDao sd = new SedeDao();
         JugadorModel j1 = new JugadorModel();
         JugadorModel j2 = new JugadorModel();
         JugadorModel ganador = new JugadorModel();
+        JugadorDao jd = new JugadorDao();
         Torneo torneo = new Torneo();
+        TorneoDao td = new TorneoDao();
         if(rs.next())
         {
-            j1 = JugadorDao.selectOne(rs.getInt("jugador1Id"));
-            j2 = JugadorDao.selectOne(rs.getInt("jugador2Id"));
-            ganador = JugadorDao.selectOne(rs.getInt("ganadorId"));
-            s=SedeDao.selectOne(rs.getInt("sedeId"));
-            torneo = TorneoDao.selectOne(rs.getInt("torneoId"));
+            j1 = jd.selectOne(rs.getInt("jugador1Id"));
+            j2 = jd.selectOne(rs.getInt("jugador2Id"));
+            ganador = jd.selectOne(rs.getInt("ganadorId"));
+            s= sd.selectOne(rs.getInt("sedeId"));
+            torneo = td.selectOne(rs.getInt("torneoId"));
             partida = new Partida();
             partida.setId(rs.getInt("id"));
             partida.setJugador1(j1);
