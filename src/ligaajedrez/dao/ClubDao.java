@@ -30,30 +30,24 @@ public class ClubDao {
     public static final String USERNAME = "liga";
     public static final String PASSWORD = "ISIILiga2020";
     
-    FederacionDao federaciondao = new FederacionDao();
     /*
         Consultes
     */
      private static final String selectUn= 
-            "SELECT idClub, name, federacionid, sedeId,idtorneo " +
+            "SELECT idClub, name, federacionid, sedeId,clubId" +
             "       " +
             "  FROM club " +
             " WHERE idClub = ?";
      private static final String select=  
-            " SELECT c.idClub AS Id, c.name AS Nombre, " +
-            "       f.federacionId AS IdFederacion, s.sedeId AS sedeId, " + 
-            "       idtorneo AS idTorneo " +
-            " FROM club c, federacion f, sede s " +
-            " WHERE c.federacionid = f.federacionid AND c.sedeId = s.sedeId " +
-            " ORDER BY c.idClub";
+            "SELECT * FROM JugadorModel";
      
      private static final String update= 
              "Update Club "+
-             "Set idClub=?, name=?,federacionid=?, sedeId=?, idtorneo=? "+
+             "Set idClub=?, name=?,federacionid=?, sedeId=?,clubId=?"+
              "where id=?";
     private static final String insert =
             "INSERT INTO club (idClub, name, federacionid, " +
-            "                         sedeId) " +
+            "                         sedeId,clubId) " +
             "VALUES (?,?,?,?,?)";
     private static final String create = 
             "CREATE TABLE 'CLUB'( 'idClub'  NUMBER(10,0) NOT NULL ENABLE,"+
@@ -61,7 +55,11 @@ public class ClubDao {
             "FEDERATIONID NUMBER(10,0),"+
             "SEDEID NUMBER(10,0),"+ 
             "CLUBID NUMBER(10,0), "+
-            "PRIMARY KEY ('idClub')";
+            "PRIMARY KEY ('idClub')"+
+            "FK_FederacioId FOREIGN KEY ('FEDERATIONID')"+
+            "REFERENCES FEDERACION ('ID')"+
+            "FK_SedeId FOREIGN KEY ('SEDEID')"+
+            "REFERENCES SEDE ('ID')";
         private static final String delete =
             "DELETE FROM club  " +
             " WHERE idClub = ?";;
@@ -84,6 +82,7 @@ public class ClubDao {
         update.setString(2, club.getName());
         update.setInt(3, club.getFederation().getId());
         update.setInt(4, club.getSede().getId());
+        update.setInt(5, club.getId());
         update.executeUpdate();
         
         oracleConn.commit();
@@ -106,6 +105,7 @@ public class ClubDao {
         insert.setString(2, club.getName());
         insert.setInt(3, club.getFederation().getId());
         insert.setInt(4, club.getSede().getId());
+        insert.setInt(5,club.getId());
         insert.executeUpdate();
         
         oracleConn.commit();
@@ -155,12 +155,12 @@ public class ClubDao {
             //Guardar els tornejos en la llista
             for(int i=0; i<=idTorneos.length;i++)
             {
-                torneos.add(torneoDao.leerTorneo(idTorneos[i]));
+                torneos.add(TorneoDao.leerTorneo(idTorneos[i]));
             }            
             club.setId(rs.getInt("idClub"));
             club.setName(rs.getString("name"));
-            club.setFederation(federacionDao.leerFederacion(rs.getInt("idFederacion")));
-            club.setSede(sedeDao.leerSede(rs.getInt("idSede")));
+            club.setFederation(new FederacionDao().selectOne(rs.getInt("idFederacion")));
+            club.setSede(new SedeDao().selectOne(rs.getInt("idSede")));
             club.setTorneos(torneos);       
         }
         return club;
@@ -187,20 +187,19 @@ public class ClubDao {
             int [] idTorneos={};            
             
             //Buscar els id dels tornejos en els que participa el club
-            idTorneos = TorneoClubDao.leerIntermedios("idClub");
+            idTorneos = TorneoClubDao.select("idClub");
             
             //Guardar els tornejos en la llista
             for(int i=0; i<=idTorneos.length;i++)
             {
-                torneos.add(torneoDao.leerTorneo(idTorneos[i]));
+                torneos.add(TorneoDao.selectOne(idTorneos[i]));
             }
                      
-            Club  club = new Club(
-            rs.getInt("idClub"),
-            rs.getString("name"),
-            rs.setFederation(federacionDao.leerFederacion(rs.getInt("idFederacion"))),
-            rs.setSede(sedeDao.leerSede(rs.getInt("idFederacion")))
-            );
+            Club  club = new Club();
+            club.setId(rs.getInt("idClub"));
+            club.setName(rs.getString("name"));
+            club.setFederation(new FederacionDao().selectOne(rs.getInt("idFederacion")));
+            club.setSede(new SedeDao().selectOne(rs.getInt("idSede")));
             club.setTorneos(torneos);
             clubs.add(club);
         }

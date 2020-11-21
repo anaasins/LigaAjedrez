@@ -19,20 +19,11 @@ import javax.persistence.SequenceGenerator;
  *
  * @author jbeltran
  */
-@Entity
 public class Club {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "clubSeq")
-    @SequenceGenerator(name="clubSeq",sequenceName="clubSeq", allocationSize=1, initialValue = 1)
     private int id;
     private String name;
-    @ManyToOne
-    @JoinColumn(name = "federationId", referencedColumnName = "id")
     private FederacionModel federation;
-    @ManyToOne
-    @JoinColumn(name = "sedeId", referencedColumnName = "id")
     private Sede sede;
-    @ManyToMany(mappedBy = "clubs")
     private List<Torneo> torneos;
     /*private Entrenador trainer;
     private Gerente manager;*/

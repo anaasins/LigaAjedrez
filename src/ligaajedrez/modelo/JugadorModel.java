@@ -23,25 +23,17 @@ import org.hibernate.annotations.Type;
  *
  * @author jbeltran
  */
-@Entity
 public class JugadorModel{
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jugadorSeq")
-    @SequenceGenerator(name="jugadorSeq",sequenceName="jugadorSeq", allocationSize=1, initialValue = 1)
     private int id;
     private String name;
     private int elo;
-    @ManyToOne
-    @JoinColumn(name = "clubId", referencedColumnName = "id")
     private Club club;
     private int age;
     private CategoriaEnum category;
     private String responsableName;
     private String reponsablePhoneNumber;
-    @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean moroso;
     private int multa;
-    @ManyToMany()
     private List<Club> clubs;
 
     public JugadorModel() {
