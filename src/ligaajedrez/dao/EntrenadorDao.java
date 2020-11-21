@@ -27,12 +27,12 @@ public class EntrenadorDao {
     public static final String USERNAME = "liga";
     public static final String PASSWORD = "ISIILiga2020";
     
-     private static final String selectOne= "SELECT * FROM entrenador WHERE id = ?";
-     private static final String select = "SELECT * FROM entrenador";
-     private static final String insertEn = "INSERT INTO entrenador VALUES(?, ?, ?, ?, ?)";
-     private static final String updateEn = "UPDATE entrenador SET id=?, name=?, surname=?, phone=?, birth=? WHERE id=?";
-     private static final String deleteEn = "DELETE FROM entrenador WHERE id=?";
-     private static final String createEn = "CREATE TABLE entrenador("
+     private static final String selectOne= "SELECT * FROM entrenadorModel WHERE id = ?";
+     private static final String select = "SELECT * FROM entrenadorModel";
+     private static final String insertEn = "INSERT INTO entrenadorModel VALUES(?, ?, ?, ?, ?)";
+     private static final String updateEn = "UPDATE entrenadorModel SET id=?, name=?, surname=?, phone=?, birth=? WHERE id=?";
+     private static final String deleteEn = "DELETE FROM entrenadorModel WHERE id=?";
+     private static final String createEn = "CREATE TABLE entrenadorModel("
              + "id NUMBER NOT NULL ENABLE,"
              + "name VARCHAR(255) NOT NULL,"
              + "surname VARCHAR(255),"

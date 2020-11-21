@@ -80,7 +80,7 @@ public class TorneoClubDao {
         Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         
         PreparedStatement read = oracleConn.prepareStatement(SELECTONEBYTORNEO);
-        read.setInt(0, id);
+        read.setInt(1, id);
         ResultSet rs = read.executeQuery();
         
         while (rs.next()) {
@@ -98,7 +98,7 @@ public class TorneoClubDao {
         Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         
         PreparedStatement read = oracleConn.prepareStatement(SELECTONEBYCLUB);
-        read.setInt(0, id);
+        read.setInt(1, id);
         ResultSet rs = read.executeQuery();
         
         while (rs.next()) {

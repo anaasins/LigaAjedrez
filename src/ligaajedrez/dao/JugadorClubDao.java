@@ -27,26 +27,26 @@ class JugadorClubDao {
     private static final String PASSWORD = "ISIILiga2020";
     
     private static final String SELECTONEBYTJUGADOR = 
-            "SELECT clubId FROM jugadorClub " +
-            " WHERE jugadorId = ?";
+            "SELECT CLUBS_ID FROM jugadorModel_club " +
+            " WHERE JUGADORMODEL_ID = ?";
     private static final String SELECTONEBYCLUB = 
-            "SELECT torneoId FROM jugadorClub " +
-            " WHERE clubId = ?";
+            "SELECT JUGADORMODEL_ID FROM jugadorModel_club " +
+            " WHERE CLUBS_ID = ?";
     private static final String SELECT = 
-            "SELECT * FROM jugadorClub";
+            "SELECT * FROM jugadorModel_club";
     private static final String INSERT =
-            "INSERT INTO jugadorClub VALUES " + 
+            "INSERT INTO jugadorModel_club VALUES " + 
             "(?, ?)";
     private static final String DELETE =
-            "DELETE FROM jugadorClub " +
-            " WHERE jugadorId = ? AND clubId = ?";
+            "DELETE FROM jugadorModel_club " +
+            " WHERE jugadorId = ? AND CLUBS_ID = ?";
     private static final String CREATE = 
             "CREATE TABLE 'JUGADORCLUB' " +
-            "('JUGADORID' NUMBER(10,0) NOT NULL ENABLE, " + 
-            "'CLUBID' NUMBER(10,0) NOT NULL ENABLE, " + 
-            "CONSTRAINT 'FK_JUGADORCLUB_CLUB' FOREIGN KEY ('CLUBID') " +
+            "('JUGADORMODEL_ID' NUMBER(10,0) NOT NULL ENABLE, " + 
+            "'CLUBS_ID' NUMBER(10,0) NOT NULL ENABLE, " + 
+            "CONSTRAINT 'FK_JUGADORCLUB_CLUB' FOREIGN KEY ('CLUBS_ID') " +
             "REFERENCES 'CLUB' ('ID') ENABLE, " + 
-            "CONSTRAINT 'FK_JUGADORCLUB_JUGADOR' FOREIGN KEY ('JUGADORID') " +
+            "CONSTRAINT 'FK_JUGADORCLUB_JUGADOR' FOREIGN KEY ('JUGADORMODEL_ID') " +
             "REFERENCES 'JUGADORMODEL' ('ID') ENABLE)";
     
     public JugadorClubDao() {}
@@ -65,7 +65,7 @@ class JugadorClubDao {
             int[] jugadorClub = new int[]
             {
                 rs.getInt("torneoId"),
-                rs.getInt("clubId")
+                rs.getInt("CLUBS_ID")
             };
         }
         
@@ -80,11 +80,11 @@ class JugadorClubDao {
         Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         
         PreparedStatement read = oracleConn.prepareStatement(SELECTONEBYTJUGADOR);
-        read.setInt(0, id);
+        read.setInt(1, id);
         ResultSet rs = read.executeQuery();
         
         while (rs.next()) {
-            clubs.add(rs.getInt("clubId"));
+            clubs.add(rs.getInt("CLUBS_ID"));
         }
         
         return clubs;
@@ -98,7 +98,7 @@ class JugadorClubDao {
         Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         
         PreparedStatement read = oracleConn.prepareStatement(SELECTONEBYCLUB);
-        read.setInt(0, id);
+        read.setInt(1, id);
         ResultSet rs = read.executeQuery();
         
         while (rs.next()) {

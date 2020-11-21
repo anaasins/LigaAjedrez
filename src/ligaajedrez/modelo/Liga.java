@@ -65,10 +65,20 @@ public class Liga {
     public Liga() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException
     {
         // Get db connection
-        db = DB.getDB();
+        //db = DB.getDB();
         
         // Create initial test data
         //db.createInitialData();
+        
+        jugador = new JugadorModelDao();
+        entrenador = new EntrenadorDao();
+        club = new ClubDao();
+        torneo = new TorneoDao();
+        sede = new SedeDao();
+        reserva = new ReservaDao();
+        federacion = new FederacionDao();
+        partida = new PartidaDao();
+        gerente = new GerenteModelDao();
         
         // Llegir 
         jugadores = jugador.selectMoroso(false);
@@ -272,43 +282,75 @@ public class Liga {
         jugadores.add(j);
     }
     
-    public void saveData() {
-        Session session = db.getSession();
-        Transaction t = session.beginTransaction();
-        jugadores.forEach((jugador) -> {
-            session.saveOrUpdate(jugador);
-        });
-        jugadoresMorosos.forEach((jugador) -> {
-            session.saveOrUpdate(jugador);
-        });
-        clubs.forEach((club) -> {
-            session.saveOrUpdate(club);
-        });
-        torneos.forEach((torneo) -> {
-            session.saveOrUpdate(torneo);
-        });
-        sedes.forEach((sede) -> {
-            session.saveOrUpdate(sede);
-        });
-        reservas.forEach((reserva) -> {
-            session.saveOrUpdate(reserva);
-        });
-        federaciones.forEach((federacion) -> {
-            session.saveOrUpdate(federacion);
-        });
-        partidas.forEach((partida) -> {
-            session.saveOrUpdate(partida);
-        });
-        newUsuarios.forEach((usuario) -> {
-            session.save(usuario);
-        });
-        entrenadores.forEach((entrenador)->{
-            session.saveOrUpdate(entrenador);
-        });
-        gerentes.forEach((gerente)->{
-            session.saveOrUpdate(gerente);
-        });
-        t.commit();
+    public void saveData() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+        //Session session = db.getSession();
+        //Transaction t = session.beginTransaction();
+        for (JugadorModel jugador : jugadores) {
+            if (jugador.getId() == 0)
+                new JugadorModelDao().insert(jugador);
+            else
+                new JugadorModelDao().update(jugador);
+        }
+        for (JugadorModel jugador : jugadoresMorosos) {
+            if (jugador.getId() == 0)
+                new JugadorModelDao().insert(jugador);
+            else
+                new JugadorModelDao().update(jugador);
+        }
+        for (Club club : clubs) {
+            if (club.getId() == 0)
+                new ClubDao().insertarClub(club);
+            else
+                new ClubDao().actualizarClub(club);
+        }
+        for (Torneo torneo : torneos) {
+            if (torneo.getId() == 0)
+                new TorneoDao().insert(torneo);
+            else
+                new TorneoDao().update(torneo);
+        }
+        for (Sede sede : sedes) {
+            if (sede.getId() == 0)
+                new SedeDao().insertSede(sede);
+            else
+                new SedeDao().updateSede(sede);
+        }
+        for (Reserva reserva : reservas) {
+            if (reserva.getId() == 0)
+                new ReservaDao().insert(reserva);
+            else
+                new ReservaDao().update(reserva);
+        }
+        for (FederacionModel federacion : federaciones) {
+            if (federacion.getId() == 0)
+                new FederacionDao().insert(federacion.getId(), federacion.getCity());
+            else
+                new FederacionDao().update(federacion.getId(), federacion.getCity());
+        }
+        for (Partida partida : partidas) {
+            if (partida.getId() == 0)
+                new PartidaDao().insert(partida);
+            else
+                new PartidaDao().update(partida);
+        }
+        for (Usuario usuario : newUsuarios) {
+            if (usuario.getId() == 0)
+                new UsuarioDao().insert(usuario);
+            else
+                new UsuarioDao().update(usuario);
+        }
+        for (EntrenadorModel entrenador : entrenadores) {
+            if (entrenador.getId() == 0)
+                new EntrenadorDao().insert(entrenador);
+            else
+                new EntrenadorDao().update(entrenador);
+        }
+        for (GerenteModel gerente : gerentes) {
+            if (gerente.getId() == 0)
+                new GerenteModelDao().insert(gerente);
+            else
+                new GerenteModelDao().update(gerente);
+        }
     }
 
     public Usuario login(String user, String pass) {

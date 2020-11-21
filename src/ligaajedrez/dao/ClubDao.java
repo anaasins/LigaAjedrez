@@ -34,23 +34,23 @@ public class ClubDao {
         Consultes
     */
      private static final String selectUn= 
-            "SELECT idClub, name, federacionid, sedeId,clubId" +
+            "SELECT id, name, FEDERATIONID, sedeId,clubId" +
             "       " +
             "  FROM club " +
-            " WHERE idClub = ?";
+            " WHERE id = ?";
      private static final String select=  
-            "SELECT * FROM JugadorModel";
+            "SELECT * FROM club";
      
      private static final String update= 
              "Update Club "+
-             "Set idClub=?, name=?,federacionid=?, sedeId=?,clubId=?"+
+             "Set id=?, name=?,FEDERATIONID=?, sedeId=?,clubId=?"+
              "where id=?";
     private static final String insert =
-            "INSERT INTO club (idClub, name, federacionid, " +
+            "INSERT INTO club (id, name, FEDERATIONID, " +
             "                         sedeId,clubId) " +
             "VALUES (?,?,?,?,?)";
     private static final String create = 
-            "CREATE TABLE 'CLUB'( 'idClub'  NUMBER(10,0) NOT NULL ENABLE,"+
+            "CREATE TABLE 'CLUB'( 'id'  NUMBER(10,0) NOT NULL ENABLE,"+
             " NAME VARCHAR2(255),"+ 
             "FEDERATIONID NUMBER(10,0),"+
             "SEDEID NUMBER(10,0),"+ 
@@ -62,7 +62,7 @@ public class ClubDao {
             "REFERENCES SEDE ('ID')";
         private static final String delete =
             "DELETE FROM club  " +
-            " WHERE idClub = ?";;
+            " WHERE id = ?";;
    
     public ClubDao() {}
     
@@ -148,13 +148,13 @@ public class ClubDao {
             
             ArrayList<Torneo> torneos = new ArrayList<Torneo>();
                                  
-            for (Integer idTorneo : new TorneoClubDao().selectByClub(rs.getInt("idClub")))
+            for (Integer idTorneo : new TorneoClubDao().selectByClub(rs.getInt("id")))
                 torneos.add(new TorneoDao().selectOne(idTorneo));
                      
-            club.setId(rs.getInt("idClub"));
+            club.setId(rs.getInt("id"));
             club.setName(rs.getString("name"));
-            club.setFederation(new FederacionDao().selectOne(rs.getInt("idFederacion")));
-            club.setSede(new SedeDao().selectOne(rs.getInt("idSede")));
+            club.setFederation(new FederacionDao().selectOne(rs.getInt("FEDERATIONID")));
+            club.setSede(new SedeDao().selectOne(rs.getInt("sedeid")));
             club.setTorneos(torneos);       
         }
         return club;
@@ -178,14 +178,14 @@ public class ClubDao {
             // Crear llista de tornejos
             ArrayList<Torneo> torneos = new ArrayList<Torneo>();
                                  
-            for (Integer idTorneo : new TorneoClubDao().selectByClub(rs.getInt("idClub")))
+            for (Integer idTorneo : new TorneoClubDao().selectByClub(rs.getInt("id")))
                 torneos.add(new TorneoDao().selectOne(idTorneo));
                      
             Club  club = new Club();
-            club.setId(rs.getInt("idClub"));
+            club.setId(rs.getInt("id"));
             club.setName(rs.getString("name"));
-            club.setFederation(new FederacionDao().selectOne(rs.getInt("idFederacion")));
-            club.setSede(new SedeDao().selectOne(rs.getInt("idSede")));
+            club.setFederation(new FederacionDao().selectOne(rs.getInt("FEDERATIONID")));
+            club.setSede(new SedeDao().selectOne(rs.getInt("sedeid")));
             club.setTorneos(torneos);
             clubs.add(club);
         }

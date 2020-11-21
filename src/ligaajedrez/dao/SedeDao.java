@@ -83,7 +83,7 @@ public class SedeDao {
         oracleConn.close();
     }
     
-    public void insertSede(int id)throws
+    public void insertSede(Sede sede)throws
             ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
     {
         Class.forName(DRIVER).newInstance();
@@ -91,7 +91,7 @@ public class SedeDao {
         
         oracleConn.setAutoCommit(false);
         PreparedStatement create = oracleConn.prepareStatement(ISEDE);
-        create.setInt(1, id);
+        create.setInt(1, sede.getId());
         create.executeUpdate();
         
          oracleConn.commit();
@@ -99,7 +99,7 @@ public class SedeDao {
         oracleConn.close();
     }
     
-    public void updateSede(int id)throws
+    public void updateSede(Sede sede) throws
             ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
     {
         Class.forName(DRIVER).newInstance();
@@ -107,8 +107,8 @@ public class SedeDao {
         
         oracleConn.setAutoCommit(false);
         PreparedStatement create = oracleConn.prepareStatement(ASEDE);
-        create.setInt(1, id);
-        create.setInt(2, id);
+        create.setInt(1, sede.getId());
+        create.setInt(2, sede.getId());
         create.executeUpdate();
         
          oracleConn.commit();

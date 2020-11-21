@@ -8,16 +8,7 @@ package ligaajedrez.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import ligaajedrez.modelo.enums.CategoriaEnum;
-import org.hibernate.annotations.Type;
 
 /**
  *
@@ -130,7 +121,7 @@ public class JugadorModel{
     }
 
     public void setResponsableName(String responsableName) {
-        if (!responsableName.trim().isEmpty())
+        if (responsableName != null && !responsableName.trim().isEmpty())
             this.responsableName = responsableName;
     }
 
@@ -139,7 +130,7 @@ public class JugadorModel{
     }
 
     public void setReponsablePhoneNumber(String reponsablePhoneNumber) {
-        if (reponsablePhoneNumber.matches("('+'[0-9]{2})?[0-9]{9}"))
+        if (reponsablePhoneNumber != null && reponsablePhoneNumber.matches("('+'[0-9]{2})?[0-9]{9}"))
             this.reponsablePhoneNumber = reponsablePhoneNumber;
     }
 

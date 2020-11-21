@@ -19,13 +19,13 @@ public class FederacionDao {
     public static final String USERNAME = "liga";
     public static final String PASSWORD = "ISIILiga2020";
     
-    private static final String SELECT = "Select id, city from federacion";
-    private static final String SELECTONE = "Select id, city from federacion where id = ?";
-    private static final String INSERT = "Insert into federacion(id, city) values(?, ?)";
-    private static final String UPDATE = "Update federacion set id = ?, city=? where id = ?";
-    private static final String DELETE = "Delete from federacion where id= ?";
+    private static final String SELECT = "Select id, city from federacionModel";
+    private static final String SELECTONE = "Select id, city from federacionModel where id = ?";
+    private static final String INSERT = "Insert into federacionModel(id, city) values(?, ?)";
+    private static final String UPDATE = "Update federacionModel set id = ?, city=? where id = ?";
+    private static final String DELETE = "Delete from federacionModel where id= ?";
     private static final String CREATE = 
-            "create table federacion("
+            "create table federacionModel("
             + "id NUMBER NOT NULL,"
             + "city VARCHAR(255),"
             + "PRIMARY KEY('id')"

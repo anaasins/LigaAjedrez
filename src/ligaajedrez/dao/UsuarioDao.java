@@ -67,7 +67,7 @@ public class UsuarioDao {
             Usuario usuario = new Usuario(
                     rs.getString("usernme"),
                     rs.getString("userpass"),
-                    new JugadorModelDao().selectOne(rs.getInt("birth")),
+                    new JugadorModelDao().selectOne(rs.getInt("playerId")),
                     rs.getInt("isAdmin") == 1
             );
             usuario.setId(rs.getInt("id"));
@@ -84,15 +84,15 @@ public class UsuarioDao {
         Class.forName(DRIVER).newInstance();
         Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         
-        PreparedStatement read = oracleConn.prepareStatement(SELECT);
+        PreparedStatement read = oracleConn.prepareStatement(SELECTONE);
         read.setInt(1, id);
         ResultSet rs = read.executeQuery();
         
         if (rs.next()) {
             usuario = new Usuario(
-                    rs.getString("usernme"),
+                    rs.getString("username"),
                     rs.getString("userpass"),
-                    new JugadorModelDao().selectOne(rs.getInt("birth")),
+                    new JugadorModelDao().selectOne(rs.getInt("playerId")),
                     rs.getInt("isAdmin") == 1
             );
             usuario.setId(rs.getInt("id"));

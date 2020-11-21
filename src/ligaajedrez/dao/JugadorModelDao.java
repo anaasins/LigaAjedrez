@@ -35,14 +35,14 @@ public class JugadorModelDao {
         Consultes
     */
      private static final String SELECTONE= 
-            "SELECT idJugador, name, elo, club,age,category,responsableName,"+
-            "reponsablePhoneNumber,moroso,multa,idJugador " +
+            "SELECT id, name, elo, clubid,age,category,responsableName,"+
+            "reponsablePhoneNumber,moroso,multa " +
             " FROM JugadorModel " +
-            " WHERE idJugador  = ?";
+            " WHERE id  = ?";
     
       private static final String SELECTMOROSOS= 
-            "SELECT idJugador, name, elo, club,age,category,responsableName,"+
-            "reponsablePhoneNumber,moroso,multa,idJugador " +
+            "SELECT id, name, elo, clubid,age,category,responsableName,"+
+            "reponsablePhoneNumber,moroso,multa " +
             " FROM JugadorModel " +
             " WHERE moroso  = ?";
       
@@ -51,16 +51,16 @@ public class JugadorModelDao {
      
      private static final String UPDATE= 
              "Update JugadorModel "+
-             "Set idJugador=?, name=?,elo=?, club=?, age=?"+
+             "Set id=?, name=?,elo=?, clubid=?, age=?"+
              "category=?,responsableName=?,reponsablePhoneNumber=?"+
-             "moroso=?,multa=?,idJugador=?"+
-             "where idJugador=?";
+             "moroso=?,multa=? "+
+             "where id=?";
     private static final String INSERT =
-            "INSERT INTO idJugador, name, elo, clubID,age,category,responsableName,"+
-            " reponsablePhoneNumber,moroso,multa,idJugador " +
-            "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+            "INSERT INTO id, name, elo, clubID,age,category,responsableName,"+
+            " reponsablePhoneNumber,moroso,multa " +
+            "VALUES (?,?,?,?,?,?,?,?,?,?)";
     private static final String CREATE = 
-            "CREATE TABLE 'JugadorModel'( 'idJugador' NUMBER(10,0) NOT NULL ENABLE,"+
+            "CREATE TABLE 'JugadorModel'( 'ID' NUMBER(10,0) NOT NULL ENABLE,"+
             "NAME VARCHAR2(255),"+ 
             "ELO NUMBER(10,0),"+
             "CLUBID NUMBER(10,0),"+ 
@@ -69,13 +69,12 @@ public class JugadorModelDao {
             "RESPOSABLENAME VARCHAR2(255),"+
             "RESPONSABLEPHONENUMBER VARCHAR2(255)"+
             "MOROSO BIT,"+
-            "MULTA NUMBER(10,0),"+
-            "IDJUGADOR NUMBER(10,0),"+            
-            "PRIMARY KEY ('idJugador'),"+
+            "MULTA NUMBER(10,0),"+          
+            "PRIMARY KEY ('id'),"+
             "FK_clubId FOREIGN KEY ('CLUBID')  REFERENCES Club('ID') ENABLE";
         private static final String DELETE =
             "DELETE FROM JugadorModel  " +
-            " WHERE idJugador = ?";;
+            " WHERE id = ?";;
    
     public JugadorModelDao() {}
     
@@ -130,7 +129,6 @@ public class JugadorModelDao {
         insert.setString(8,jugador.getReponsablePhoneNumber());
         insert.setBoolean(9,jugador.getMoroso());
         insert.setInt(10,jugador.getMulta());
-        insert.setInt(11,jugador.getId());
         
         insert.executeUpdate();
         
@@ -171,15 +169,14 @@ public class JugadorModelDao {
         ResultSet rs = read.executeQuery();
         
         if (rs.next()) {
-         
             ArrayList<Club> clubs = new ArrayList<Club>();           
-            for (Integer idClub : new JugadorClubDao().selectByJugador(rs.getInt("idJugador")))
+            for (Integer idClub : new JugadorClubDao().selectByJugador(rs.getInt("clubId")))
                 clubs.add(new ClubDao().leerClub(idClub));
             
-            jugador.setId(rs.getInt("idJugador"));
+            jugador.setId(rs.getInt("id"));
             jugador.setName(rs.getString("name"));
             jugador.setElo(rs.getInt("elo"));
-            jugador.setClub(new ClubDao().leerClub(rs.getInt("clubiId")));
+            jugador.setClub(new ClubDao().leerClub(rs.getInt("clubId")));
             jugador.setAge(rs.getInt("age"));
             jugador.setResponsableName(rs.getString("responsableName"));
             jugador.setReponsablePhoneNumber(rs.getString("reponsablePhoneNumber"));
@@ -199,27 +196,21 @@ public class JugadorModelDao {
         Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
            
         // Sentencia de insert
-        PreparedStatement read = oracleConn.prepareStatement(SELECTONE);
+        PreparedStatement read = oracleConn.prepareStatement(SELECTMOROSOS);
         read.setBoolean(1, moroso);
         ResultSet rs = read.executeQuery();
         
         while (rs.next()) {
          
-            JugadorModel jugador = new JugadorModel();
-            ArrayList<Club> clubs = new ArrayList<Club>();           
-            for (Integer idClub : new JugadorClubDao().selectByJugador(rs.getInt("idJugador")))
-                clubs.add(new ClubDao().leerClub(idClub));
-            
-            jugador.setId(rs.getInt("idJugador"));
+            JugadorModel jugador = new JugadorModel();jugador.setId(rs.getInt("id"));
             jugador.setName(rs.getString("name"));
             jugador.setElo(rs.getInt("elo"));
-            jugador.setClub(new ClubDao().leerClub(rs.getInt("clubiId")));
+            jugador.setClub(new ClubDao().leerClub(rs.getInt("clubId")));
             jugador.setAge(rs.getInt("age"));
             jugador.setResponsableName(rs.getString("responsableName"));
             jugador.setReponsablePhoneNumber(rs.getString("reponsablePhoneNumber"));
             jugador.setMoroso(rs.getBoolean("moroso"));
             jugador.setMulta(rs.getInt("multa"));
-            jugador.setClubs(clubs);
             jugadors.add(jugador);
         }
         return jugadors;
@@ -246,10 +237,10 @@ public class JugadorModelDao {
             for (Integer idClub : new JugadorClubDao().selectByJugador(rs.getInt("idJugador")))
                 clubs.add(new ClubDao().leerClub(idClub));
             
-            jugador.setId(rs.getInt("idJugador"));
+            jugador.setId(rs.getInt("id"));
             jugador.setName(rs.getString("name"));
             jugador.setElo(rs.getInt("elo"));
-            jugador.setClub(new ClubDao().leerClub(rs.getInt("clubiId")));
+            jugador.setClub(new ClubDao().leerClub(rs.getInt("clubId")));
             jugador.setAge(rs.getInt("age"));
             jugador.setResponsableName(rs.getString("responsableName"));
             jugador.setReponsablePhoneNumber(rs.getString("reponsablePhoneNumber"));

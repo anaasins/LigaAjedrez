@@ -6,31 +6,18 @@
 package ligaajedrez.modelo;
 
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 
 
 /**
  *
  * @author jbeltran
  */
-@Entity
 public class EntrenadorModel{
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entrenadorSeq")
-    @SequenceGenerator(name="entrenadorSeq",sequenceName="entrenadorSeq", allocationSize=1, initialValue = 1)
     private int id;
     private String name;
     private String surname;
     private String phone;
     private String birth;
-    @OneToMany
-    @JoinColumn(name = "clubId", referencedColumnName = "id")
     private List<Club> clubs;
    
 

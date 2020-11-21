@@ -6,40 +6,19 @@
 package ligaajedrez.modelo;
 
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 
 /**
  *
  * @author Olaf
  */
-@Entity
 public class Partida {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "partidaSeq")
-    @SequenceGenerator(name="partidaSeq",sequenceName="partidaSeq", allocationSize=1, initialValue = 1)
     private int id;
-    @ManyToOne
-    @JoinColumn(name = "jugador1Id", referencedColumnName = "id")
     private JugadorModel jugador1;
-    @ManyToOne
-    @JoinColumn(name = "jugador2Id", referencedColumnName = "id")
     private JugadorModel jugador2;
-    @OneToOne
     private Sede sede;
     private Date fechaPartida;
     private Date hora;
-    @ManyToOne
-    @JoinColumn(name = "torneoId", referencedColumnName = "id")
     private Torneo torneo;
-    @ManyToOne
-    @JoinColumn(name = "ganadorId", referencedColumnName = "id")
     private JugadorModel ganador;
     
     public Partida() {}

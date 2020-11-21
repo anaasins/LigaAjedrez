@@ -69,7 +69,7 @@ public class ReservaDao {
         
         while (rs.next()) {
             Reserva reserva = new Reserva(
-                    new UsuarioDao().selectOne(rs.getInt("userId")),
+                    new UsuarioDao().selectOne(rs.getInt("usuarioid")),
                     rs.getDate("inicio"),
                     rs.getInt("hora"),
                     new SedeDao().selectOne(rs.getInt("sedeId"))
@@ -95,7 +95,7 @@ public class ReservaDao {
         
         if (rs.next()) {
             reserva = new Reserva(
-                    new UsuarioDao().selectOne(rs.getInt("userId")),
+                    new UsuarioDao().selectOne(rs.getInt("usuarioid")),
                     rs.getDate("inicio"),
                     rs.getInt("hora"),
                     new SedeDao().selectOne(rs.getInt("sedeId"))
