@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import ligaajedrez.modelo.Club;
 import ligaajedrez.modelo.JugadorModel;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Criterion;
 
 /**
  *
@@ -37,6 +39,13 @@ public class JugadorModelDao {
             "reponsablePhoneNumber,moroso,multa,idJugador " +
             " FROM JugadorModel " +
             " WHERE idJugador  = ?";
+    
+      private static final String SELECTMOROSOS= 
+            "SELECT idJugador, name, elo, club,age,category,responsableName,"+
+            "reponsablePhoneNumber,moroso,multa,idJugador " +
+            " FROM JugadorModel " +
+            " WHERE moroso  = ?";
+      
      private static final String SELECT=  
             "SELECT * FROM JugadorModel";
      
@@ -181,23 +190,58 @@ public class JugadorModelDao {
         }
         return jugador;
     }
-    
-       public JugadorModel select(int idJugador) throws 
+     public ArrayList<JugadorModel> selectMoroso(boolean moroso) throws 
         ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException{
          
-        JugadorModel jugador = new JugadorModel();
+        ArrayList<JugadorModel> jugadors = new ArrayList<JugadorModel>();
         
         Class.forName(DRIVER).newInstance();
         Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
            
         // Sentencia de insert
         PreparedStatement read = oracleConn.prepareStatement(SELECTONE);
-        read.setInt(1, idJugador);
+        read.setBoolean(1, moroso);
+        ResultSet rs = read.executeQuery();
+        
+        while (rs.next()) {
+         
+            JugadorModel jugador = new JugadorModel();
+            ArrayList<Club> clubs = new ArrayList<Club>();           
+            for (Integer idClub : new JugadorClubDao().selectByJugador(rs.getInt("idJugador")))
+                clubs.add(new ClubDao().leerClub(idClub));
+            
+            jugador.setId(rs.getInt("idJugador"));
+            jugador.setName(rs.getString("name"));
+            jugador.setElo(rs.getInt("elo"));
+            jugador.setClub(new ClubDao().leerClub(rs.getInt("clubiId")));
+            jugador.setAge(rs.getInt("age"));
+            jugador.setResponsableName(rs.getString("responsableName"));
+            jugador.setReponsablePhoneNumber(rs.getString("reponsablePhoneNumber"));
+            jugador.setMoroso(rs.getBoolean("moroso"));
+            jugador.setMulta(rs.getInt("multa"));
+            jugador.setClubs(clubs);
+            jugadors.add(jugador);
+        }
+        return jugadors;
+     }
+       public ArrayList<JugadorModel> select( ) throws 
+        ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException{
+         
+        ArrayList<JugadorModel> jugadors = new  ArrayList<JugadorModel> ();
+        
+        
+        Class.forName(DRIVER).newInstance();
+        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+           
+        // Sentencia de insert
+        PreparedStatement read = oracleConn.prepareStatement(SELECTONE);
         ResultSet rs = read.executeQuery();
         
         while (rs.next()) {
             
             ArrayList<Club> clubs = new ArrayList<Club>();
+            JugadorModel jugador = new JugadorModel();
+
                      
             for (Integer idClub : new JugadorClubDao().selectByJugador(rs.getInt("idJugador")))
                 clubs.add(new ClubDao().leerClub(idClub));
@@ -212,9 +256,9 @@ public class JugadorModelDao {
             jugador.setMoroso(rs.getBoolean("moroso"));
             jugador.setMulta(rs.getInt("multa"));
             jugador.setClubs(clubs);
-            
+            jugadors.add(jugador);
         }
-        return jugador;
+        return jugadors;
     }
     public void delete(int id) throws 
         ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {

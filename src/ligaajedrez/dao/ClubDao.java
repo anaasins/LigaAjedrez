@@ -160,7 +160,7 @@ public class ClubDao {
         return club;
     }
     
-       public ArrayList<Club> leerClubs(int idClub) throws 
+       public ArrayList<Club> leerClubs() throws 
         ClassNotFoundException, InstantiationException, IllegalAccessException, 
         SQLException, ParseException {
         
@@ -171,7 +171,6 @@ public class ClubDao {
            
         // Sentencia de insert
         PreparedStatement read = oracleConn.prepareStatement(select);
-        read.setInt(1, idClub);
         ResultSet rs = read.executeQuery();
         
         while (rs.next()) {

@@ -6,9 +6,23 @@
 package ligaajedrez.modelo;
 
 
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import ligaajedrez.dao.ClubDao;
+import ligaajedrez.dao.EntrenadorDao;
+import ligaajedrez.dao.FederacionDao;
+import ligaajedrez.dao.GerenteModelDao;
+import ligaajedrez.dao.JugadorModelDao;
+import ligaajedrez.dao.PartidaDao;
+import ligaajedrez.dao.ReservaDao;
+import ligaajedrez.dao.SedeDao;
+import ligaajedrez.dao.TorneoClubDao;
+import ligaajedrez.dao.TorneoDao;
+import ligaajedrez.dao.TorneoParticipanteDao;
+import ligaajedrez.dao.UsuarioDao;
 import ligaajedrez.db.DB;
 import ligaajedrez.factory.UsuarioFactory;
 import org.hibernate.Session;
@@ -35,7 +49,20 @@ public class Liga {
     private DB db;
     private Usuario userAct;
     
-    public Liga()
+    private ClubDao club;
+    private EntrenadorDao entrenador;
+    private FederacionDao federacion;
+    private GerenteModelDao gerente;
+    private JugadorModelDao jugador;
+    private PartidaDao partida;
+     private ReservaDao reserva;
+    private SedeDao sede;
+    private TorneoClubDao torneoClub;
+    private TorneoDao torneo;
+    private TorneoParticipanteDao torneoParticipante;
+    private UsuarioDao usuarioDao;
+    
+    public Liga() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException
     {
         // Get db connection
         db = DB.getDB();
@@ -43,22 +70,18 @@ public class Liga {
         // Create initial test data
         //db.createInitialData();
         
-        // Get data from db
-        List<Criterion> criterions = new ArrayList<Criterion>();
-        criterions.add(Restrictions.eq("moroso", false));
-        jugadores = (ArrayList<JugadorModel>) db.getFiltered(JugadorModel.class, criterions);
-        criterions = new ArrayList<Criterion>();
-        criterions.add(Restrictions.eq("moroso", true));
-        jugadoresMorosos = (ArrayList<JugadorModel>) db.getFiltered(JugadorModel.class, criterions);
-        clubs = (ArrayList<Club>) db.getAll(Club.class);
-        torneos = (ArrayList<Torneo>) db.getAll(Torneo.class);
-        sedes = (ArrayList<Sede>) db.getAll(Sede.class);
-        reservas = (ArrayList<Reserva>) db.getAll(Reserva.class);
-        federaciones = (ArrayList<FederacionModel>) db.getAll(FederacionModel.class);
-        partidas = (ArrayList<Partida>) db.getAll(Partida.class);
-        newUsuarios = new ArrayList<>();
-        entrenadores = (ArrayList<EntrenadorModel>) db.getAll(EntrenadorModel.class);
-        gerentes = (ArrayList<GerenteModel>) db.getAll(GerenteModel.class);
+        // Llegir 
+        jugadores = jugador.selectMoroso(false);
+        jugadoresMorosos = jugador.selectMoroso(true);
+        entrenadores = (ArrayList<EntrenadorModel>)entrenador.selectAll();
+        clubs = club.leerClubs();
+        torneos = (ArrayList<Torneo>)torneo.selectAll();
+        sedes = (ArrayList<Sede>)sede.selectAll();
+        reservas = (ArrayList<Reserva>)reserva.selectAll();
+        federaciones = (ArrayList<FederacionModel>) federacion.selectAll();
+        partidas = (ArrayList<Partida>)partida.selectAll();
+        gerentes = (ArrayList<GerenteModel>) gerente.selectAll();
+                
     }
     
     public void setUsuario(Usuario user)
