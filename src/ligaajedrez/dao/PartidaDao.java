@@ -68,11 +68,11 @@ public class PartidaDao {
         Torneo torneo = new Torneo();
         while(rs.next())
         {
-            j1 = JugadorDao.selectOne(rs.getInt("jugador1Id"));
-            j2 = JugadorDao.selectOne(rs.getInt("jugador2Id"));
-            ganador = JugadorDao.selectOne(rs.getInt("ganadorId"));
-            s=SedeDao.selectOne(rs.getInt("sedeId"));
-            torneo = TorneoDao.selectOne(rs.getInt("torneoId"));
+            j1 = new JugadorModelDao().selectOne(rs.getInt("jugador1Id"));
+            j2 = new JugadorModelDao().selectOne(rs.getInt("jugador2Id"));
+            ganador = new JugadorModelDao().selectOne(rs.getInt("ganadorId"));
+            s= new SedeDao().selectOne(rs.getInt("sedeId"));
+            torneo = new TorneoDao().selectOne(rs.getInt("torneoId"));
             Partida partida = new Partida();
             partida.setId(rs.getInt("id"));
             partida.setJugador1(j1);
@@ -103,7 +103,7 @@ public class PartidaDao {
         JugadorModel j1 = new JugadorModel();
         JugadorModel j2 = new JugadorModel();
         JugadorModel ganador = new JugadorModel();
-        JugadorDao jd = new JugadorDao();
+        JugadorModelDao jd = new JugadorModelDao();
         Torneo torneo = new Torneo();
         TorneoDao td = new TorneoDao();
         if(rs.next())
