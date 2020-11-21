@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 import ligaajedrez.modelo.Club;
 import ligaajedrez.modelo.JugadorModel;
 
@@ -161,18 +162,10 @@ public class JugadorModelDao {
         ResultSet rs = read.executeQuery();
         
         if (rs.next()) {
-            // Crear llista de tornejos
-            ArrayList<Club> clubs = new ArrayList<Club>();
-            int [] idClubs={};            
-            
-            //Buscar els id dels tornejos en els que participa el club
-            idClubs = JugadorClubDao.selectOne("idJugador");
-            
-            //Guardar els tornejos en la llista
-            for(int i=0; i<=idClubs.length;i++)
-            {
-                clubs.add(new ClubDao().leerClub(idClubs[i]));
-            }
+         
+            ArrayList<Club> clubs = new ArrayList<Club>();           
+            for (Integer idClub : new JugadorClubDao().selectByJugador(rs.getInt("idJugador")))
+                clubs.add(new ClubDao().leerClub(idClub));
             
             jugador.setId(rs.getInt("idJugador"));
             jugador.setName(rs.getString("name"));
@@ -203,18 +196,11 @@ public class JugadorModelDao {
         ResultSet rs = read.executeQuery();
         
         while (rs.next()) {
-            // Crear llista de tornejos
+            
             ArrayList<Club> clubs = new ArrayList<Club>();
-            int [] idClubs={};            
-            
-            //Buscar els id dels tornejos en els que participa el club
-            idClubs = JugadorClubDao.selectOne("idJugador");
-            
-            //Guardar els tornejos en la llista
-            for(int i=0; i<=idClubs.length;i++)
-            {
-                clubs.add(new ClubDao().leerClub(idClubs[i]));
-            }
+                     
+            for (Integer idClub : new JugadorClubDao().selectByJugador(rs.getInt("idJugador")))
+                clubs.add(new ClubDao().leerClub(idClub));
             
             jugador.setId(rs.getInt("idJugador"));
             jugador.setName(rs.getString("name"));

@@ -67,7 +67,7 @@ public class UsuarioDao {
             Usuario usuario = new Usuario(
                     rs.getString("usernme"),
                     rs.getString("userpass"),
-                    new JugadorDao().selectOne(rs.getInt("birth")),
+                    new JugadorModelDao().selectOne(rs.getInt("birth")),
                     rs.getInt("isAdmin") == 1
             );
             usuario.setId(rs.getInt("id"));
@@ -92,7 +92,7 @@ public class UsuarioDao {
             usuario = new Usuario(
                     rs.getString("usernme"),
                     rs.getString("userpass"),
-                    new JugadorDao().selectOne(rs.getInt("birth")),
+                    new JugadorModelDao().selectOne(rs.getInt("birth")),
                     rs.getInt("isAdmin") == 1
             );
             usuario.setId(rs.getInt("id"));

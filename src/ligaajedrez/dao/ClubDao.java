@@ -145,18 +145,12 @@ public class ClubDao {
         ResultSet rs = read.executeQuery();
         
         if (rs.next()) {
-            // Crear llista de tornejos
+            
             ArrayList<Torneo> torneos = new ArrayList<Torneo>();
-            int [] idTorneos={};            
-            
-            //Buscar els id dels tornejos en els que participa el club
-            idTorneos = TorneoClubDao.leerIntermedios("idClub");
-            
-            //Guardar els tornejos en la llista
-            for(int i=0; i<=idTorneos.length;i++)
-            {
-                torneos.add(TorneoDao.leerTorneo(idTorneos[i]));
-            }            
+                                 
+            for (Integer idTorneo : new TorneoClubDao().selectByClub(rs.getInt("idClub")))
+                torneos.add(new TorneoDao().selectOne(idTorneo));
+                     
             club.setId(rs.getInt("idClub"));
             club.setName(rs.getString("name"));
             club.setFederation(new FederacionDao().selectOne(rs.getInt("idFederacion")));
@@ -184,16 +178,9 @@ public class ClubDao {
             
             // Crear llista de tornejos
             ArrayList<Torneo> torneos = new ArrayList<Torneo>();
-            int [] idTorneos={};            
-            
-            //Buscar els id dels tornejos en els que participa el club
-            idTorneos = TorneoClubDao.select("idClub");
-            
-            //Guardar els tornejos en la llista
-            for(int i=0; i<=idTorneos.length;i++)
-            {
-                torneos.add(TorneoDao.selectOne(idTorneos[i]));
-            }
+                                 
+            for (Integer idTorneo : new TorneoClubDao().selectByClub(rs.getInt("idClub")))
+                torneos.add(new TorneoDao().selectOne(idTorneo));
                      
             Club  club = new Club();
             club.setId(rs.getInt("idClub"));

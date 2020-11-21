@@ -70,7 +70,7 @@ public class TorneoDao {
             for (Integer idClub : new TorneoClubDao().selectByTorneo(rs.getInt("id")))
                 clubs.add(new ClubDao().leerClub(idClub));
             for (Integer idJugador : new TorneoParticipanteDao().selectByTorneo(rs.getInt("id")))
-                jugadores.add(new JugadorModelDao().leerClub(idJugador));
+                jugadores.add(new JugadorModelDao().selectOne(idJugador));
             Torneo torneo = new Torneo(
                     new FederacionDao().selectOne(rs.getInt("federacionId")),
                     rs.getDate("fecha"),
@@ -100,7 +100,7 @@ public class TorneoDao {
             for (Integer idClub : new TorneoClubDao().selectByTorneo(rs.getInt("id")))
                 clubs.add(new ClubDao().leerClub(idClub));
             for (Integer idJugador : new TorneoParticipanteDao().selectByTorneo(rs.getInt("id")))
-                jugadores.add(new JugadorModelDao().leerClub(idJugador));
+                jugadores.add(new JugadorModelDao().selectOne(idJugador));
             torneo = new Torneo(
                     new FederacionDao().selectOne(rs.getInt("federacionId")),
                     rs.getDate("fecha"),
