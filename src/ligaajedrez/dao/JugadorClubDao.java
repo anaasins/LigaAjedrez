@@ -69,6 +69,7 @@ class JugadorClubDao {
             };
         }
         
+        oracleConn.close();
         return jugadorCubs;
     }
     
@@ -87,6 +88,7 @@ class JugadorClubDao {
             clubs.add(rs.getInt("CLUBS_ID"));
         }
         
+        oracleConn.close();
         return clubs;
     }
     
@@ -105,6 +107,7 @@ class JugadorClubDao {
             jugadores.add(rs.getInt("jugadorId"));
         }
         
+        oracleConn.close();
         return jugadores;
     }
     

@@ -51,7 +51,7 @@ public class JugadorModelDao {
      
      private static final String UPDATE= 
              "Update JugadorModel "+
-             "Set id=?, name=?,elo=?, clubid=?, age=?"+
+             "Set name=?,elo=?, clubid=?, age=?"+
              "category=?,responsableName=?,reponsablePhoneNumber=?"+
              "moroso=?,multa=? "+
              "where id=?";
@@ -90,17 +90,16 @@ public class JugadorModelDao {
         // Sentencia de insert
         PreparedStatement update = oracleConn.prepareStatement(UPDATE);
         
-        update.setInt(1, jugador.getId());
-        update.setString(2, jugador.getName());
-        update.setInt(3, jugador.getElo());
-        update.setInt(4, jugador.getClub().getId());
-        update.setInt(5, jugador.getAge());
-        update.setInt(6,jugador.getCategory().getValue()); 
-        update.setString(7,jugador.getResponsableName());
-        update.setString(8,jugador.getReponsablePhoneNumber());
-        update.setBoolean(9,jugador.getMoroso());
-        update.setInt(10,jugador.getMulta());
-        update.setInt(11,jugador.getId());
+        update.setString(1, jugador.getName());
+        update.setInt(2, jugador.getElo());
+        update.setInt(3, jugador.getClub().getId());
+        update.setInt(4, jugador.getAge());
+        update.setInt(5,jugador.getCategory().getValue()); 
+        update.setString(6,jugador.getResponsableName());
+        update.setString(7,jugador.getReponsablePhoneNumber());
+        update.setBoolean(8,jugador.getMoroso());
+        update.setInt(9,jugador.getMulta());
+        update.setInt(10,jugador.getId());
         update.executeUpdate();
         
         oracleConn.commit();
@@ -185,6 +184,8 @@ public class JugadorModelDao {
             jugador.setClubs(clubs);
             
         }
+        
+        oracleConn.close();
         return jugador;
     }
      public ArrayList<JugadorModel> selectMoroso(boolean moroso) throws 
@@ -213,6 +214,8 @@ public class JugadorModelDao {
             jugador.setMulta(rs.getInt("multa"));
             jugadors.add(jugador);
         }
+        
+        oracleConn.close();
         return jugadors;
      }
        public ArrayList<JugadorModel> select( ) throws 
@@ -249,6 +252,8 @@ public class JugadorModelDao {
             jugador.setClubs(clubs);
             jugadors.add(jugador);
         }
+        
+        oracleConn.close();
         return jugadors;
     }
     public void delete(int id) throws 

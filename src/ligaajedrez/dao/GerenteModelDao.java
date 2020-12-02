@@ -35,7 +35,7 @@ public class GerenteModelDao {
             "(?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE =
             "UPDATE gerentemodel " +
-            " SET id = ?, name = ?, surname = ?, phone = ?, nomina = ?," +
+            " SET name = ?, surname = ?, phone = ?, nomina = ?," +
             " irpf = ?, clubId = ?, birth = ?" +
             " WHERE id = ?";
     private static final String DELETE =
@@ -79,6 +79,7 @@ public class GerenteModelDao {
             gerentes.add(gerente);
         }
         
+        oracleConn.close();
         return gerentes;
     }
     
@@ -106,6 +107,7 @@ public class GerenteModelDao {
             gerente.setClub(new ClubDao().leerClub(rs.getInt("clubId")));
         }
         
+        oracleConn.close();
         return gerente;
     }
     
@@ -138,15 +140,14 @@ public class GerenteModelDao {
            
         oracleConn.setAutoCommit(false);
         PreparedStatement update = oracleConn.prepareStatement(UPDATE);
-        update.setInt(1, gerente.getId());
-        update.setString(2, gerente.getName());
-        update.setString(3, gerente.getSurname());
-        update.setString(4, gerente.getPhone());
-        update.setString(5, gerente.getNomina());
-        update.setString(6, gerente.getIrpf());
-        update.setInt(7, gerente.getClub().getId());
-        update.setString(8, gerente.getBirth());
-        update.setInt(9, gerente.getId());
+        update.setString(1, gerente.getName());
+        update.setString(2, gerente.getSurname());
+        update.setString(3, gerente.getPhone());
+        update.setString(4, gerente.getNomina());
+        update.setString(5, gerente.getIrpf());
+        update.setInt(6, gerente.getClub().getId());
+        update.setString(7, gerente.getBirth());
+        update.setInt(8, gerente.getId());
         update.executeUpdate();
         
         oracleConn.commit();

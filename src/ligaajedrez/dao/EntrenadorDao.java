@@ -30,7 +30,7 @@ public class EntrenadorDao {
      private static final String selectOne= "SELECT * FROM entrenadorModel WHERE id = ?";
      private static final String select = "SELECT * FROM entrenadorModel";
      private static final String insertEn = "INSERT INTO entrenadorModel VALUES(?, ?, ?, ?, ?)";
-     private static final String updateEn = "UPDATE entrenadorModel SET id=?, name=?, surname=?, phone=?, birth=? WHERE id=?";
+     private static final String updateEn = "UPDATE entrenadorModel SET name=?, surname=?, phone=?, birth=? WHERE id=?";
      private static final String deleteEn = "DELETE FROM entrenadorModel WHERE id=?";
      private static final String createEn = "CREATE TABLE entrenadorModel("
              + "id NUMBER NOT NULL ENABLE,"
@@ -65,6 +65,8 @@ public class EntrenadorDao {
             entrenador.setId(rs.getInt("id"));
             entrenadores.add(entrenador);
         }
+        
+        oracleConn.close();
         return entrenadores;
      }
      
@@ -91,6 +93,8 @@ public class EntrenadorDao {
             entrenador.setId(rs.getInt("id"));
             
         }
+        
+        oracleConn.close();
         return entrenador;
      }
      
@@ -120,12 +124,11 @@ public class EntrenadorDao {
            
         oracleConn.setAutoCommit(false);
         PreparedStatement update = oracleConn.prepareStatement(updateEn);
-        update.setInt(1, entrenador.getId());
-        update.setString(2, entrenador.getName());
-        update.setString(3, entrenador.getSurname());
-        update.setString(4, entrenador.getPhone());
-        update.setString(8, entrenador.getBirth());
-        update.setInt(9, entrenador.getId());
+        update.setString(1, entrenador.getName());
+        update.setString(2, entrenador.getSurname());
+        update.setString(3, entrenador.getPhone());
+        update.setString(4, entrenador.getBirth());
+        update.setInt(5, entrenador.getId());
         update.executeUpdate();
         
         oracleConn.commit();

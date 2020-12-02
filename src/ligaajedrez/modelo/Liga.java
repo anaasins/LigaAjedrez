@@ -45,6 +45,7 @@ public class Liga {
     private ArrayList<FederacionModel> federaciones;
     private ArrayList<Partida> partidas;
     private ArrayList<Usuario> newUsuarios;
+    private ArrayList<Usuario> usuarios;
     private ArrayList<GerenteModel> gerentes;
     private DB db;
     private Usuario userAct;
@@ -78,6 +79,7 @@ public class Liga {
         reserva = new ReservaDao();
         federacion = new FederacionDao();
         partida = new PartidaDao();
+        usuarioDao = new UsuarioDao();
         gerente = new GerenteModelDao();
         
         // Llegir 
@@ -90,6 +92,7 @@ public class Liga {
         reservas = (ArrayList<Reserva>)reserva.selectAll();
         federaciones = (ArrayList<FederacionModel>) federacion.selectAll();
         partidas = (ArrayList<Partida>)partida.selectAll();
+        usuarios = (ArrayList<Usuario>)usuarioDao.selectAll();
         gerentes = (ArrayList<GerenteModel>) gerente.selectAll();
                 
     }
@@ -312,8 +315,6 @@ public class Liga {
         for (Sede sede : sedes) {
             if (sede.getId() == 0)
                 new SedeDao().insertSede(sede);
-            else
-                new SedeDao().updateSede(sede);
         }
         for (Reserva reserva : reservas) {
             if (reserva.getId() == 0)
@@ -355,11 +356,14 @@ public class Liga {
 
     public Usuario login(String user, String pass) {
         Usuario usuario = null;
-        List<Criterion> criterions = new ArrayList<Criterion>();
+        //List<Criterion> criterions = new ArrayList<Criterion>();
         
-        criterions.add(Restrictions.eq("userName", user));
-        criterions.add(Restrictions.eq("userPass", pass));
-        usuario = db.getFiltered(Usuario.class, criterions).get(0);
+        //criterions.add(Restrictions.eq("userName", user));
+        //criterions.add(Restrictions.eq("userPass", pass));
+        //usuario = db.getFiltered(Usuario.class, criterions).get(0);
+        for (Usuario u : usuarios)
+            if (u.getUserName().equalsIgnoreCase(user) && u.getUserPass().equalsIgnoreCase(pass))
+                usuario = u;
         
         usuario = UsuarioFactory.crearUsuario(usuario);
 

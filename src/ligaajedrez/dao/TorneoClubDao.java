@@ -69,6 +69,7 @@ public class TorneoClubDao {
             };
         }
         
+        oracleConn.close();
         return torneoClubs;
     }
     
@@ -87,6 +88,7 @@ public class TorneoClubDao {
             clubs.add(rs.getInt("clubId"));
         }
         
+        oracleConn.close();
         return clubs;
     }
     
@@ -105,6 +107,7 @@ public class TorneoClubDao {
             torneos.add(rs.getInt("torneoId"));
         }
         
+        oracleConn.close();
         return torneos;
     }
     

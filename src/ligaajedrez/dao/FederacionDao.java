@@ -22,7 +22,7 @@ public class FederacionDao {
     private static final String SELECT = "Select id, city from federacionModel";
     private static final String SELECTONE = "Select id, city from federacionModel where id = ?";
     private static final String INSERT = "Insert into federacionModel(id, city) values(?, ?)";
-    private static final String UPDATE = "Update federacionModel set id = ?, city=? where id = ?";
+    private static final String UPDATE = "Update federacionModel set city=? where id = ?";
     private static final String DELETE = "Delete from federacionModel where id= ?";
     private static final String CREATE = 
             "create table federacionModel("
@@ -47,6 +47,8 @@ public class FederacionDao {
             fede.setCity(rs.getString("city"));
             federaciones.add(fede);
         }
+        
+        oracleConn.close();
         return federaciones;
     }
     
@@ -67,6 +69,8 @@ public class FederacionDao {
            fede.setId(rs.getInt("id"));
            fede.setCity(rs.getString("city"));
        }
+       
+       oracleConn.close();
        return fede;
     }
     
@@ -110,9 +114,8 @@ public class FederacionDao {
         
         oracleConn.setAutoCommit(false);
         PreparedStatement create = oracleConn.prepareStatement(UPDATE);
-        create.setInt(1, id);
-        create.setString(2, city);
-        create.setInt(3, id);
+        create.setString(1, city);
+        create.setInt(2, id);
         create.executeUpdate();
         
          oracleConn.commit();

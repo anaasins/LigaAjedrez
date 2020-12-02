@@ -65,7 +65,7 @@ public class UsuarioDao {
         
         while (rs.next()) {
             Usuario usuario = new Usuario(
-                    rs.getString("usernme"),
+                    rs.getString("username"),
                     rs.getString("userpass"),
                     new JugadorModelDao().selectOne(rs.getInt("playerId")),
                     rs.getInt("isAdmin") == 1
@@ -74,6 +74,7 @@ public class UsuarioDao {
             usuarios.add(usuario);
         }
         
+        oracleConn.close();
         return usuarios;
     }
     
@@ -98,6 +99,7 @@ public class UsuarioDao {
             usuario.setId(rs.getInt("id"));
         }
         
+        oracleConn.close();
         return usuario;
     }
     

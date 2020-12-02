@@ -43,7 +43,7 @@ public class ClubDao {
      
      private static final String update= 
              "Update Club "+
-             "Set id=?, name=?,FEDERATIONID=?, sedeId=?,clubId=?"+
+             "Set name=?,FEDERATIONID=?, sedeId=?,clubId=?"+
              "where id=?";
     private static final String insert =
             "INSERT INTO club (id, name, FEDERATIONID, " +
@@ -78,11 +78,10 @@ public class ClubDao {
         // Sentencia de insert
         PreparedStatement update = oracleConn.prepareStatement(this.update);
         
-        update.setInt(1, club.getId());
-        update.setString(2, club.getName());
-        update.setInt(3, club.getFederation().getId());
-        update.setInt(4, club.getSede().getId());
-        update.setInt(5, club.getId());
+        update.setString(1, club.getName());
+        update.setInt(2, club.getFederation().getId());
+        update.setInt(3, club.getSede().getId());
+        update.setInt(4, club.getId());
         update.executeUpdate();
         
         oracleConn.commit();
@@ -157,6 +156,8 @@ public class ClubDao {
             club.setSede(new SedeDao().selectOne(rs.getInt("sedeid")));
             club.setTorneos(torneos);       
         }
+        
+        oracleConn.close();
         return club;
     }
     
@@ -190,6 +191,7 @@ public class ClubDao {
             clubs.add(club);
         }
         
+        oracleConn.close();
         return clubs;
     }
        

@@ -29,12 +29,12 @@ public class TorneoDao {
     private static final String PASSWORD = "ISIILiga2020";
     
     private static final String SELECTONE = 
-            "SELECT * FROM torneopaticipantes " +
+            "SELECT * FROM torneo " +
             " WHERE id = ?";
     private static final String SELECT = 
-            "SELECT * FROM torneopaticipantes";
+            "SELECT * FROM torneo";
     private static final String INSERT =
-            "INSERT INTO torneopaticipantes VALUES " + 
+            "INSERT INTO torneo VALUES " + 
             "(?, ?, ?)";
     private static final String UPDATE =
             "UPDATE torneo " +
@@ -90,7 +90,7 @@ public class TorneoDao {
         Class.forName(DRIVER).newInstance();
         Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         
-        PreparedStatement read = oracleConn.prepareStatement(SELECT);
+        PreparedStatement read = oracleConn.prepareStatement(SELECTONE);
         read.setInt(1, id);
         ResultSet rs = read.executeQuery();
         
@@ -109,6 +109,7 @@ public class TorneoDao {
             torneo.setParticipantes(jugadores);
         }
         
+        oracleConn.close();
         return torneo;
     }
     

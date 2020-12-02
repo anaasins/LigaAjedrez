@@ -23,7 +23,6 @@ public class SedeDao {
     private static final String LSEDE = "Select id from sede";
     private static final String LONESEDE = "Select id from sede where id = ?";
     private static final String ISEDE = "Insert into sede(id) values(?)";
-    private static final String ASEDE = "Update sede set id = ? where id = ?";
     private static final String BSEDE = "Delete from sede where id= ?";
     private static final String CTABLE = 
             "create table sede("
@@ -46,6 +45,8 @@ public class SedeDao {
             sede.setId(rs.getInt("id"));
             sedes.add(sede);
         }
+        
+        oracleConn.close();
         return sedes;
     }
     
@@ -65,6 +66,8 @@ public class SedeDao {
            sede = new Sede();
            sede.setId(id);
        }
+       
+       oracleConn.close();
        return sede;
     }
     
@@ -92,23 +95,6 @@ public class SedeDao {
         oracleConn.setAutoCommit(false);
         PreparedStatement create = oracleConn.prepareStatement(ISEDE);
         create.setInt(1, sede.getId());
-        create.executeUpdate();
-        
-         oracleConn.commit();
-        oracleConn.setAutoCommit(true);
-        oracleConn.close();
-    }
-    
-    public void updateSede(Sede sede) throws
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
-    {
-        Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
-        
-        oracleConn.setAutoCommit(false);
-        PreparedStatement create = oracleConn.prepareStatement(ASEDE);
-        create.setInt(1, sede.getId());
-        create.setInt(2, sede.getId());
         create.executeUpdate();
         
          oracleConn.commit();

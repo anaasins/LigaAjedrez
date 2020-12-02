@@ -79,6 +79,7 @@ public class ReservaDao {
             reservas.add(reserva);
         }
         
+        oracleConn.close();
         return reservas;
     }
     
@@ -104,6 +105,7 @@ public class ReservaDao {
             reserva.setId(rs.getInt("id"));
         }
         
+        oracleConn.close();
         return reserva;
     }
     
@@ -134,10 +136,11 @@ public class ReservaDao {
         oracleConn.setAutoCommit(false);
         PreparedStatement update = oracleConn.prepareStatement(UPDATE);
         update.setInt(1, reserva.getContador());
-        update.setDate(2, (Date) reserva.getInicio());
-        update.setInt(3, reserva.getSede().getId());
-        update.setInt(4, reserva.getUser().getId());
-        update.setInt(5, reserva.getId());
+        update.setInt(2, reserva.getHora());
+        update.setDate(3, (Date) reserva.getInicio());
+        update.setInt(4, reserva.getSede().getId());
+        update.setInt(5, reserva.getUser().getId());
+        update.setInt(6, reserva.getId());
         update.executeUpdate();
         
         oracleConn.commit();

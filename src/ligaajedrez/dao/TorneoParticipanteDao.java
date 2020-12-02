@@ -29,7 +29,7 @@ public class TorneoParticipanteDao {
     private static final String PASSWORD = "ISIILiga2020";
     
     private static final String SELECTONEBYTORNEO = 
-            "SELECT clubId FROM torneopaticipantes " +
+            "SELECT jugadorId FROM torneopaticipantes " +
             " WHERE torneoId = ?";
     private static final String SELECTONEBYJUGADOR = 
             "SELECT torneoId FROM torneopaticipantes " +
@@ -71,6 +71,7 @@ public class TorneoParticipanteDao {
             };
         }
         
+        oracleConn.close();
         return torneoClubs;
     }
     
@@ -82,13 +83,14 @@ public class TorneoParticipanteDao {
         Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         
         PreparedStatement read = oracleConn.prepareStatement(SELECTONEBYTORNEO);
-        read.setInt(0, id);
+        read.setInt(1, id);
         ResultSet rs = read.executeQuery();
         
         while (rs.next()) {
             clubs.add(rs.getInt("jugadorId"));
         }
         
+        oracleConn.close();
         return clubs;
     }
     
@@ -107,6 +109,7 @@ public class TorneoParticipanteDao {
             torneos.add(rs.getInt("torneoId"));
         }
         
+        oracleConn.close();
         return torneos;
     }
     

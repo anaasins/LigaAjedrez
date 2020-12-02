@@ -7,6 +7,7 @@ package ligaajedrez.dao;
 import java.util.*;
 import java.sql.*;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import ligaajedrez.modelo.JugadorModel;
 import ligaajedrez.modelo.Partida;
 import ligaajedrez.modelo.Sede;
@@ -27,7 +28,6 @@ public class PartidaDao {
     private static final String INSERT = "insert into partida values (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE = ""
             + "update partida set "
-            + "id=?, "
             + "jugador1Id=?, "
             + "jugador2Id=?, "
             + "sedeId=?, "
@@ -71,7 +71,7 @@ public class PartidaDao {
             j1 = new JugadorModelDao().selectOne(rs.getInt("jugador1Id"));
             j2 = new JugadorModelDao().selectOne(rs.getInt("jugador2Id"));
             ganador = new JugadorModelDao().selectOne(rs.getInt("ganadorId"));
-            s= new SedeDao().selectOne(rs.getInt("sedeId"));
+            s= new SedeDao().selectOne(rs.getInt("sede_id"));
             torneo = new TorneoDao().selectOne(rs.getInt("torneoId"));
             Partida partida = new Partida();
             partida.setId(rs.getInt("id"));
@@ -79,13 +79,15 @@ public class PartidaDao {
             partida.setJugador2(j2);
             partida.setSede(s);
             
-            partida.setFechaPartida(new java.util.Date(rs.getString("fecha")));
-            partida.setHora(new java.util.Date(rs.getString("hora")));
+            partida.setFechaPartida(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(rs.getString("fechaPartida")));
+            partida.setHora(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(rs.getString("hora")));
             partida.setGanador(ganador);
             partida.setTorneo(torneo);
             
             partidas.add(partida);
         }
+        
+        oracleConn.close();
         return partidas;
     }
     
@@ -125,6 +127,8 @@ public class PartidaDao {
             partida.setTorneo(torneo);
             
         }
+        
+        oracleConn.close();
         return partida;
     }
     
@@ -162,15 +166,14 @@ public class PartidaDao {
                 
         oracleConn.setAutoCommit(false);
         PreparedStatement insert = oracleConn.prepareStatement(UPDATE);
-        insert.setInt(1, partida.getId());
-        insert.setInt(2, partida.getJugador1().getId());
-        insert.setInt(3, partida.getJugador2().getId());
-        insert.setInt(4, partida.getSede().getId());
-        insert.setString(5, partida.getFechaPartida().toString());
-        insert.setString(6, partida.getHora().toString());
-        insert.setInt(7, partida.getTorneo().getId());
-        insert.setInt(8, partida.getGanador().getId());
-        insert.setInt(9, partida.getId());
+        insert.setInt(1, partida.getJugador1().getId());
+        insert.setInt(2, partida.getJugador2().getId());
+        insert.setInt(3, partida.getSede().getId());
+        insert.setString(4, partida.getFechaPartida().toString());
+        insert.setString(5, partida.getHora().toString());
+        insert.setInt(6, partida.getTorneo().getId());
+        insert.setInt(7, partida.getGanador().getId());
+        insert.setInt(8, partida.getId());
         insert.executeUpdate();
         
         oracleConn.commit();
