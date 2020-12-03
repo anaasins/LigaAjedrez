@@ -186,11 +186,16 @@ public class LigaTest {
 
     @Test
     public void testModificarGerente() {
+        GerenteModel geren = new GerenteModel("geren", "de prueba", "9-9-90", "555666777", "nomi", "irpff");
+        l.getGerentes().add(geren);
+        l.modificarGerente("modificado", "de prueba", "9-9-90", "555666777", "nomi", "irpff", geren);
+        geren.setName("modificado");
+        
+        GerenteModel geren2 = l.getGerentes().get(l.getGerentes().indexOf(geren));
+        
+        assertSame(geren2, geren);
     }
 
-    @Test
-    public void testConsultaEntrenadores() {
-    }
 
     @Test
     public void testAsignarClubEntrenador() {
