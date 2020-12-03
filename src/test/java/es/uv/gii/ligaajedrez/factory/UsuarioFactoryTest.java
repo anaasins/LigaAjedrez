@@ -35,6 +35,7 @@ public class UsuarioFactoryTest {
         user=UsuarioFactory.crearUsuario(user);
         
         assertTrue(user instanceof Jugador);
+        assertFalse(user instanceof Administrador);
         
          user.setUserName("AdminPepe");
         user.setId(90);
@@ -42,7 +43,7 @@ public class UsuarioFactoryTest {
         user.setAdmin(true);
         user=UsuarioFactory.crearUsuario(user);
         assertTrue(user instanceof Administrador);
-        
+        assertFalse(user instanceof Jugador);
     }
     
 }
