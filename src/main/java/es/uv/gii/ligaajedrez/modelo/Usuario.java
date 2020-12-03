@@ -122,6 +122,11 @@ public class Usuario {
         return player.getMoroso();
     }
     
+    public void setAdmin(boolean x)
+    {
+        isAdmin=x;
+    }
+    
     public boolean isAdmin() {
         return isAdmin;
     }
