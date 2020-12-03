@@ -7,6 +7,7 @@ package es.uv.gii.ligaajedrez.modelo;
 
 import java.sql.*;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.logging.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -69,6 +70,14 @@ public class LigaTest {
 
     @Test
     public void testModificarEntrenador() {
+        ArrayList<EntrenadorModel> ent = l.getEntrenadores();
+        EntrenadorModel entrenador = new EntrenadorModel("Entrenador1", "apellifo", "3/12/2020", "123456789");
+        l.getEntrenadores().add(entrenador);
+        l.modificarEntrenador("Entrenador 1 mod", "apellido mod", "3/12/1990", "987654321", entrenador);
+        entrenador = new EntrenadorModel("Entrenador 1 mod", "apellido mod", "3/12/1990", "987654321");
+        ent.add(entrenador);
+        
+        assertArrayEquals(ent.toArray(), l.getEntrenadores().toArray());
     }
 
     @Test
