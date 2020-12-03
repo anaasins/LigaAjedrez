@@ -7,6 +7,7 @@ package es.uv.gii.ligaajedrez.modelo;
 
 import java.sql.*;
 import java.text.ParseException;
+import java.util.*;
 import java.util.logging.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -193,6 +194,21 @@ public class LigaTest {
 
     @Test
     public void testAsignarClubEntrenador() {
+        EntrenadorModel entrenador= new EntrenadorModel("entrenador", "de prueba", "4-09-78", "666777888");
+        l.getEntrenadores().add(entrenador);
+        
+        Club club = new Club();
+        club.setName("otro club de prueba");
+        l.getClubs().add(club);
+        
+        ArrayList<Club> clubs = (ArrayList<Club>) entrenador.getClubs();
+        clubs.add(club);
+       
+        l.asignarClubEntrenador(entrenador, club);
+        
+        ArrayList<Club> clubsEntrenador = (ArrayList<Club>) entrenador.getClubs();
+        
+        assertArrayEquals(clubs.toArray(), clubsEntrenador.toArray());
     }
 
     @Test
