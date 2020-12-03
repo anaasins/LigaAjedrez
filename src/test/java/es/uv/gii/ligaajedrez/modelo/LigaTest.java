@@ -7,6 +7,7 @@ package es.uv.gii.ligaajedrez.modelo;
 
 import java.sql.*;
 import java.text.ParseException;
+import java.util.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.*;
@@ -215,14 +216,34 @@ public class LigaTest {
 
     @Test
     public void testModificarGerente() {
+        GerenteModel geren = new GerenteModel("geren", "de prueba", "9-9-90", "555666777", "nomi", "irpff");
+        l.getGerentes().add(geren);
+        l.modificarGerente("modificado", "de prueba", "9-9-90", "555666777", "nomi", "irpff", geren);
+        geren.setName("modificado");
+        
+        GerenteModel geren2 = l.getGerentes().get(l.getGerentes().indexOf(geren));
+        
+        assertSame(geren2, geren);
     }
 
-    @Test
-    public void testConsultaEntrenadores() {
-    }
 
     @Test
     public void testAsignarClubEntrenador() {
+        EntrenadorModel entrenador= new EntrenadorModel("entrenador", "de prueba", "4-09-78", "666777888");
+        l.getEntrenadores().add(entrenador);
+        
+        Club club = new Club();
+        club.setName("otro club de prueba");
+        l.getClubs().add(club);
+        
+        ArrayList<Club> clubs = (ArrayList<Club>) entrenador.getClubs();
+        clubs.add(club);
+       
+        l.asignarClubEntrenador(entrenador, club);
+        
+        ArrayList<Club> clubsEntrenador = (ArrayList<Club>) entrenador.getClubs();
+        
+        assertArrayEquals(clubs.toArray(), clubsEntrenador.toArray());
     }
 
     @Test
