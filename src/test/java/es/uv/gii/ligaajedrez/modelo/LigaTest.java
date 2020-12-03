@@ -7,6 +7,8 @@ package es.uv.gii.ligaajedrez.modelo;
 
 import java.sql.*;
 import java.text.ParseException;
+import java.util.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.*;
 import org.junit.jupiter.api.Test;
@@ -41,7 +43,7 @@ public class LigaTest {
 
     @Test
     public void testCrearJugador() {
-        JugadorModel jugador1 = new JugadorModel("Lucia",2,20,null,"Manolo","123456789");
+       JugadorModel jugador1 = new JugadorModel("Lucia",2,20,null,"Manolo","123456789");
        JugadorModel jugador2= new JugadorModel();
        Usuario u = new Usuario(jugador1.getName().toLowerCase(), jugador1.getName().toLowerCase(), jugador1);
        Usuario usuario = new Usuario();
@@ -66,6 +68,20 @@ public class LigaTest {
 
     @Test
     public void testModificarJugador() {
+       JugadorModel player = new JugadorModel("Lucia",2,20,null,"Manolo","123456789");
+       JugadorModel j = new JugadorModel("Lucia",5,20,null,"Manolo","123456789");
+       JugadorModel jugador2= new JugadorModel();       
+       l.getJugadores().add(player);
+       
+       l.modificarJugador("Lucia",5, 20, "Manolo","123456789", player);
+       for (JugadorModel jugador: l.getJugadores())
+       {
+            if (jugador == j)
+            {
+                jugador2= jugador;
+            }
+       }
+       assertTrue(j==jugador2);
     }
 
     @Test
@@ -85,7 +101,21 @@ public class LigaTest {
     }
 
     @Test
-    public void testCrearTorneo() {
+    public void testCrearTorneo() throws ParseException {
+        FederacionModel federacio = new FederacionModel("Valencia");
+        ArrayList<Club>  clubs = new ArrayList<Club> ();
+        Torneo  torneo = new Torneo(federacio,new SimpleDateFormat("dd/MM/yyyy").parse("3/10/20"),clubs);
+        Torneo t = new Torneo();
+        l.crearTorneo(federacio.getId(), new SimpleDateFormat("dd/MM/yyyy").parse("3/10/20"),new int[]{1,2});
+         for (Torneo torneo1: l.getTorneos())
+       {
+            if (torneo1 == torneo)
+            {
+                t= torneo1;
+            }
+       }
+       assertTrue(t==torneo);
+        
     }
 
     @Test
@@ -194,14 +224,34 @@ public class LigaTest {
 
     @Test
     public void testModificarGerente() {
+        GerenteModel geren = new GerenteModel("geren", "de prueba", "9-9-90", "555666777", "nomi", "irpff");
+        l.getGerentes().add(geren);
+        l.modificarGerente("modificado", "de prueba", "9-9-90", "555666777", "nomi", "irpff", geren);
+        geren.setName("modificado");
+        
+        GerenteModel geren2 = l.getGerentes().get(l.getGerentes().indexOf(geren));
+        
+        assertSame(geren2, geren);
     }
 
-    @Test
-    public void testConsultaEntrenadores() {
-    }
 
     @Test
     public void testAsignarClubEntrenador() {
+        EntrenadorModel entrenador= new EntrenadorModel("entrenador", "de prueba", "4-09-78", "666777888");
+        l.getEntrenadores().add(entrenador);
+        
+        Club club = new Club();
+        club.setName("otro club de prueba");
+        l.getClubs().add(club);
+        
+        ArrayList<Club> clubs = (ArrayList<Club>) entrenador.getClubs();
+        clubs.add(club);
+       
+        l.asignarClubEntrenador(entrenador, club);
+        
+        ArrayList<Club> clubsEntrenador = (ArrayList<Club>) entrenador.getClubs();
+        
+        assertArrayEquals(clubs.toArray(), clubsEntrenador.toArray());
     }
 
     @Test
