@@ -33,9 +33,9 @@ public class UsuarioFactoryTest {
         user.setUserPass("pepe");
         user.setAdmin(false);
         user=UsuarioFactory.crearUsuario(user);
-        //asser true de buscar el jugador y aseert false dw que siga un admin per ejemple
+        
         assertTrue(user instanceof Jugador);
-        //despres cree un altre usuari que siga admin i comprobe true de que siga admin i false de que siga jugador
+        
          user.setUserName("AdminPepe");
         user.setId(90);
         user.setUserPass("AdminPepe");
