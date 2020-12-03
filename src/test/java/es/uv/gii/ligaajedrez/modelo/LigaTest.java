@@ -40,6 +40,27 @@ public class LigaTest {
 
     @Test
     public void testCrearJugador() {
+        JugadorModel jugador1 = new JugadorModel("Lucia",2,20,null,"Manolo","123456789");
+       JugadorModel jugador2= new JugadorModel();
+       Usuario u = new Usuario(jugador1.getName().toLowerCase(), jugador1.getName().toLowerCase(), jugador1);
+       Usuario usuario = new Usuario();
+       l.crearJugador("Lucia",2,20,"Manolo","123456789");
+       for (JugadorModel jugador: l.getJugadores())
+       {
+            if (jugador == jugador1)
+            {
+                jugador2= jugador;
+            }
+       }
+       for (Usuario usuari: l.getNewUsuarios())
+       {
+            if (usuari == u)
+            {
+                usuario = usuari;
+            }
+       }
+       l.getNewUsuarios();
+       assertTrue(jugador1==jugador2 && u==usuario);
     }
 
     @Test
