@@ -20,15 +20,7 @@ import es.uv.gii.ligaajedrez.modelo.Torneo;
  *
  * @author Olaf
  */
-public class ClubDao {
-
-    /*
-        Parametres conexio base de dades
-     */
-    public static final String DRIVER = "oracle.jdbc.OracleDriver";
-    public static final String DBURL = "jdbc:oracle:thin:@176.31.107.124:1521:XE";
-    public static final String USERNAME = "liga";
-    public static final String PASSWORD = "ISIILiga2020";
+public class ClubDao extends BaseDao {
 
     /*
         Consultes
@@ -67,6 +59,9 @@ public class ClubDao {
     ;
    
     public ClubDao() {
+        super();
+        super.CREATE = create;
+        super.DELETE = delete;
     }
 
     public void actualizarClub(Club club){
@@ -129,35 +124,6 @@ public class ClubDao {
                 oracleConn.close();
                 if ( insert != null)
                      insert.close();
-            } catch(Exception e){}
-        }
-    }
-
-    public void crearClub(){
-
-        /*
-        * Conexion a la base de datos
-         */
-        Connection oracleConn = null;
-        PreparedStatement create = null;
-        try {
-        Class.forName(DRIVER).newInstance();
-        oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
-
-        oracleConn.setAutoCommit(false);
-        // Sentencia de insert
-         create = oracleConn.prepareStatement(this.create);
-        create.executeUpdate();
-
-        oracleConn.commit();
-        oracleConn.setAutoCommit(true);
-        }catch(Exception e){} 
-        finally {
-            try {
-                if(oracleConn != null)
-                oracleConn.close();
-                if(create != null)
-                create.close();
             } catch(Exception e){}
         }
     }
@@ -251,26 +217,5 @@ public class ClubDao {
             } catch(Exception e){}
         }
         return clubs;
-    }
-
-    public void borrarClub(int idClub) throws
-            ClassNotFoundException,
-            InstantiationException, IllegalAccessException, SQLException {
-        /*
-        * Conexion a la base de datos
-         */
-        Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
-
-        oracleConn.setAutoCommit(false);
-
-        // Sentencia de borrado
-        PreparedStatement delete = oracleConn.prepareStatement(this.delete);
-        delete.setInt(1, idClub);
-        delete.executeUpdate();
-
-        oracleConn.commit();
-        oracleConn.setAutoCommit(true);
-        oracleConn.close();
     }
 }
