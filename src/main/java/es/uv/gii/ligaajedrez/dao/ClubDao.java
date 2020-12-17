@@ -20,15 +20,7 @@ import es.uv.gii.ligaajedrez.modelo.Torneo;
  *
  * @author Olaf
  */
-public class ClubDao {
-
-    /*
-        Parametres conexio base de dades
-     */
-    public static final String DRIVER = "oracle.jdbc.OracleDriver";
-    public static final String DBURL = "jdbc:oracle:thin:@176.31.107.124:1521:XE";
-    public static final String USERNAME = "liga";
-    public static final String PASSWORD = "ISIILiga2020";
+public class ClubDao extends BaseDao {
 
     /*
         Consultes
@@ -67,6 +59,9 @@ public class ClubDao {
     ;
    
     public ClubDao() {
+        super();
+        super.CREATE = create;
+        super.DELETE = delete;
     }
 
     public void actualizarClub(Club club){
@@ -101,18 +96,18 @@ public class ClubDao {
 
     public void insertarClub(Club club) 
     {
-
         /*
         * Conexion a la base de datos
          */
         Connection oracleConn = null;
+        PreparedStatement insert= null;
         try {
         Class.forName(DRIVER).newInstance();
         oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
 
         oracleConn.setAutoCommit(false);
         // Sentencia de insert
-        PreparedStatement insert = oracleConn.prepareStatement(this.insert);
+        insert = oracleConn.prepareStatement(this.insert);
         insert.setInt(1, club.getId());
         insert.setString(2, club.getName());
         insert.setInt(3, club.getFederation().getId());
@@ -127,51 +122,25 @@ public class ClubDao {
             try {
                 if(oracleConn != null)
                 oracleConn.close();
+                if ( insert != null)
+                     insert.close();
             } catch(Exception e){}
         }
     }
 
-    public void crearClub() throws
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-
-        /*
-        * Conexion a la base de datos
-         */
-        Connection oracleConn = null;
-        try {
-        Class.forName(DRIVER).newInstance();
-        oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
-
-        oracleConn.setAutoCommit(false);
-        // Sentencia de insert
-        PreparedStatement create = oracleConn.prepareStatement(this.create);
-        create.executeUpdate();
-
-        oracleConn.commit();
-        oracleConn.setAutoCommit(true);
-        }catch(Exception e){} 
-        finally {
-            try {
-                if(oracleConn != null)
-                oracleConn.close();
-            } catch(Exception e){}
-        }
-    }
-
-    public Club leerClub(int idClub) throws
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException {
-
+    public Club leerClub(int idClub){
        Connection oracleConn = null;
-        
+        ResultSet rs=null;
+        PreparedStatement read=null;
         Club club = new Club();
         try{
         Class.forName(DRIVER).newInstance();
         oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
 
         // Sentencia de insert
-        PreparedStatement read = oracleConn.prepareStatement(selectUn);
+        read = oracleConn.prepareStatement(selectUn);
         read.setInt(1, idClub);
-        ResultSet rs = read.executeQuery();
+        rs = read.executeQuery();
 
         if (rs.next()) {
 
@@ -193,6 +162,10 @@ public class ClubDao {
             try {
                 if(oracleConn != null)
                 oracleConn.close();
+                if (read!= null)
+                read.close();
+                if(rs!=null)
+                rs.close();
             } catch(Exception e){}
         }
         return club;
@@ -203,15 +176,16 @@ public class ClubDao {
             SQLException, ParseException {
 
         ArrayList<Club> clubs = new ArrayList<Club>();
-
+         ResultSet rs=null;
+        PreparedStatement read=null;
         Connection oracleConn = null;
         try {
         Class.forName(DRIVER).newInstance();
         oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
 
         // Sentencia de insert
-        PreparedStatement read = oracleConn.prepareStatement(select);
-        ResultSet rs = read.executeQuery();
+         read = oracleConn.prepareStatement(select);
+         rs = read.executeQuery();
 
         while (rs.next()) {
 
@@ -232,33 +206,16 @@ public class ClubDao {
         }
 
        }catch(Exception e){} 
-        finally {
+       finally {
             try {
                 if(oracleConn != null)
                 oracleConn.close();
+                if (read!= null)
+                read.close();
+                if(rs!=null)
+                rs.close();
             } catch(Exception e){}
         }
         return clubs;
-    }
-
-    public void borrarClub(int idClub) throws
-            ClassNotFoundException,
-            InstantiationException, IllegalAccessException, SQLException {
-        /*
-        * Conexion a la base de datos
-         */
-        Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
-
-        oracleConn.setAutoCommit(false);
-
-        // Sentencia de borrado
-        PreparedStatement delete = oracleConn.prepareStatement(this.delete);
-        delete.setInt(1, idClub);
-        delete.executeUpdate();
-
-        oracleConn.commit();
-        oracleConn.setAutoCommit(true);
-        oracleConn.close();
     }
 }

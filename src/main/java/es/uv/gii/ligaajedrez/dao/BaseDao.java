@@ -15,33 +15,24 @@ import java.sql.PreparedStatement;
  */
 public class BaseDao {
 
-    private static final String DRIVER = "oracle.jdbc.OracleDriver";
-    private static final String DBURL = "jdbc:oracle:thin:@176.31.107.124:1521:XE";
-    private static final String USERNAME = "liga";
-    private static final String PASSWORD = "ISIILiga2020";
+    protected static final String DRIVER = "oracle.jdbc.OracleDriver";
+    protected static final String DBURL = "jdbc:oracle:thin:@176.31.107.124:1521:XE";
+    protected static final String USERNAME = "liga";
+    protected static final String PASSWORD = "ISIILiga2020";
 
-    private static final String DELETE
-            = "DELETE FROM usuario "
-            + " WHERE id = ?";
-    private static final String CREATE
-            = "CREATE TABLE 'USUARIO' "
-            + "('ID' NUMBER(10,0) NOT NULL ENABLE, "
-            + "'ISADMIN' NUMBER(10,0) NOT NULL ENABLE, "
-            + "'USERNAME' VARCHAR2(255), "
-            + "'USERPASS' VARCHAR2(255), "
-            + "'PLAYERID' NUMBER(10,0), "
-            + "PRIMARY KEY ('ID'), "
-            + "CONSTRAINT 'FK_USUARIO_JUGADOR' FOREIGN KEY ('PLAYERID') "
-            + "REFERENCES 'JUGADORMODEL' ('ID') ENABLE)";
+    protected String DELETE = "DELETE FROM T WHERE id = ?";
+    protected String CREATE = "CREATE TABLE 'T'()";
 
     public void delete(int id) {
         Connection oracleConn = null;
+        PreparedStatement delete = null;
+
         try {
             Class.forName(DRIVER).newInstance();
             oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
 
             oracleConn.setAutoCommit(false);
-            PreparedStatement delete = oracleConn.prepareStatement(DELETE);
+            delete = oracleConn.prepareStatement(DELETE);
             delete.setInt(1, id);
             delete.executeUpdate();
 
@@ -49,24 +40,28 @@ public class BaseDao {
             oracleConn.setAutoCommit(true);
         } catch (Exception e) {
         } finally {
-            if (oracleConn != null) {
-                try {
+            try {
+                if (oracleConn != null) {
                     oracleConn.close();
-                } catch (Exception ex) {
                 }
+                if (delete != null) {
+                    delete.close();
+                }
+            } catch (Exception e) {
             }
         }
     }
 
     public void create() {
         Connection oracleConn = null;
+        PreparedStatement create = null;
         try {
             Class.forName(DRIVER).newInstance();
             oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
 
             oracleConn.setAutoCommit(false);
             // Sentencia de insert
-            PreparedStatement create = oracleConn.prepareStatement(CREATE);
+            create = oracleConn.prepareStatement(CREATE);
             create.executeUpdate();
 
             oracleConn.commit();
@@ -75,7 +70,12 @@ public class BaseDao {
         } finally {
             if (oracleConn != null) {
                 try {
-                    oracleConn.close();
+                    if (oracleConn != null) {
+                        oracleConn.close();
+                    }
+                    if (create != null) {
+                        create.close();
+                    }
                 } catch (Exception ex) {
                 }
             }
