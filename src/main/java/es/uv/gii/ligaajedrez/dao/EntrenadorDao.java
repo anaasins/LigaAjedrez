@@ -43,13 +43,13 @@ public class EntrenadorDao {
      
      public EntrenadorDao(){}
      
-     public List<EntrenadorModel> selectAll()throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException 
+     public List<EntrenadorModel> selectAll() 
      {
          List<EntrenadorModel> entrenadores = new ArrayList<EntrenadorModel>();
-         
+        Connection oracleConn = null;
+        try {
          Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+         oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         
         PreparedStatement read = oracleConn.prepareStatement(select);
         ResultSet rs = read.executeQuery();
@@ -66,17 +66,24 @@ public class EntrenadorDao {
             entrenadores.add(entrenador);
         }
         
-        oracleConn.close();
+        }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                    oracleConn.close();
+            } catch(Exception e){}
+        }
         return entrenadores;
      }
      
-     public EntrenadorModel selectOne(int id)throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException 
+     public EntrenadorModel selectOne(int id)            
      {
         
-         EntrenadorModel entrenador = null;
+        EntrenadorModel entrenador = null;
+        Connection oracleConn = null;
+        try {
          Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+         oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         
         PreparedStatement read = oracleConn.prepareStatement(selectOne);
         read.setInt(1, id);
@@ -94,14 +101,22 @@ public class EntrenadorDao {
             
         }
         
-        oracleConn.close();
+        }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                    oracleConn.close();
+            } catch(Exception e){}
+        }
         return entrenador;
      }
      
-    public void insert(EntrenadorModel entrenador) throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+    public void insert(EntrenadorModel entrenador)
+    {        
+        Connection oracleConn = null;
+        try {
         Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+        oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
            
         oracleConn.setAutoCommit(false);
         PreparedStatement insert = oracleConn.prepareStatement(insertEn);
@@ -114,13 +129,21 @@ public class EntrenadorDao {
         
         oracleConn.commit();
         oracleConn.setAutoCommit(true);
-        oracleConn.close();
+         }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                    oracleConn.close();
+            } catch(Exception e){}
+        }
     }
     
-    public void update(EntrenadorModel entrenador) throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+    public void update(EntrenadorModel entrenador) {
+        
+        Connection oracleConn = null;
+        try {
         Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+        oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
            
         oracleConn.setAutoCommit(false);
         PreparedStatement update = oracleConn.prepareStatement(updateEn);
@@ -133,7 +156,13 @@ public class EntrenadorDao {
         
         oracleConn.commit();
         oracleConn.setAutoCommit(true);
-        oracleConn.close();
+        }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                    oracleConn.close();
+            } catch(Exception e){}
+        }
     }
        
     public void delete(int id) throws 
