@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
         <action>
-            <actionName>CUSTOM-Lo que vulgues</actionName>
-            <displayName>Lo que vulgues</displayName>
+            <actionName>CUSTOM-sendToSonar</actionName>
+            <displayName>sendToSonar</displayName>
             <goals>
                 <goal>sonar:sonar</goal>
+                
             </goals>
             <properties>
                 <sonar.projectKey>ISII-LigaAjedrez</sonar.projectKey>
