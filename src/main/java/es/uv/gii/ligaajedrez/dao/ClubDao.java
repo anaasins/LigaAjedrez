@@ -101,18 +101,18 @@ public class ClubDao {
 
     public void insertarClub(Club club) 
     {
-
         /*
         * Conexion a la base de datos
          */
         Connection oracleConn = null;
+        PreparedStatement insert= null;
         try {
         Class.forName(DRIVER).newInstance();
         oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
 
         oracleConn.setAutoCommit(false);
         // Sentencia de insert
-        PreparedStatement insert = oracleConn.prepareStatement(this.insert);
+        insert = oracleConn.prepareStatement(this.insert);
         insert.setInt(1, club.getId());
         insert.setString(2, club.getName());
         insert.setInt(3, club.getFederation().getId());
@@ -127,24 +127,26 @@ public class ClubDao {
             try {
                 if(oracleConn != null)
                 oracleConn.close();
+                if ( insert != null)
+                     insert.close();
             } catch(Exception e){}
         }
     }
 
-    public void crearClub() throws
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+    public void crearClub(){
 
         /*
         * Conexion a la base de datos
          */
         Connection oracleConn = null;
+        PreparedStatement create = null;
         try {
         Class.forName(DRIVER).newInstance();
         oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
 
         oracleConn.setAutoCommit(false);
         // Sentencia de insert
-        PreparedStatement create = oracleConn.prepareStatement(this.create);
+         create = oracleConn.prepareStatement(this.create);
         create.executeUpdate();
 
         oracleConn.commit();
@@ -154,24 +156,25 @@ public class ClubDao {
             try {
                 if(oracleConn != null)
                 oracleConn.close();
+                if(create != null)
+                create.close();
             } catch(Exception e){}
         }
     }
 
-    public Club leerClub(int idClub) throws
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException {
-
+    public Club leerClub(int idClub){
        Connection oracleConn = null;
-        
+        ResultSet rs=null;
+        PreparedStatement read=null;
         Club club = new Club();
         try{
         Class.forName(DRIVER).newInstance();
         oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
 
         // Sentencia de insert
-        PreparedStatement read = oracleConn.prepareStatement(selectUn);
+        read = oracleConn.prepareStatement(selectUn);
         read.setInt(1, idClub);
-        ResultSet rs = read.executeQuery();
+        rs = read.executeQuery();
 
         if (rs.next()) {
 
@@ -193,6 +196,10 @@ public class ClubDao {
             try {
                 if(oracleConn != null)
                 oracleConn.close();
+                if (read!= null)
+                read.close();
+                if(rs!=null)
+                rs.close();
             } catch(Exception e){}
         }
         return club;
@@ -203,15 +210,16 @@ public class ClubDao {
             SQLException, ParseException {
 
         ArrayList<Club> clubs = new ArrayList<Club>();
-
+         ResultSet rs=null;
+        PreparedStatement read=null;
         Connection oracleConn = null;
         try {
         Class.forName(DRIVER).newInstance();
         oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
 
         // Sentencia de insert
-        PreparedStatement read = oracleConn.prepareStatement(select);
-        ResultSet rs = read.executeQuery();
+         read = oracleConn.prepareStatement(select);
+         rs = read.executeQuery();
 
         while (rs.next()) {
 
@@ -232,10 +240,14 @@ public class ClubDao {
         }
 
        }catch(Exception e){} 
-        finally {
+       finally {
             try {
                 if(oracleConn != null)
                 oracleConn.close();
+                if (read!= null)
+                read.close();
+                if(rs!=null)
+                rs.close();
             } catch(Exception e){}
         }
         return clubs;

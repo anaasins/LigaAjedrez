@@ -47,12 +47,14 @@ public class EntrenadorDao {
      {
          List<EntrenadorModel> entrenadores = new ArrayList<EntrenadorModel>();
         Connection oracleConn = null;
+        PreparedStatement read = null;
+        ResultSet rs = null;
         try {
          Class.forName(DRIVER).newInstance();
          oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         
-        PreparedStatement read = oracleConn.prepareStatement(select);
-        ResultSet rs = read.executeQuery();
+        read = oracleConn.prepareStatement(select);
+        rs = read.executeQuery();
         
         while(rs.next())
         {
@@ -67,10 +69,14 @@ public class EntrenadorDao {
         }
         
         }catch(Exception e){} 
-        finally {
+         finally {
             try {
                 if(oracleConn != null)
-                    oracleConn.close();
+                oracleConn.close();
+                if (read!= null)
+                read.close();
+                if(rs!=null)
+                rs.close();
             } catch(Exception e){}
         }
         return entrenadores;
@@ -80,14 +86,16 @@ public class EntrenadorDao {
      {
         
         EntrenadorModel entrenador = null;
+        PreparedStatement read = null;
+        ResultSet rs = null;
         Connection oracleConn = null;
         try {
          Class.forName(DRIVER).newInstance();
          oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         
-        PreparedStatement read = oracleConn.prepareStatement(selectOne);
+        read = oracleConn.prepareStatement(selectOne);
         read.setInt(1, id);
-        ResultSet rs = read.executeQuery();
+        rs = read.executeQuery();
         
         if(rs.next())
         {
@@ -105,8 +113,12 @@ public class EntrenadorDao {
         finally {
             try {
                 if(oracleConn != null)
-                    oracleConn.close();
-            } catch(Exception e){}
+                oracleConn.close();
+                if (read!= null)
+                read.close();
+                if(rs!=null)
+                rs.close();
+            } catch(Exception e){}  
         }
         return entrenador;
      }
@@ -114,12 +126,13 @@ public class EntrenadorDao {
     public void insert(EntrenadorModel entrenador)
     {        
         Connection oracleConn = null;
+        PreparedStatement insert = null;
         try {
         Class.forName(DRIVER).newInstance();
         oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
            
         oracleConn.setAutoCommit(false);
-        PreparedStatement insert = oracleConn.prepareStatement(insertEn);
+        insert = oracleConn.prepareStatement(insertEn);
         insert.setInt(1, entrenador.getId());
         insert.setString(2, entrenador.getName());
         insert.setString(3, entrenador.getSurname());
@@ -134,6 +147,8 @@ public class EntrenadorDao {
             try {
                 if(oracleConn != null)
                     oracleConn.close();
+                if ( insert != null)
+                     insert.close();
             } catch(Exception e){}
         }
     }
