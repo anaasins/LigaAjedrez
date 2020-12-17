@@ -31,15 +31,18 @@ public class FederacionDao {
             + "PRIMARY KEY('id')"
             + ");";
     
-    public List<FederacionModel> selectAll() 
-                throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        
+    public List<FederacionModel> selectAll(){
+               
         List<FederacionModel> federaciones = new ArrayList<FederacionModel>();
+        Connection oracleConn = null;
+        PreparedStatement read = null;
+        ResultSet rs = null;
+        try {
         Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+        oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
         
-        PreparedStatement read = oracleConn.prepareStatement(SELECT);
-        ResultSet rs = read.executeQuery();
+        read = oracleConn.prepareStatement(SELECT);
+        rs = read.executeQuery();
     
         while(rs.next()){
             FederacionModel fede = new FederacionModel();
@@ -48,21 +51,33 @@ public class FederacionDao {
             federaciones.add(fede);
         }
         
-        oracleConn.close();
+        }catch(Exception e){} 
+         finally {
+            try {
+                if(oracleConn != null)
+                oracleConn.close();
+                if (read!= null)
+                read.close();
+                if(rs!=null)
+                rs.close();
+            } catch(Exception e){}            
+        }
         return federaciones;
     }
     
-    public FederacionModel selectOne(int id)throws
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException 
+    public FederacionModel selectOne(int id)             
     {
        FederacionModel fede = null;
-       
+       Connection oracleConn = null;
+       PreparedStatement read = null;
+       ResultSet rs = null;
+       try {
        Class.forName(DRIVER).newInstance();
-       Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+       oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
        
-       PreparedStatement read = oracleConn.prepareStatement(SELECTONE);
+       read = oracleConn.prepareStatement(SELECTONE);
        read.setInt(1, id);
-       ResultSet rs = read.executeQuery();
+       rs = read.executeQuery();
        
        if(rs.next()){
            fede = new FederacionModel();
@@ -70,12 +85,22 @@ public class FederacionDao {
            fede.setCity(rs.getString("city"));
        }
        
-       oracleConn.close();
+       }catch(Exception e){} 
+         finally {
+            try {
+                if(oracleConn != null)
+                oracleConn.close();
+                if (read!= null)
+                read.close();
+                if(rs!=null)
+                rs.close();
+            } catch(Exception e){}            
+        }
        return fede;
     }
     
-    public void createTable()throws
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
+    public void createTable() throws 
+            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException 
     {
         Class.forName(DRIVER).newInstance();
         Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
@@ -89,38 +114,59 @@ public class FederacionDao {
         oracleConn.close();
     }
     
-    public void insert(int id, String city)throws
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
+    public void insert(int id, String city)
     {
+      
+       Connection oracleConn = null;
+       PreparedStatement create = null;
+       try {
         Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+        oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
         
         oracleConn.setAutoCommit(false);
-        PreparedStatement create = oracleConn.prepareStatement(INSERT);
+        create = oracleConn.prepareStatement(INSERT);
         create.setInt(1, id);
         create.setString(2, city);
         create.executeUpdate();
         
          oracleConn.commit();
         oracleConn.setAutoCommit(true);
-        oracleConn.close();
+        }catch(Exception e){} 
+         finally {
+            try {
+                if(oracleConn != null)
+                oracleConn.close();
+                if (create!= null)
+                create.close();
+            } catch(Exception e){}    
+        }
     }
     
-    public void update(int id, String city)throws
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
+    public void update(int id, String city)
     {
+       Connection oracleConn = null;
+       PreparedStatement create = null;
+       try {
         Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+        oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
         
         oracleConn.setAutoCommit(false);
-        PreparedStatement create = oracleConn.prepareStatement(UPDATE);
+        create = oracleConn.prepareStatement(UPDATE);
         create.setString(1, city);
         create.setInt(2, id);
         create.executeUpdate();
         
          oracleConn.commit();
         oracleConn.setAutoCommit(true);
-        oracleConn.close();
+       }catch(Exception e){} 
+         finally {
+            try {
+                if(oracleConn != null)
+                oracleConn.close();
+                if (create!= null)
+                create.close();
+            } catch(Exception e){}            
+        }
     }
     
     public void delete(int id) throws 
