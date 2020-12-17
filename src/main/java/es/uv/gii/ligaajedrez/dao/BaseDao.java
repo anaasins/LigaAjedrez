@@ -25,12 +25,14 @@ public class BaseDao {
 
     public void delete(int id) {
         Connection oracleConn = null;
+        PreparedStatement delete = null;
+
         try {
             Class.forName(DRIVER).newInstance();
             oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
 
             oracleConn.setAutoCommit(false);
-            PreparedStatement delete = oracleConn.prepareStatement(DELETE);
+            delete = oracleConn.prepareStatement(DELETE);
             delete.setInt(1, id);
             delete.executeUpdate();
 
@@ -38,24 +40,28 @@ public class BaseDao {
             oracleConn.setAutoCommit(true);
         } catch (Exception e) {
         } finally {
-            if (oracleConn != null) {
-                try {
+            try {
+                if (oracleConn != null) {
                     oracleConn.close();
-                } catch (Exception ex) {
                 }
+                if (delete != null) {
+                    delete.close();
+                }
+            } catch (Exception e) {
             }
         }
     }
 
     public void create() {
         Connection oracleConn = null;
+        PreparedStatement create = null;
         try {
             Class.forName(DRIVER).newInstance();
             oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
 
             oracleConn.setAutoCommit(false);
             // Sentencia de insert
-            PreparedStatement create = oracleConn.prepareStatement(CREATE);
+            create = oracleConn.prepareStatement(CREATE);
             create.executeUpdate();
 
             oracleConn.commit();
@@ -64,7 +70,12 @@ public class BaseDao {
         } finally {
             if (oracleConn != null) {
                 try {
-                    oracleConn.close();
+                    if (oracleConn != null) {
+                        oracleConn.close();
+                    }
+                    if (create != null) {
+                        create.close();
+                    }
                 } catch (Exception ex) {
                 }
             }
