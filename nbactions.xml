@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-Lo que vulgues</actionName>
+            <displayName>Lo que vulgues</displayName>
+            <goals>
+                <goal>sonar:sonar</goal>
+            </goals>
+            <properties>
+                <sonar.projectKey>ISII-LigaAjedrez</sonar.projectKey>
+                <sonar.host.url>http://176.31.107.124:32778</sonar.host.url>
+                <sonar.login>c1bea4c1ab2672d2159cd37b678a675028368409</sonar.login>
+            </properties>
+        </action>
+    </actions>
