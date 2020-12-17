@@ -2,5 +2,5 @@ projectKey=ISII-LigaAjedrez
 serverUrl=http://176.31.107.124:32778
 serverVersion=7.9.2.30863
 dashboardUrl=http://176.31.107.124:32778/dashboard?id=ISII-LigaAjedrez
-ceTaskId=AXZwdtH9rA_knOgifhM2
-ceTaskUrl=http://176.31.107.124:32778/api/ce/task?id=AXZwdtH9rA_knOgifhM2
+ceTaskId=AXZwfhpwrA_knOgifhM3
+ceTaskUrl=http://176.31.107.124:32778/api/ce/task?id=AXZwfhpwrA_knOgifhM3

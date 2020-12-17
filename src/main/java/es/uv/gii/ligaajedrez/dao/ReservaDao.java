@@ -60,13 +60,14 @@ public class ReservaDao {
     public List<Reserva> selectAll(){
         List<Reserva> reservas = new ArrayList<Reserva>();
        Connection oracleConn = null;
-
+       PreparedStatement read = null;
+       ResultSet rs = null;
        try {
            Class.forName(DRIVER).newInstance();
             oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
 
-            PreparedStatement read = oracleConn.prepareStatement(SELECT);
-            ResultSet rs = read.executeQuery();
+            read = oracleConn.prepareStatement(SELECT);
+            rs = read.executeQuery();
 
             while (rs.next()) {
                 Reserva reserva = new Reserva(
@@ -83,7 +84,11 @@ public class ReservaDao {
         finally {
             try {
                 if(oracleConn != null)
-                oracleConn.close();
+                    oracleConn.close();
+                if(read != null)
+                    read.close();
+                if(rs!=null)
+                    rs.close();
             } catch(Exception e){}
         }
         
@@ -93,14 +98,16 @@ public class ReservaDao {
     public Reserva selectOne(int id){
         Reserva reserva = null;
         Connection oracleConn = null;
- 
+        PreparedStatement read = null;
+        ResultSet rs =null;
+
         try {
             Class.forName(DRIVER).newInstance();
             oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
 
-            PreparedStatement read = oracleConn.prepareStatement(SELECT);
+            read = oracleConn.prepareStatement(SELECT);
             read.setInt(1, id);
-            ResultSet rs = read.executeQuery();
+            rs = read.executeQuery();
 
             if (rs.next()) {
                 reserva = new Reserva(
@@ -117,6 +124,10 @@ public class ReservaDao {
             try {
                 if(oracleConn != null)
                 oracleConn.close();
+                if(read != null)
+                    read.close();
+                if(rs!=null)
+                    rs.close();
             } catch(Exception e){}
         }
         return reserva;
@@ -124,13 +135,14 @@ public class ReservaDao {
     
     public void insert(Reserva reserva) {
         Connection oracleConn = null;
- 
+        PreparedStatement insert = null;
+
         try {
             Class.forName(DRIVER).newInstance();
             oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
            
             oracleConn.setAutoCommit(false);
-            PreparedStatement insert = oracleConn.prepareStatement(INSERT);
+            insert = oracleConn.prepareStatement(INSERT);
             insert.setInt(1, reserva.getId());
             insert.setInt(2, reserva.getContador());
             insert.setDate(3, (Date) reserva.getInicio());
@@ -145,19 +157,22 @@ public class ReservaDao {
             try {
                 if(oracleConn != null)
                 oracleConn.close();
+                if(insert!=null)
+                        insert.close();
             } catch(Exception e){}
         }
     }
     
     public void update(Reserva reserva) {
         Connection oracleConn = null;
+        PreparedStatement update = null;
 
         try {
             Class.forName(DRIVER).newInstance();
             oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
            
             oracleConn.setAutoCommit(false);
-            PreparedStatement update = oracleConn.prepareStatement(UPDATE);
+            update = oracleConn.prepareStatement(UPDATE);
             update.setInt(1, reserva.getContador());
             update.setInt(2, reserva.getHora());
             update.setDate(3, (Date) reserva.getInicio());
@@ -173,6 +188,8 @@ public class ReservaDao {
             try {
                 if(oracleConn != null)
                 oracleConn.close();
+                if(update!=null)
+                    update.close();
             } catch(Exception e){}
         }
     }
