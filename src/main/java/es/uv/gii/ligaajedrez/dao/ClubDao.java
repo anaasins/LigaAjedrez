@@ -69,8 +69,7 @@ public class ClubDao {
     public ClubDao() {
     }
 
-    public void actualizarClub(Club club) throws ClassNotFoundException,
-            InstantiationException, IllegalAccessException, SQLException {
+    public void actualizarClub(Club club){
         /*
         * Conexion a la base de datos
          */
@@ -91,21 +90,25 @@ public class ClubDao {
 
             oracleConn.commit();
             oracleConn.setAutoCommit(true);
-        } finally {
+        }catch(Exception e){} 
+        finally {
             try {
-                oracleConn.close();
-            } catch(SQLException e){}
+                if(oracleConn != null)
+                    oracleConn.close();
+            } catch(Exception e){}
         }
     }
 
-    public void insertarClub(Club club) throws
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+    public void insertarClub(Club club) 
+    {
 
         /*
         * Conexion a la base de datos
          */
+        Connection oracleConn = null;
+        try {
         Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+        oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
 
         oracleConn.setAutoCommit(false);
         // Sentencia de insert
@@ -119,17 +122,25 @@ public class ClubDao {
 
         oracleConn.commit();
         oracleConn.setAutoCommit(true);
-        oracleConn.close();
+        }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                oracleConn.close();
+            } catch(Exception e){}
+        }
     }
 
-    public void crearClub(Club club) throws
+    public void crearClub() throws
             ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
 
         /*
         * Conexion a la base de datos
          */
+        Connection oracleConn = null;
+        try {
         Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+        oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
 
         oracleConn.setAutoCommit(false);
         // Sentencia de insert
@@ -138,16 +149,24 @@ public class ClubDao {
 
         oracleConn.commit();
         oracleConn.setAutoCommit(true);
-        oracleConn.close();
+        }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                oracleConn.close();
+            } catch(Exception e){}
+        }
     }
 
     public Club leerClub(int idClub) throws
             ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException {
 
+       Connection oracleConn = null;
+        
         Club club = new Club();
-
+        try{
         Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+        oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
 
         // Sentencia de insert
         PreparedStatement read = oracleConn.prepareStatement(selectUn);
@@ -169,7 +188,13 @@ public class ClubDao {
             club.setTorneos(torneos);
         }
 
-        oracleConn.close();
+        }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                oracleConn.close();
+            } catch(Exception e){}
+        }
         return club;
     }
 
@@ -179,8 +204,10 @@ public class ClubDao {
 
         ArrayList<Club> clubs = new ArrayList<Club>();
 
+        Connection oracleConn = null;
+        try {
         Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+        oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
 
         // Sentencia de insert
         PreparedStatement read = oracleConn.prepareStatement(select);
@@ -204,7 +231,13 @@ public class ClubDao {
             clubs.add(club);
         }
 
-        oracleConn.close();
+       }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                oracleConn.close();
+            } catch(Exception e){}
+        }
         return clubs;
     }
 

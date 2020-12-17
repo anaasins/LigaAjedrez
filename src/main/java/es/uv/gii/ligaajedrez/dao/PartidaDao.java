@@ -55,131 +55,157 @@ public class PartidaDao {
     public List<Partida> selectAll() throws 
             ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException
     {
-       List<Partida> partidas = new ArrayList<Partida>(); 
-       Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
-        
-        PreparedStatement read = oracleConn.prepareStatement(SELECT);
-        ResultSet rs = read.executeQuery();
-        Sede s = new Sede();
-        JugadorModel j1 = new JugadorModel();
-        JugadorModel j2 = new JugadorModel();
-        JugadorModel ganador = new JugadorModel();
-        Torneo torneo = new Torneo();
-        while(rs.next())
-        {
-            j1 = new JugadorModelDao().selectOne(rs.getInt("jugador1Id"));
-            j2 = new JugadorModelDao().selectOne(rs.getInt("jugador2Id"));
-            ganador = new JugadorModelDao().selectOne(rs.getInt("ganadorId"));
-            s= new SedeDao().selectOne(rs.getInt("sede_id"));
-            torneo = new TorneoDao().selectOne(rs.getInt("torneoId"));
-            Partida partida = new Partida();
-            partida.setId(rs.getInt("id"));
-            partida.setJugador1(j1);
-            partida.setJugador2(j2);
-            partida.setSede(s);
-            
-            partida.setFechaPartida(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs.getString("fechaPartida")));
-            partida.setHora(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs.getString("hora")));
-            partida.setGanador(ganador);
-            partida.setTorneo(torneo);
-            
-            partidas.add(partida);
+        Connection oracleConn = null;
+
+        List<Partida> partidas = new ArrayList<Partida>(); 
+
+         try{
+            Class.forName(DRIVER).newInstance();
+            oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+
+            PreparedStatement read = oracleConn.prepareStatement(SELECT);
+            ResultSet rs = read.executeQuery();
+            Sede s = new Sede();
+            JugadorModel j1 = new JugadorModel();
+            JugadorModel j2 = new JugadorModel();
+            JugadorModel ganador = new JugadorModel();
+            Torneo torneo = new Torneo();
+            while(rs.next())
+            {
+                j1 = new JugadorModelDao().selectOne(rs.getInt("jugador1Id"));
+                j2 = new JugadorModelDao().selectOne(rs.getInt("jugador2Id"));
+                ganador = new JugadorModelDao().selectOne(rs.getInt("ganadorId"));
+                s= new SedeDao().selectOne(rs.getInt("sede_id"));
+                torneo = new TorneoDao().selectOne(rs.getInt("torneoId"));
+                Partida partida = new Partida();
+                partida.setId(rs.getInt("id"));
+                partida.setJugador1(j1);
+                partida.setJugador2(j2);
+                partida.setSede(s);
+
+                partida.setFechaPartida(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs.getString("fechaPartida")));
+                partida.setHora(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs.getString("hora")));
+                partida.setGanador(ganador);
+                partida.setTorneo(torneo);
+
+                partidas.add(partida);
+            }
+        } finally{
+            try{
+                oracleConn.close();
+            }catch(Exception e){}
         }
-        
-        oracleConn.close();
         return partidas;
     }
     
     public Partida selectOne() throws 
             ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException
     {
-        Partida partida = null;
-       Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         
-        PreparedStatement read = oracleConn.prepareStatement(SELECTONE);
-        ResultSet rs = read.executeQuery();
-        Sede s = new Sede();
-        SedeDao sd = new SedeDao();
-        JugadorModel j1 = new JugadorModel();
-        JugadorModel j2 = new JugadorModel();
-        JugadorModel ganador = new JugadorModel();
-        JugadorModelDao jd = new JugadorModelDao();
-        Torneo torneo = new Torneo();
-        TorneoDao td = new TorneoDao();
-        if(rs.next())
-        {
-            j1 = jd.selectOne(rs.getInt("jugador1Id"));
-            j2 = jd.selectOne(rs.getInt("jugador2Id"));
-            ganador = jd.selectOne(rs.getInt("ganadorId"));
-            s= sd.selectOne(rs.getInt("sedeId"));
-            torneo = td.selectOne(rs.getInt("torneoId"));
-            partida = new Partida();
-            partida.setId(rs.getInt("id"));
-            partida.setJugador1(j1);
-            partida.setJugador2(j2);
-            partida.setSede(s);
+        Connection oracleConn = null;
+        Partida partida = null;
+
+        try{
             
-            partida.setFechaPartida(new java.util.Date(rs.getString("fecha")));
-            partida.setHora(new java.util.Date(rs.getString("hora")));
-            partida.setGanador(ganador);
-            partida.setTorneo(torneo);
-            
+            Class.forName(DRIVER).newInstance();
+             oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+
+             PreparedStatement read = oracleConn.prepareStatement(SELECTONE);
+             ResultSet rs = read.executeQuery();
+             Sede s = new Sede();
+             SedeDao sd = new SedeDao();
+             JugadorModel j1 = new JugadorModel();
+             JugadorModel j2 = new JugadorModel();
+             JugadorModel ganador = new JugadorModel();
+             JugadorModelDao jd = new JugadorModelDao();
+             Torneo torneo = new Torneo();
+             TorneoDao td = new TorneoDao();
+             if(rs.next())
+             {
+                 j1 = jd.selectOne(rs.getInt("jugador1Id"));
+                 j2 = jd.selectOne(rs.getInt("jugador2Id"));
+                 ganador = jd.selectOne(rs.getInt("ganadorId"));
+                 s= sd.selectOne(rs.getInt("sedeId"));
+                 torneo = td.selectOne(rs.getInt("torneoId"));
+                 partida = new Partida();
+                 partida.setId(rs.getInt("id"));
+                 partida.setJugador1(j1);
+                 partida.setJugador2(j2);
+                 partida.setSede(s);
+
+                 partida.setFechaPartida(new java.util.Date(rs.getString("fecha")));
+                 partida.setHora(new java.util.Date(rs.getString("hora")));
+                 partida.setGanador(ganador);
+                 partida.setTorneo(torneo);
+
+             }
+        } finally{
+            try{
+                oracleConn.close();
+            }catch(Exception e){}
         }
         
-        oracleConn.close();
         return partida;
     }
     
     public void insert(Partida partida)throws 
             ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
     {
-        Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         
-                
-        oracleConn.setAutoCommit(false);
-        PreparedStatement insert = oracleConn.prepareStatement(INSERT);
-        insert.setInt(1, partida.getId());
-        insert.setInt(2, partida.getJugador1().getId());
-        insert.setInt(3, partida.getJugador2().getId());
-        insert.setInt(4, partida.getSede().getId());
-        insert.setString(5, partida.getFechaPartida().toString());
-        insert.setString(6, partida.getHora().toString());
-        insert.setInt(7, partida.getTorneo().getId());
-        insert.setInt(8, partida.getGanador().getId());
-        insert.executeUpdate();
-        
-        oracleConn.commit();
-        oracleConn.setAutoCommit(true);
-        oracleConn.close();
+        Connection oracleConn = null;
+
+        try{
+            Class.forName(DRIVER).newInstance();
+            oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+            oracleConn.setAutoCommit(false);
+            PreparedStatement insert = oracleConn.prepareStatement(INSERT);
+            insert.setInt(1, partida.getId());
+            insert.setInt(2, partida.getJugador1().getId());
+            insert.setInt(3, partida.getJugador2().getId());
+            insert.setInt(4, partida.getSede().getId());
+            insert.setString(5, partida.getFechaPartida().toString());
+            insert.setString(6, partida.getHora().toString());
+            insert.setInt(7, partida.getTorneo().getId());
+            insert.setInt(8, partida.getGanador().getId());
+            insert.executeUpdate();
+            oracleConn.commit();
+            oracleConn.setAutoCommit(true);
+        } finally{
+            try{
+                oracleConn.close();
+            }catch(Exception e){}
+        }
         
     }
     
     public void update(Partida partida)throws 
             ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
     {
-        Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
-        
-                
-        oracleConn.setAutoCommit(false);
-        PreparedStatement insert = oracleConn.prepareStatement(UPDATE);
-        insert.setInt(1, partida.getJugador1().getId());
-        insert.setInt(2, partida.getJugador2().getId());
-        insert.setInt(3, partida.getSede().getId());
-        insert.setString(4, partida.getFechaPartida().toString());
-        insert.setString(5, partida.getHora().toString());
-        insert.setInt(6, partida.getTorneo().getId());
-        insert.setInt(7, partida.getGanador().getId());
-        insert.setInt(8, partida.getId());
-        insert.executeUpdate();
-        
-        oracleConn.commit();
-        oracleConn.setAutoCommit(true);
-        oracleConn.close();
-        
+       Connection oracleConn = null;
+        try{
+            Class.forName(DRIVER).newInstance();
+            oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+
+
+            oracleConn.setAutoCommit(false);
+            PreparedStatement insert = oracleConn.prepareStatement(UPDATE);
+            insert.setInt(1, partida.getJugador1().getId());
+            insert.setInt(2, partida.getJugador2().getId());
+            insert.setInt(3, partida.getSede().getId());
+            insert.setString(4, partida.getFechaPartida().toString());
+            insert.setString(5, partida.getHora().toString());
+            insert.setInt(6, partida.getTorneo().getId());
+            insert.setInt(7, partida.getGanador().getId());
+            insert.setInt(8, partida.getId());
+            insert.executeUpdate();
+
+            oracleConn.commit();
+            oracleConn.setAutoCommit(true);
+        } finally{
+            try{
+                oracleConn.close();
+            }catch(Exception e){}
+        }
     }
     
     public void delete(int id) throws 
@@ -199,17 +225,26 @@ public class PartidaDao {
     
     public void create() throws 
             ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
-           
-        oracleConn.setAutoCommit(false);
-        // Sentencia de insert
-        PreparedStatement create = oracleConn.prepareStatement(CREATE);
-        create.executeUpdate();
+        Connection oracleConn = null;
         
-        oracleConn.commit();
-        oracleConn.setAutoCommit(true);
-        oracleConn.close();
+        
+        try{
+            Class.forName(DRIVER).newInstance();
+
+            oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+
+            oracleConn.setAutoCommit(false);
+            // Sentencia de insert
+            PreparedStatement create = oracleConn.prepareStatement(CREATE);
+            create.executeUpdate();
+
+            oracleConn.commit();
+            oracleConn.setAutoCommit(true);
+        } finally{
+            try{
+                oracleConn.close();
+            }catch(Exception e){}
+        }
     }
     
         
