@@ -20,8 +20,8 @@ public class BaseDao {
     protected static final String USERNAME = "liga";
     protected static final String PASSWORD = "ISIILiga2020";
 
-    protected String DELETE = "";
-    protected String CREATE = "";
+    protected String DELETE = "DELETE FROM T WHERE id = ?";
+    protected String CREATE = "CREATE TABLE 'T'()";
 
     public void delete(int id) {
         Connection oracleConn = null;
