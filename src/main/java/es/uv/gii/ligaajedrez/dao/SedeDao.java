@@ -30,44 +30,65 @@ public class SedeDao {
             + "PRIMARY KEY('id')"
             + ");";
     
-    public List<Sede> selectAll() 
-                throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        
+    public List<Sede> selectAll(){
+        Connection oracleConn = null;
         List<Sede> sedes = new ArrayList<Sede>();
-        Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
-        
-        PreparedStatement read = oracleConn.prepareStatement(LSEDE);
-        ResultSet rs = read.executeQuery();
-    
-        while(rs.next()){
-            Sede sede = new Sede();
-            sede.setId(rs.getInt("id"));
-            sedes.add(sede);
+        PreparedStatement read = null;
+            ResultSet rs = null;
+        try {
+            Class.forName(DRIVER).newInstance();
+            oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+
+            read = oracleConn.prepareStatement(LSEDE);
+            rs = read.executeQuery();
+
+            while(rs.next()){
+                Sede sede = new Sede();
+                sede.setId(rs.getInt("id"));
+                sedes.add(sede);
+            }
+       }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                    oracleConn.close();
+                if(read != null)
+                    read.close();
+                if(rs!=null)
+                    rs.close();
+            } catch(Exception e){}
         }
-        
-        oracleConn.close();
         return sedes;
     }
     
-    public Sede selectOne(int id)throws
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException 
-    {
+    public Sede selectOne(int id){
        Sede sede = null;
-       
-       Class.forName(DRIVER).newInstance();
-       Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
-       
-       PreparedStatement read = oracleConn.prepareStatement(LONESEDE);
-       read.setInt(1, id);
-       ResultSet rs = read.executeQuery();
-       
-       if(rs.next()){
-           sede = new Sede();
-           sede.setId(id);
-       }
-       
-       oracleConn.close();
+       Connection oracleConn = null;
+       PreparedStatement read = null;    
+       ResultSet rs = null;
+       try {
+           Class.forName(DRIVER).newInstance();
+            oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+
+            read = oracleConn.prepareStatement(LONESEDE);
+            read.setInt(1, id);
+            rs = read.executeQuery();
+
+            if(rs.next()){
+                sede = new Sede();
+                sede.setId(id);
+            }
+       }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                    oracleConn.close();
+                if(read != null)
+                    read.close();
+                if(rs!=null)
+                    rs.close();
+            } catch(Exception e){}
+        }
        return sede;
     }
     
@@ -86,20 +107,30 @@ public class SedeDao {
         oracleConn.close();
     }
     
-    public void insertSede(Sede sede)throws
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
-    {
-        Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
-        
-        oracleConn.setAutoCommit(false);
-        PreparedStatement create = oracleConn.prepareStatement(ISEDE);
-        create.setInt(1, sede.getId());
-        create.executeUpdate();
-        
-         oracleConn.commit();
-        oracleConn.setAutoCommit(true);
-        oracleConn.close();
+    public void insertSede(Sede sede){
+        Connection oracleConn = null;
+        PreparedStatement create = null;
+
+        try {
+                  Class.forName(DRIVER).newInstance();
+                oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+
+                oracleConn.setAutoCommit(false);
+                create = oracleConn.prepareStatement(ISEDE);
+                create.setInt(1, sede.getId());
+                create.executeUpdate();
+
+                 oracleConn.commit();
+                oracleConn.setAutoCommit(true);
+       }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                oracleConn.close();
+                if(create!=null)
+                    create.close();
+            } catch(Exception e){}
+        }
     }
     
     public void deleteSede(int id) throws 
