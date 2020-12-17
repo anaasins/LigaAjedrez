@@ -52,19 +52,18 @@ public class PartidaDao {
     
     public PartidaDao() {}
     
-    public List<Partida> selectAll() throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException
-    {
+    public List<Partida> selectAll() {
         Connection oracleConn = null;
-
+        PreparedStatement read = null;
+            ResultSet rs = null;
         List<Partida> partidas = new ArrayList<Partida>(); 
 
          try{
             Class.forName(DRIVER).newInstance();
             oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
 
-            PreparedStatement read = oracleConn.prepareStatement(SELECT);
-            ResultSet rs = read.executeQuery();
+            read = oracleConn.prepareStatement(SELECT);
+            rs = read.executeQuery();
             Sede s = new Sede();
             JugadorModel j1 = new JugadorModel();
             JugadorModel j2 = new JugadorModel();
@@ -90,28 +89,33 @@ public class PartidaDao {
 
                 partidas.add(partida);
             }
-        } finally{
-            try{
-                oracleConn.close();
-            }catch(Exception e){}
+        } catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                    oracleConn.close();
+                if(read != null)
+                    read.close();
+                if(rs!=null)
+                    rs.close();
+            } catch(Exception e){}
         }
         return partidas;
     }
     
-    public Partida selectOne() throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException
-    {
+    public Partida selectOne(){
         
         Connection oracleConn = null;
         Partida partida = null;
-
+         PreparedStatement read = null;
+             ResultSet rs = null;
         try{
             
             Class.forName(DRIVER).newInstance();
              oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
 
-             PreparedStatement read = oracleConn.prepareStatement(SELECTONE);
-             ResultSet rs = read.executeQuery();
+             read = oracleConn.prepareStatement(SELECTONE);
+             rs = read.executeQuery();
              Sede s = new Sede();
              SedeDao sd = new SedeDao();
              JugadorModel j1 = new JugadorModel();
@@ -139,26 +143,31 @@ public class PartidaDao {
                  partida.setTorneo(torneo);
 
              }
-        } finally{
-            try{
-                oracleConn.close();
-            }catch(Exception e){}
+        }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                    oracleConn.close();
+                if(read != null)
+                    read.close();
+                if(rs!=null)
+                    rs.close();
+            } catch(Exception e){}
         }
         
         return partida;
     }
     
-    public void insert(Partida partida)throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
-    {
+    public void insert(Partida partida){
         
         Connection oracleConn = null;
+            PreparedStatement insert =null;
 
         try{
             Class.forName(DRIVER).newInstance();
             oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
             oracleConn.setAutoCommit(false);
-            PreparedStatement insert = oracleConn.prepareStatement(INSERT);
+            insert = oracleConn.prepareStatement(INSERT);
             insert.setInt(1, partida.getId());
             insert.setInt(2, partida.getJugador1().getId());
             insert.setInt(3, partida.getJugador2().getId());
@@ -170,25 +179,29 @@ public class PartidaDao {
             insert.executeUpdate();
             oracleConn.commit();
             oracleConn.setAutoCommit(true);
-        } finally{
-            try{
+        }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
                 oracleConn.close();
-            }catch(Exception e){}
+                if(insert!=null)
+                        insert.close();
+            } catch(Exception e){}
         }
         
     }
     
-    public void update(Partida partida)throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
-    {
+    public void update(Partida partida){
        Connection oracleConn = null;
+       PreparedStatement insert =null;
+
         try{
             Class.forName(DRIVER).newInstance();
             oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
 
 
             oracleConn.setAutoCommit(false);
-            PreparedStatement insert = oracleConn.prepareStatement(UPDATE);
+            insert = oracleConn.prepareStatement(UPDATE);
             insert.setInt(1, partida.getJugador1().getId());
             insert.setInt(2, partida.getJugador2().getId());
             insert.setInt(3, partida.getSede().getId());
@@ -201,10 +214,14 @@ public class PartidaDao {
 
             oracleConn.commit();
             oracleConn.setAutoCommit(true);
-        } finally{
-            try{
+        }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
                 oracleConn.close();
-            }catch(Exception e){}
+                if(insert!=null)
+                        insert.close();
+            } catch(Exception e){}
         }
     }
     

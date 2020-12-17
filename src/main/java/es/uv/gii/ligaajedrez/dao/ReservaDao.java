@@ -57,95 +57,141 @@ public class ReservaDao {
     
     public ReservaDao() {}
     
-    public List<Reserva> selectAll() throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException {
+    public List<Reserva> selectAll(){
         List<Reserva> reservas = new ArrayList<Reserva>();
-        
-        Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
-        
-        PreparedStatement read = oracleConn.prepareStatement(SELECT);
-        ResultSet rs = read.executeQuery();
-        
-        while (rs.next()) {
-            Reserva reserva = new Reserva(
-                    new UsuarioDao().selectOne(rs.getInt("usuarioid")),
-                    rs.getDate("inicio"),
-                    rs.getInt("hora"),
-                    new SedeDao().selectOne(rs.getInt("sedeId"))
-            );
-            reserva.setContador(rs.getInt("contador"));
-            reserva.setId(rs.getInt("id"));
-            reservas.add(reserva);
+       Connection oracleConn = null;
+       PreparedStatement read = null;
+       ResultSet rs = null;
+       try {
+           Class.forName(DRIVER).newInstance();
+            oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+
+            read = oracleConn.prepareStatement(SELECT);
+            rs = read.executeQuery();
+
+            while (rs.next()) {
+                Reserva reserva = new Reserva(
+                        new UsuarioDao().selectOne(rs.getInt("usuarioid")),
+                        rs.getDate("inicio"),
+                        rs.getInt("hora"),
+                        new SedeDao().selectOne(rs.getInt("sedeId"))
+                );
+                reserva.setContador(rs.getInt("contador"));
+                reserva.setId(rs.getInt("id"));
+                reservas.add(reserva);
+            }
+       }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                    oracleConn.close();
+                if(read != null)
+                    read.close();
+                if(rs!=null)
+                    rs.close();
+            } catch(Exception e){}
         }
         
-        oracleConn.close();
         return reservas;
     }
     
-    public Reserva selectOne(int id) throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException {
+    public Reserva selectOne(int id){
         Reserva reserva = null;
-        
-        Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
-        
-        PreparedStatement read = oracleConn.prepareStatement(SELECT);
-        read.setInt(1, id);
-        ResultSet rs = read.executeQuery();
-        
-        if (rs.next()) {
-            reserva = new Reserva(
-                    new UsuarioDao().selectOne(rs.getInt("usuarioid")),
-                    rs.getDate("inicio"),
-                    rs.getInt("hora"),
-                    new SedeDao().selectOne(rs.getInt("sedeId"))
-            );
-            reserva.setContador(rs.getInt("contador"));
-            reserva.setId(rs.getInt("id"));
+        Connection oracleConn = null;
+        PreparedStatement read = null;
+        ResultSet rs =null;
+
+        try {
+            Class.forName(DRIVER).newInstance();
+            oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+
+            read = oracleConn.prepareStatement(SELECT);
+            read.setInt(1, id);
+            rs = read.executeQuery();
+
+            if (rs.next()) {
+                reserva = new Reserva(
+                        new UsuarioDao().selectOne(rs.getInt("usuarioid")),
+                        rs.getDate("inicio"),
+                        rs.getInt("hora"),
+                        new SedeDao().selectOne(rs.getInt("sedeId"))
+                );
+                reserva.setContador(rs.getInt("contador"));
+                reserva.setId(rs.getInt("id"));
+            }
+       }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                oracleConn.close();
+                if(read != null)
+                    read.close();
+                if(rs!=null)
+                    rs.close();
+            } catch(Exception e){}
         }
-        
-        oracleConn.close();
         return reserva;
     }
     
-    public void insert(Reserva reserva) throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+    public void insert(Reserva reserva) {
+        Connection oracleConn = null;
+        PreparedStatement insert = null;
+
+        try {
+            Class.forName(DRIVER).newInstance();
+            oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
            
-        oracleConn.setAutoCommit(false);
-        PreparedStatement insert = oracleConn.prepareStatement(INSERT);
-        insert.setInt(1, reserva.getId());
-        insert.setInt(2, reserva.getContador());
-        insert.setDate(3, (Date) reserva.getInicio());
-        insert.setInt(4, reserva.getSede().getId());
-        insert.setInt(5, reserva.getUser().getId());
-        insert.executeUpdate();
-        
-        oracleConn.commit();
-        oracleConn.setAutoCommit(true);
-        oracleConn.close();
+            oracleConn.setAutoCommit(false);
+            insert = oracleConn.prepareStatement(INSERT);
+            insert.setInt(1, reserva.getId());
+            insert.setInt(2, reserva.getContador());
+            insert.setDate(3, (Date) reserva.getInicio());
+            insert.setInt(4, reserva.getSede().getId());
+            insert.setInt(5, reserva.getUser().getId());
+            insert.executeUpdate();
+
+            oracleConn.commit();
+            oracleConn.setAutoCommit(true);
+       }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                oracleConn.close();
+                if(insert!=null)
+                        insert.close();
+            } catch(Exception e){}
+        }
     }
     
-    public void update(Reserva reserva) throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+    public void update(Reserva reserva) {
+        Connection oracleConn = null;
+        PreparedStatement update = null;
+
+        try {
+            Class.forName(DRIVER).newInstance();
+            oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
            
-        oracleConn.setAutoCommit(false);
-        PreparedStatement update = oracleConn.prepareStatement(UPDATE);
-        update.setInt(1, reserva.getContador());
-        update.setInt(2, reserva.getHora());
-        update.setDate(3, (Date) reserva.getInicio());
-        update.setInt(4, reserva.getSede().getId());
-        update.setInt(5, reserva.getUser().getId());
-        update.setInt(6, reserva.getId());
-        update.executeUpdate();
-        
-        oracleConn.commit();
-        oracleConn.setAutoCommit(true);
-        oracleConn.close();
+            oracleConn.setAutoCommit(false);
+            update = oracleConn.prepareStatement(UPDATE);
+            update.setInt(1, reserva.getContador());
+            update.setInt(2, reserva.getHora());
+            update.setDate(3, (Date) reserva.getInicio());
+            update.setInt(4, reserva.getSede().getId());
+            update.setInt(5, reserva.getUser().getId());
+            update.setInt(6, reserva.getId());
+            update.executeUpdate();
+
+            oracleConn.commit();
+            oracleConn.setAutoCommit(true);
+       }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                oracleConn.close();
+                if(update!=null)
+                    update.close();
+            } catch(Exception e){}
+        }
     }
     
     public void delete(int id) throws 
