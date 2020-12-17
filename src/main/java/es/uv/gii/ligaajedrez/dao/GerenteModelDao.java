@@ -55,15 +55,17 @@ public class GerenteModelDao {
     
     public GerenteModelDao() {}
     
-    public List<GerenteModel> selectAll() throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException {
+    public List<GerenteModel> selectAll() {
         List<GerenteModel> gerentes = new ArrayList<GerenteModel>();
-        
+        Connection oracleConn = null;
+        PreparedStatement read = null;
+        ResultSet rs = null;
+        try {
         Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+        oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         
-        PreparedStatement read = oracleConn.prepareStatement(SELECT);
-        ResultSet rs = read.executeQuery();
+        read = oracleConn.prepareStatement(SELECT);
+        rs = read.executeQuery();
         
         while (rs.next()) {
             GerenteModel gerente = new GerenteModel(
@@ -79,20 +81,33 @@ public class GerenteModelDao {
             gerentes.add(gerente);
         }
         
-        oracleConn.close();
+        }catch(Exception e){} 
+         finally {
+            try {
+                if(oracleConn != null)
+                oracleConn.close();
+                if (read!= null)
+                read.close();
+                if(rs!=null)
+                rs.close();
+            } catch(Exception e){}            
+        }
         return gerentes;
     }
     
-    public GerenteModel selectOne(int id) throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, ParseException {
+    public GerenteModel selectOne(int id) {
         GerenteModel gerente = null;
         
+        Connection oracleConn = null;
+        PreparedStatement read = null;
+        ResultSet rs = null;
+        try {
         Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+        oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
         
-        PreparedStatement read = oracleConn.prepareStatement(SELECT);
+        read = oracleConn.prepareStatement(SELECT);
         read.setInt(1, id);
-        ResultSet rs = read.executeQuery();
+        rs = read.executeQuery();
         
         if (rs.next()) {
             gerente = new GerenteModel(
@@ -107,17 +122,30 @@ public class GerenteModelDao {
             gerente.setClub(new ClubDao().leerClub(rs.getInt("clubId")));
         }
         
-        oracleConn.close();
+        }catch(Exception e){} 
+         finally {
+            try {
+                if(oracleConn != null)
+                oracleConn.close();
+                if (read!= null)
+                read.close();
+                if(rs!=null)
+                rs.close();
+            } catch(Exception e){}            
+        }
         return gerente;
     }
     
-    public void insert(GerenteModel gerente) throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+    public void insert(GerenteModel gerente){
+        
+       Connection oracleConn = null;
+       PreparedStatement insert = null;
+       try {
         Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+        oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
            
         oracleConn.setAutoCommit(false);
-        PreparedStatement insert = oracleConn.prepareStatement(INSERT);
+        insert = oracleConn.prepareStatement(INSERT);
         insert.setInt(1, gerente.getId());
         insert.setString(2, gerente.getName());
         insert.setString(3, gerente.getSurname());
@@ -130,16 +158,26 @@ public class GerenteModelDao {
         
         oracleConn.commit();
         oracleConn.setAutoCommit(true);
-        oracleConn.close();
+         }catch(Exception e){} 
+         finally {
+            try {
+                if(oracleConn != null)
+                oracleConn.close();
+                if (insert!= null)
+                insert.close();
+            } catch(Exception e){}    
+        }
     }
     
-    public void update(GerenteModel gerente) throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+    public void update(GerenteModel gerente) {
+       Connection oracleConn = null;
+       PreparedStatement update = null;
+       try {
         Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+        oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
            
         oracleConn.setAutoCommit(false);
-        PreparedStatement update = oracleConn.prepareStatement(UPDATE);
+        update = oracleConn.prepareStatement(UPDATE);
         update.setString(1, gerente.getName());
         update.setString(2, gerente.getSurname());
         update.setString(3, gerente.getPhone());
@@ -152,7 +190,15 @@ public class GerenteModelDao {
         
         oracleConn.commit();
         oracleConn.setAutoCommit(true);
-        oracleConn.close();
+         }catch(Exception e){} 
+         finally {
+            try {
+                if(oracleConn != null)
+                oracleConn.close();
+                if (update!= null)
+                update.close();
+            } catch(Exception e){}            
+        }
     }
     
     public void delete(int id) throws 
