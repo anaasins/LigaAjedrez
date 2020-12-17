@@ -15,24 +15,13 @@ import java.sql.PreparedStatement;
  */
 public class BaseDao {
 
-    private static final String DRIVER = "oracle.jdbc.OracleDriver";
-    private static final String DBURL = "jdbc:oracle:thin:@176.31.107.124:1521:XE";
-    private static final String USERNAME = "liga";
-    private static final String PASSWORD = "ISIILiga2020";
+    protected static final String DRIVER = "oracle.jdbc.OracleDriver";
+    protected static final String DBURL = "jdbc:oracle:thin:@176.31.107.124:1521:XE";
+    protected static final String USERNAME = "liga";
+    protected static final String PASSWORD = "ISIILiga2020";
 
-    private static final String DELETE
-            = "DELETE FROM usuario "
-            + " WHERE id = ?";
-    private static final String CREATE
-            = "CREATE TABLE 'USUARIO' "
-            + "('ID' NUMBER(10,0) NOT NULL ENABLE, "
-            + "'ISADMIN' NUMBER(10,0) NOT NULL ENABLE, "
-            + "'USERNAME' VARCHAR2(255), "
-            + "'USERPASS' VARCHAR2(255), "
-            + "'PLAYERID' NUMBER(10,0), "
-            + "PRIMARY KEY ('ID'), "
-            + "CONSTRAINT 'FK_USUARIO_JUGADOR' FOREIGN KEY ('PLAYERID') "
-            + "REFERENCES 'JUGADORMODEL' ('ID') ENABLE)";
+    protected String DELETE = "";
+    protected String CREATE = "";
 
     public void delete(int id) {
         Connection oracleConn = null;
