@@ -473,4 +473,110 @@ public class Liga {
         gerente.setClub(club);
 
     }
+
+    public ArrayList<JugadorModel> getJugadores() {
+        return jugadores;
+    }
+
+    public void setJugadores(ArrayList<JugadorModel> jugadores) {
+        this.jugadores = jugadores;
+    }
+
+    public ArrayList<JugadorModel> getJugadoresMorosos() {
+        return jugadoresMorosos;
+    }
+
+    public void setJugadoresMorosos(ArrayList<JugadorModel> jugadoresMorosos) {
+        this.jugadoresMorosos = jugadoresMorosos;
+    }
+
+    public ArrayList<EntrenadorModel> getEntrenadores() {
+        return entrenadores;
+    }
+
+    public void setEntrenadores(ArrayList<EntrenadorModel> entrenadores) {
+        this.entrenadores = entrenadores;
+    }
+
+    public ArrayList<Club> getClubs() {
+        return clubs;
+    }
+
+    public void setClubs(ArrayList<Club> clubs) {
+        this.clubs = clubs;
+    }
+
+    public ArrayList<Torneo> getTorneos() {
+        return torneos;
+    }
+
+    public void setTorneos(ArrayList<Torneo> torneos) {
+        this.torneos = torneos;
+    }
+
+    public ArrayList<Sede> getSedes() {
+        return sedes;
+    }
+
+    public void setSedes(ArrayList<Sede> sedes) {
+        this.sedes = sedes;
+    }
+
+    public ArrayList<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(ArrayList<Reserva> reservas) {
+        this.reservas = reservas;
+    }
+
+    public ArrayList<FederacionModel> getFederaciones() {
+        return federaciones;
+    }
+
+    public void setFederaciones(ArrayList<FederacionModel> federaciones) {
+        this.federaciones = federaciones;
+    }
+
+    public ArrayList<Partida> getPartidas() {
+        return partidas;
+    }
+
+    public void setPartidas(ArrayList<Partida> partidas) {
+        this.partidas = partidas;
+    }
+
+    public ArrayList<Usuario> getNewUsuarios() {
+        return newUsuarios;
+    }
+
+    public void setNewUsuarios(ArrayList<Usuario> newUsuarios) {
+        this.newUsuarios = newUsuarios;
+    }
+
+    public ArrayList<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(ArrayList<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public ArrayList<GerenteModel> getGerentes() {
+        return gerentes;
+    }
+
+    public void setGerentes(ArrayList<GerenteModel> gerentes) {
+        this.gerentes = gerentes;
+    }
+
+    public Usuario getUserAct() {
+        return userAct;
+    }
+
+    public void setUserAct(Usuario userAct) {
+        this.userAct = userAct;
+    }
+    
+    
 }
