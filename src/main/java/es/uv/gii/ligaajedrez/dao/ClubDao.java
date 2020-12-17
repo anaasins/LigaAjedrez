@@ -69,8 +69,7 @@ public class ClubDao {
     public ClubDao() {
     }
 
-    public void actualizarClub(Club club) throws ClassNotFoundException,
-            InstantiationException, IllegalAccessException, SQLException {
+    public void actualizarClub(Club club){
         /*
         * Conexion a la base de datos
          */
@@ -91,15 +90,17 @@ public class ClubDao {
 
             oracleConn.commit();
             oracleConn.setAutoCommit(true);
-        } finally {
+        }catch(Exception e){} 
+        finally {
             try {
-                oracleConn.close();
+                if(oracleConn != null)
+                    oracleConn.close();
             } catch(Exception e){}
         }
     }
 
-    public void insertarClub(Club club) throws
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+    public void insertarClub(Club club) 
+    {
 
         /*
         * Conexion a la base de datos
@@ -121,9 +122,10 @@ public class ClubDao {
 
         oracleConn.commit();
         oracleConn.setAutoCommit(true);
-        }  
+        }catch(Exception e){} 
         finally {
             try {
+                if(oracleConn != null)
                 oracleConn.close();
             } catch(Exception e){}
         }
@@ -147,8 +149,10 @@ public class ClubDao {
 
         oracleConn.commit();
         oracleConn.setAutoCommit(true);
-        }finally {
+        }catch(Exception e){} 
+        finally {
             try {
+                if(oracleConn != null)
                 oracleConn.close();
             } catch(Exception e){}
         }
@@ -184,8 +188,10 @@ public class ClubDao {
             club.setTorneos(torneos);
         }
 
-        }finally {
+        }catch(Exception e){} 
+        finally {
             try {
+                if(oracleConn != null)
                 oracleConn.close();
             } catch(Exception e){}
         }
@@ -225,8 +231,10 @@ public class ClubDao {
             clubs.add(club);
         }
 
-       }finally {
+       }catch(Exception e){} 
+        finally {
             try {
+                if(oracleConn != null)
                 oracleConn.close();
             } catch(Exception e){}
         }
