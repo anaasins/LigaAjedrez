@@ -10,7 +10,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import es.uv.gii.ligaajedrez.modelo.Club;
@@ -51,81 +50,130 @@ class JugadorClubDao {
     
     public JugadorClubDao() {}
     
-    public List<int[]> selectAll() throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+    public List<int[]> selectAll() {
         List<int[]> jugadorCubs = new ArrayList<int[]>();
+        Connection oracleConn = null;
         
-        Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
-        
-        PreparedStatement read = oracleConn.prepareStatement(SELECT);
-        ResultSet rs = read.executeQuery();
-        
-        while (rs.next()) {
-            int[] jugadorClub = new int[]
-            {
-                rs.getInt("torneoId"),
-                rs.getInt("CLUBS_ID")
-            };
+        PreparedStatement read = null;
+        ResultSet rs = null;
+
+       try {
+            Class.forName(DRIVER).newInstance();
+            oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+
+            read = oracleConn.prepareStatement(SELECT);
+            rs = read.executeQuery();
+
+            while (rs.next()) {
+                int[] jugadorClub = new int[]
+                {
+                    rs.getInt("torneoId"),
+                    rs.getInt("CLUBS_ID")
+                };
+            }
+       }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                    oracleConn.close();
+                if(read != null)
+                    read.close();
+                if(rs!=null)
+                    rs.close();
+            } catch(Exception e){}
         }
-        
-        oracleConn.close();
         return jugadorCubs;
     }
     
-    public List<Integer> selectByJugador(int id) throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+    public List<Integer> selectByJugador(int id){
         List<Integer> clubs = new ArrayList<>();
-        
-        Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
-        
-        PreparedStatement read = oracleConn.prepareStatement(SELECTONEBYTJUGADOR);
-        read.setInt(1, id);
-        ResultSet rs = read.executeQuery();
-        
-        while (rs.next()) {
-            clubs.add(rs.getInt("CLUBS_ID"));
+        Connection oracleConn = null;
+        PreparedStatement read = null;
+        ResultSet rs = null;
+
+        try {
+            Class.forName(DRIVER).newInstance();
+            oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+
+            read = oracleConn.prepareStatement(SELECTONEBYTJUGADOR);
+            read.setInt(1, id);
+            rs = read.executeQuery();
+
+            while (rs.next()) {
+                clubs.add(rs.getInt("CLUBS_ID"));
+            }
+       }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                    oracleConn.close();
+                if(read != null)
+                    read.close();
+                if(rs!=null)
+                    rs.close();
+            } catch(Exception e){}
         }
-        
-        oracleConn.close();
         return clubs;
     }
     
-    public List<Integer> selectByClub(int id) throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+    public List<Integer> selectByClub(int id) {
         List<Integer> jugadores = new ArrayList<>();
+        Connection oracleConn = null;
         
-        Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
-        
-        PreparedStatement read = oracleConn.prepareStatement(SELECTONEBYCLUB);
-        read.setInt(1, id);
-        ResultSet rs = read.executeQuery();
-        
-        while (rs.next()) {
-            jugadores.add(rs.getInt("jugadorId"));
+        PreparedStatement read = null;
+        ResultSet rs =null;
+
+        try {
+            Class.forName(DRIVER).newInstance();
+            oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+
+            read = oracleConn.prepareStatement(SELECTONEBYCLUB);
+            read.setInt(1, id);
+            rs = read.executeQuery();
+
+            while (rs.next()) {
+                jugadores.add(rs.getInt("jugadorId"));
+            }
+       }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                    oracleConn.close();
+                if(read != null)
+                    read.close();
+                if(rs!=null)
+                    rs.close();
+            } catch(Exception e){}
         }
-        
-        oracleConn.close();
         return jugadores;
     }
     
-    public void insert(Club club, JugadorModel jugador) throws 
-            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        Class.forName(DRIVER).newInstance();
-        Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
-           
-        oracleConn.setAutoCommit(false);
-        // Sentencia de insert
-        PreparedStatement insert = oracleConn.prepareStatement(INSERT);
-        insert.setInt(1, jugador.getId());
-        insert.setInt(2, club.getId());
-        insert.executeUpdate();
-        
-        oracleConn.commit();
-        oracleConn.setAutoCommit(true);
-        oracleConn.close();
+    public void insert(Club club, JugadorModel jugador) {
+        Connection oracleConn =null;
+        PreparedStatement insert =null;
+
+        try {
+            Class.forName(DRIVER).newInstance();
+            oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+
+            oracleConn.setAutoCommit(false);
+            // Sentencia de insert
+            insert = oracleConn.prepareStatement(INSERT);
+            insert.setInt(1, jugador.getId());
+            insert.setInt(2, club.getId());
+            insert.executeUpdate();
+
+            oracleConn.commit();
+            oracleConn.setAutoCommit(true);
+       }catch(Exception e){} 
+        finally {
+            try {
+                if(oracleConn != null)
+                    oracleConn.close();
+                if(insert != null)
+                    insert.close();
+            } catch(Exception e){}
+        }
     }
     
     public void delete(Club club, JugadorModel jugador) throws 
